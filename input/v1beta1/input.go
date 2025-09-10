@@ -24,4 +24,5 @@ type Input struct {
 
 	// Example is an example field. Replace it with whatever input you need. :)
 	Example string `json:"example"`
+	CxEnv   string `json:"cxEnv,omitempty"`
 }

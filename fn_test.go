@@ -16,7 +16,6 @@ import (
 )
 
 func TestRunFunction(t *testing.T) {
-
 	type args struct {
 		ctx context.Context
 		req *fnv1.RunFunctionRequest
@@ -59,6 +58,28 @@ func TestRunFunction(t *testing.T) {
 							Status: fnv1.Status_STATUS_CONDITION_TRUE,
 							Reason: "Success",
 							Target: fnv1.Target_TARGET_COMPOSITE_AND_CLAIM.Enum(),
+						},
+					},
+					Desired: &fnv1.State{
+						Composite: &fnv1.Resource{
+							Resource: resource.MustStructJSON(`{
+								"apiVersion": "",
+								"kind": "",
+								"spec": {
+									"atFunction": {
+										"shell": {
+											"stdout": "foo"
+										}
+									}
+								},
+								"status": {
+									"atFunction": {
+										"shell": {
+											"stderr": ""
+										}
+									}
+								}
+							}`),
 						},
 					},
 				},

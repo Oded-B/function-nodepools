@@ -125,6 +125,11 @@ jobs:
   # This job downloads the single-platform packages built by the build job, and
   # pushes them as a multi-platform package.
   push:
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     runs-on: ubuntu-24.04
     needs:
       - build

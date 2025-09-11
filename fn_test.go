@@ -12,7 +12,11 @@ import (
 	"github.com/crossplane/function-sdk-go/logging"
 	fnv1 "github.com/crossplane/function-sdk-go/proto/v1"
 	"github.com/crossplane/function-sdk-go/resource"
+	"github.com/crossplane/function-sdk-go/resource/composed"
 	"github.com/crossplane/function-sdk-go/response"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	karpenterv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
 )
 
 func TestRunFunction(t *testing.T) {
@@ -60,35 +64,45 @@ func TestRunFunction(t *testing.T) {
 							Target: fnv1.Target_TARGET_COMPOSITE_AND_CLAIM.Enum(),
 						},
 					},
-					Desired: &fnv1.State{
-						Resources: map[string]*fnv1.Resource{
-							"nodepool": {
-								Resource: resource.MustStructJSON(`{
-									"apiVersion": "karpenter.sh/v1",
-									"kind": "NodePool",
-									"metadata": {
-										"name": "default"
-									},
-									"spec": {
-										"disruption": {
-											"consolidateAfter": "Never",
-											"consolidationPolicy": "WhenEmptyOrUnderutilized"
-										},
-										"template": {
-											"spec": {
-												"expireAfter": "Never",
-												"nodeClassRef": null,
-												"requirements": []
-											}
-										}
-									},
-									"status": {
-										"nodeClassObservedGeneration": 0
-									}
-								}`),
+					Desired: func() *fnv1.State {
+						// Create NodePool using Karpenter struct
+						nodePool := &karpenterv1.NodePool{
+							ObjectMeta: metav1.ObjectMeta{
+								Name: "default",
 							},
-						},
-					},
+							Spec: karpenterv1.NodePoolSpec{
+								Disruption: karpenterv1.Disruption{
+									ConsolidationPolicy: karpenterv1.ConsolidationPolicyWhenEmptyOrUnderutilized,
+								},
+							},
+						}
+
+						schemeGroupVersion := schema.GroupVersion{
+							Group:   "karpenter.sh",
+							Version: "v1",
+						}
+
+						composed.Scheme.AddKnownTypes(schemeGroupVersion, &karpenterv1.NodePool{})
+						// Convert NodePool to composed.Unstructured
+						nodePoolResource, err := composed.From(nodePool)
+						if err != nil {
+							t.Fatalf("cannot convert %T to %T: %v", nodePool, &composed.Unstructured{}, err)
+						}
+
+						// Convert to structpb.Struct for the test
+						nodePoolStruct, err := resource.AsStruct(nodePoolResource)
+						if err != nil {
+							t.Fatalf("cannot convert %T to structpb.Struct: %v", nodePoolResource, err)
+						}
+
+						return &fnv1.State{
+							Resources: map[string]*fnv1.Resource{
+								"nodepool": {
+									Resource: nodePoolStruct,
+								},
+							},
+						}
+					}(),
 				},
 			},
 		},

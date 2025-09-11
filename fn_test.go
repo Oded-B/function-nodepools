@@ -14,6 +14,8 @@ import (
 	"github.com/crossplane/function-sdk-go/resource"
 	"github.com/crossplane/function-sdk-go/resource/composed"
 	"github.com/crossplane/function-sdk-go/response"
+	corev1 "k8s.io/api/core/v1"
+	k8sresource "k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	karpenterv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
@@ -71,6 +73,10 @@ func TestRunFunction(t *testing.T) {
 								Name: "default",
 							},
 							Spec: karpenterv1.NodePoolSpec{
+								Limits: karpenterv1.Limits{
+									corev1.ResourceCPU:    k8sresource.MustParse("1000m"),
+									corev1.ResourceMemory: k8sresource.MustParse("1000Mi"),
+								},
 								Disruption: karpenterv1.Disruption{
 									ConsolidationPolicy: karpenterv1.ConsolidationPolicyWhenEmptyOrUnderutilized,
 								},

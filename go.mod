@@ -9,6 +9,7 @@ require (
 	github.com/crossplane/function-sdk-go v0.4.0
 	github.com/google/go-cmp v0.7.0
 	google.golang.org/protobuf v1.36.6
+	k8s.io/api v0.33.2
 	k8s.io/apimachinery v0.33.2
 	sigs.k8s.io/controller-tools v0.16.0
 	sigs.k8s.io/karpenter v1.6.2
@@ -77,7 +78,6 @@ require (
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	k8s.io/api v0.33.2 // indirect
 	k8s.io/apiextensions-apiserver v0.33.2 // indirect
 	k8s.io/client-go v0.33.2 // indirect
 	k8s.io/klog/v2 v2.130.1 // indirect

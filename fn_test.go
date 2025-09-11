@@ -61,25 +61,21 @@ func TestRunFunction(t *testing.T) {
 						},
 					},
 					Desired: &fnv1.State{
-						Composite: &fnv1.Resource{
-							Resource: resource.MustStructJSON(`{
-								"apiVersion": "",
-								"kind": "",
-								"spec": {
-									"atFunction": {
-										"shell": {
-											"stdout": "foo"
+						Resources: map[string]*fnv1.Resource{
+							"nodepool": {
+								Resource: resource.MustStructJSON(`{
+									"apiVersion": "karpenter.sh/v1",
+									"kind": "NodePool",
+									"metadata": {
+										"name": "default"
+									},
+									"spec": {
+										"disruption": {
+											"consolidationPolicy": "WhenEmptyOrUnderutilized"
 										}
 									}
-								},
-								"status": {
-									"atFunction": {
-										"shell": {
-											"stderr": ""
-										}
-									}
-								}
-							}`),
+								}`),
+							},
 						},
 					},
 				},

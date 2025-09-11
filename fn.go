@@ -63,6 +63,16 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 		return rsp, nil
 	}
 
+	// Set resource limits based on cxEnv
+	var cpuLimit, memoryLimit string
+	if in.CxEnv == "production" {
+		cpuLimit = "2000m"
+		memoryLimit = "2000Mi"
+	} else {
+		cpuLimit = "1000m"
+		memoryLimit = "1000Mi"
+	}
+
 	// Create NodePool using Karpenter struct
 	nodePool := &karpenterv1.NodePool{
 		ObjectMeta: metav1.ObjectMeta{
@@ -70,8 +80,8 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 		},
 		Spec: karpenterv1.NodePoolSpec{
 			Limits: karpenterv1.Limits{
-				corev1.ResourceCPU:    k8sresource.MustParse("1000m"),
-				corev1.ResourceMemory: k8sresource.MustParse("1000Mi"),
+				corev1.ResourceCPU:    k8sresource.MustParse(cpuLimit),
+				corev1.ResourceMemory: k8sresource.MustParse(memoryLimit),
 			},
 			Disruption: karpenterv1.Disruption{
 				ConsolidationPolicy: karpenterv1.ConsolidationPolicyWhenEmptyOrUnderutilized,
@@ -79,12 +89,12 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 		},
 	}
 
-	schemeGroupVersion := schema.GroupVersion{
+	karpenterSchemeGroupVersion := schema.GroupVersion{
 		Group:   "karpenter.sh",
 		Version: "v1",
 	}
 
-	composed.Scheme.AddKnownTypes(schemeGroupVersion, &karpenterv1.NodePool{})
+	composed.Scheme.AddKnownTypes(karpenterSchemeGroupVersion, &karpenterv1.NodePool{})
 	// Convert NodePool to composed.Unstructured
 	nodePoolResource, err := composed.From(nodePool)
 	if err != nil {

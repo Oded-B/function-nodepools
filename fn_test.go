@@ -71,8 +71,19 @@ func TestRunFunction(t *testing.T) {
 									},
 									"spec": {
 										"disruption": {
+											"consolidateAfter": "Never",
 											"consolidationPolicy": "WhenEmptyOrUnderutilized"
+										},
+										"template": {
+											"spec": {
+												"expireAfter": "Never",
+												"nodeClassRef": null,
+												"requirements": []
+											}
 										}
+									},
+									"status": {
+										"nodeClassObservedGeneration": 0
 									}
 								}`),
 							},

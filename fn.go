@@ -11,6 +11,9 @@ import (
 	"github.com/crossplane/function-sdk-go/resource"
 	"github.com/crossplane/function-sdk-go/resource/composed"
 	"github.com/crossplane/function-sdk-go/response"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	karpenterv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
 )
 
 // Function returns whatever response you ask it to.
@@ -58,20 +61,30 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 		return rsp, nil
 	}
 
-	// Create composed resource
-	nodePoolResource := &composed.Unstructured{}
-	nodePoolResource.SetUnstructuredContent(map[string]interface{}{
-		"apiVersion": "karpenter.sh/v1",
-		"kind":       "NodePool",
-		"metadata": map[string]interface{}{
-			"name": "default",
+	// Create NodePool using Karpenter struct
+	nodePool := &karpenterv1.NodePool{
+		ObjectMeta: metav1.ObjectMeta{
+			Name: "default",
 		},
-		"spec": map[string]interface{}{
-			"disruption": map[string]interface{}{
-				"consolidationPolicy": "WhenEmptyOrUnderutilized",
+		Spec: karpenterv1.NodePoolSpec{
+			Disruption: karpenterv1.Disruption{
+				ConsolidationPolicy: karpenterv1.ConsolidationPolicyWhenEmptyOrUnderutilized,
 			},
 		},
-	})
+	}
+
+	schemeGroupVersion := schema.GroupVersion{
+		Group:   "karpenter.sh",
+		Version: "v1",
+	}
+
+	composed.Scheme.AddKnownTypes(schemeGroupVersion, &karpenterv1.NodePool{})
+	// Convert NodePool to composed.Unstructured
+	nodePoolResource, err := composed.From(nodePool)
+	if err != nil {
+		response.Fatal(rsp, errors.Wrapf(err, "cannot convert %T to %T", nodePool, &composed.Unstructured{}))
+		return rsp, nil
+	}
 
 	// Add the NodePool to desired composed resources
 	desired[resource.Name("nodepool")] = &resource.DesiredComposed{Resource: nodePoolResource}

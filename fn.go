@@ -75,6 +75,11 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 		return rsp, nil
 	}
 
+	xrName, err := xr.Resource.GetString("metadata.name")
+	if err != nil {
+		response.Fatal(rsp, errors.Wrapf(err, "cannot read metadata.name field of %s", xr.Resource.GetKind()))
+		return rsp, nil
+	}
 	// Set resource limits based on cxEnv from XR
 	var cpuLimit, memoryLimit string
 	if cxEnv == "production" {
@@ -88,7 +93,7 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 	// Create NodePool using Karpenter struct
 	nodePool := &karpenterv1.NodePool{
 		ObjectMeta: metav1.ObjectMeta{
-			Name: "default",
+			Name: xrName,
 		},
 		Spec: karpenterv1.NodePoolSpec{
 			Limits: karpenterv1.Limits{

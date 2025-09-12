@@ -83,7 +83,7 @@ func TestRunFunction(t *testing.T) {
 						// Create NodePool using Karpenter struct
 						nodePool := &karpenterv1.NodePool{
 							ObjectMeta: metav1.ObjectMeta{
-								Name: "default",
+								Name: "np1",
 							},
 							Spec: karpenterv1.NodePoolSpec{
 								Limits: karpenterv1.Limits{
@@ -182,7 +182,7 @@ func TestRunFunction(t *testing.T) {
 						// Create NodePool using Karpenter struct with production limits
 						nodePool := &karpenterv1.NodePool{
 							ObjectMeta: metav1.ObjectMeta{
-								Name: "default",
+								Name: "np1",
 							},
 							Spec: karpenterv1.NodePoolSpec{
 								Limits: karpenterv1.Limits{

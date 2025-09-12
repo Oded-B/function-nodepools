@@ -63,9 +63,21 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 		return rsp, nil
 	}
 
-	// Set resource limits based on cxEnv
+	xr, err := request.GetObservedCompositeResource(req)
+	if err != nil {
+		response.Fatal(rsp, errors.Wrapf(err, "cannot get observed composite resource from %T", req))
+		return rsp, nil
+	}
+
+	cxEnv, err := xr.Resource.GetString("spec.CxEnv")
+	if err != nil {
+		response.Fatal(rsp, errors.Wrapf(err, "cannot read spec.CxEnv field of %s", xr.Resource.GetKind()))
+		return rsp, nil
+	}
+
+	// Set resource limits based on cxEnv from XR
 	var cpuLimit, memoryLimit string
-	if in.CxEnv == "production" {
+	if cxEnv == "production" {
 		cpuLimit = "2000m"
 		memoryLimit = "2000Mi"
 	} else {
@@ -85,6 +97,15 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 			},
 			Disruption: karpenterv1.Disruption{
 				ConsolidationPolicy: karpenterv1.ConsolidationPolicyWhenEmptyOrUnderutilized,
+			},
+			Template: karpenterv1.NodeClaimTemplate{
+				Spec: karpenterv1.NodeClaimTemplateSpec{
+					NodeClassRef: &karpenterv1.NodeClassReference{
+						Group: "karpenter.sh",
+						Kind:  "EC2NodeClass",
+						Name:  "default",
+					},
+				},
 			},
 		},
 	}

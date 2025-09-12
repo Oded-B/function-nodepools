@@ -45,6 +45,20 @@ func TestRunFunction(t *testing.T) {
 						"kind": "Input",
 						"example": "Hello, world"
 					}`),
+					Observed: &fnv1.State{
+						Composite: &fnv1.Resource{
+							Resource: resource.MustStructJSON(`{
+                "apiVersion": "example.crossplane.io/v1alpha1",
+                "kind": "XNodePool",
+                "metadata": {
+                  "name": "np1"
+                },
+                "spec": {
+                  "CxEnv": "development"
+                }
+              }`),
+						},
+					},
 				},
 			},
 			want: want{
@@ -78,6 +92,15 @@ func TestRunFunction(t *testing.T) {
 								},
 								Disruption: karpenterv1.Disruption{
 									ConsolidationPolicy: karpenterv1.ConsolidationPolicyWhenEmptyOrUnderutilized,
+								},
+								Template: karpenterv1.NodeClaimTemplate{
+									Spec: karpenterv1.NodeClaimTemplateSpec{
+										NodeClassRef: &karpenterv1.NodeClassReference{
+											Group: "karpenter.sh",
+											Kind:  "EC2NodeClass",
+											Name:  "default",
+										},
+									},
 								},
 							},
 						}
@@ -119,9 +142,22 @@ func TestRunFunction(t *testing.T) {
 					Input: resource.MustStructJSON(`{
 						"apiVersion": "template.fn.crossplane.io/v1beta1",
 						"kind": "Input",
-						"example": "Hello, world",
-						"cxEnv": "production"
+						"example": "Hello, world"
 					}`),
+					Observed: &fnv1.State{
+						Composite: &fnv1.Resource{
+							Resource: resource.MustStructJSON(`{
+                "apiVersion": "example.crossplane.io/v1alpha1",
+                "kind": "XNodePool",
+                "metadata": {
+                  "name": "np1"
+                },
+                "spec": {
+                  "CxEnv": "production"
+                }
+              }`),
+						},
+					},
 				},
 			},
 			want: want{
@@ -155,6 +191,15 @@ func TestRunFunction(t *testing.T) {
 								},
 								Disruption: karpenterv1.Disruption{
 									ConsolidationPolicy: karpenterv1.ConsolidationPolicyWhenEmptyOrUnderutilized,
+								},
+								Template: karpenterv1.NodeClaimTemplate{
+									Spec: karpenterv1.NodeClaimTemplateSpec{
+										NodeClassRef: &karpenterv1.NodeClassReference{
+											Group: "karpenter.sh",
+											Kind:  "EC2NodeClass",
+											Name:  "default",
+										},
+									},
 								},
 							},
 						}

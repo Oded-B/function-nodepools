@@ -98,7 +98,7 @@ func TestRunFunction(t *testing.T) {
 										NodeClassRef: &karpenterv1.NodeClassReference{
 											Group: "karpenter.sh",
 											Kind:  "EC2NodeClass",
-											Name:  "default",
+											Name:  "default2",
 										},
 									},
 								},
@@ -197,7 +197,7 @@ func TestRunFunction(t *testing.T) {
 										NodeClassRef: &karpenterv1.NodeClassReference{
 											Group: "karpenter.sh",
 											Kind:  "EC2NodeClass",
-											Name:  "default",
+											Name:  "default2",
 										},
 									},
 								},

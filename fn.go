@@ -108,7 +108,7 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 					NodeClassRef: &karpenterv1.NodeClassReference{
 						Group: "karpenter.sh",
 						Kind:  "EC2NodeClass",
-						Name:  "default",
+						Name:  "default2",
 					},
 				},
 			},

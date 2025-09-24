@@ -16,6 +16,10 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	karpenterv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
+
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/ec2"
+	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
 )
 
 // Function returns whatever response you ask it to.
@@ -25,8 +29,21 @@ type Function struct {
 	log logging.Logger
 }
 
+// This function checks if a specific instance type exists in DescribeInstanceTypeOfferingsOutput object
+func doesItanceTypeExists(instanceType string, offerings *ec2.DescribeInstanceTypeOfferingsOutput) bool {
+	if offerings == nil {
+		return false
+	}
+	for _, offering := range offerings.InstanceTypeOfferings {
+		if string(offering.InstanceType) == instanceType {
+			return true
+		}
+	}
+	return false
+}
+
 // RunFunction runs the Function.
-func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) (*fnv1.RunFunctionResponse, error) {
+func (f *Function) RunFunction(ctx context.Context, req *fnv1.RunFunctionRequest) (*fnv1.RunFunctionResponse, error) {
 	f.log.Info("Running function", "tag", req.GetMeta().GetTag())
 
 	rsp := response.To(req, response.DefaultTTL)
@@ -80,6 +97,54 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 		response.Fatal(rsp, errors.Wrapf(err, "cannot read metadata.name field of %s", xr.Resource.GetKind()))
 		return rsp, nil
 	}
+
+	cfg, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion(awsRegion))
+	if err != nil {
+		response.Fatal(rsp, errors.Wrapf(err, "unable to load SDK config, %v", err))
+	}
+	ec2Client := ec2.NewFromConfig(cfg)
+
+	locationFilterName := "location"
+	params := &ec2.DescribeInstanceTypeOfferingsInput{
+		LocationType: types.LocationTypeRegion,
+		Filters: []types.Filter{
+			{
+				Name:   &locationFilterName,
+				Values: []string{awsRegion},
+			},
+		},
+	}
+
+	// This whole part shound be in the function, as forces API interaction during unit tests and we can avoid mocking AWS API
+	// Current plan its serelize the whole InstanceTypeOfferings in to some k8 object by some outside process and use it as input for the function.
+
+	awsRegion, err := xr.Resource.GetString("spec.AwsRegion")
+	if err != nil {
+		response.Fatal(rsp, errors.Wrapf(err, "cannot read spec.AwsRegion field of %s", xr.Resource.GetKind()))
+		return rsp, nil
+	}
+
+	instanceOffering, err := ec2Client.DescribeInstanceTypeOfferings(ctx, params)
+	if err != nil {
+		// Fail the function if we can't describe instance type offerings
+		response.Fatal(rsp, errors.Wrapf(err, "unable to describe instance type offerings"))
+		f.log.Info("unable to describe instance type offerings")
+
+		return rsp, nil
+	}
+
+	usedIinstanceCategories := []string{"m"}
+	// Check if t3.medium is available
+	checkInstanceType := "c8g.16xlarge"
+	if doesItanceTypeExists(checkInstanceType, instanceOffering) {
+		// Use t3.medium for the NodePool
+		f.log.Info(checkInstanceType + " instance type is available in " + awsRegion)
+		usedIinstanceCategories = append(usedIinstanceCategories, "c")
+	} else {
+		// Fall back to a different instance type
+		f.log.Info(checkInstanceType + " instance type is not available in " + awsRegion + ", using default")
+	}
+
 	// Set resource limits based on cxEnv from XR
 	var cpuLimit, memoryLimit string
 	if cxEnv == "production" {
@@ -109,6 +174,15 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 						Group: "karpenter.sh",
 						Kind:  "EC2NodeClass",
 						Name:  "default2",
+					},
+					Requirements: []karpenterv1.NodeSelectorRequirementWithMinValues{
+						{
+							NodeSelectorRequirement: corev1.NodeSelectorRequirement{
+								Key:      "karpenter.k8s.aws/instance-category",
+								Operator: "In",
+								Values:   usedIinstanceCategories,
+							},
+						},
 					},
 				},
 			},

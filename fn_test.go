@@ -9,6 +9,7 @@ import (
 	"github.com/crossplane/function-sdk-go/resource"
 	"github.com/crossplane/function-sdk-go/resource/composed"
 	"github.com/crossplane/function-sdk-go/response"
+	"github.com/go-logr/logr"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
 	"google.golang.org/protobuf/testing/protocmp"
@@ -20,6 +21,29 @@ import (
 	karpenterv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
 )
 
+// testLogSink implements logr.LogSink for testing
+type testLogSink struct {
+	t *testing.T
+}
+
+func (s *testLogSink) Init(info logr.RuntimeInfo) {}
+func (s *testLogSink) Enabled(level int) bool     { return true }
+func (s *testLogSink) Info(level int, msg string, keysAndValues ...interface{}) {
+	s.t.Logf("[FUNCTION] %s %v", msg, keysAndValues)
+}
+
+func (s *testLogSink) Error(err error, msg string, keysAndValues ...interface{}) {
+	s.t.Logf("[FUNCTION ERROR] %s: %v %v", msg, err, keysAndValues)
+}
+
+func (s *testLogSink) WithValues(keysAndValues ...interface{}) logr.LogSink {
+	return s
+}
+
+func (s *testLogSink) WithName(name string) logr.LogSink {
+	return s
+}
+
 func TestRunFunction(t *testing.T) {
 	type args struct {
 		ctx context.Context
@@ -29,6 +53,8 @@ func TestRunFunction(t *testing.T) {
 		rsp *fnv1.RunFunctionResponse
 		err error
 	}
+
+	// TODO seperate region and env tests
 
 	cases := map[string]struct {
 		reason string
@@ -54,7 +80,8 @@ func TestRunFunction(t *testing.T) {
                   "name": "np1"
                 },
                 "spec": {
-                  "CxEnv": "development"
+                  "CxEnv": "development",
+                  "AwsRegion": "af-south-1"
                 }
               }`),
 						},
@@ -99,6 +126,15 @@ func TestRunFunction(t *testing.T) {
 											Group: "karpenter.sh",
 											Kind:  "EC2NodeClass",
 											Name:  "default2",
+										},
+										Requirements: []karpenterv1.NodeSelectorRequirementWithMinValues{
+											{
+												NodeSelectorRequirement: corev1.NodeSelectorRequirement{
+													Key:      "karpenter.k8s.aws/instance-category",
+													Operator: "In",
+													Values:   []string{"m"},
+												},
+											},
 										},
 									},
 								},
@@ -153,7 +189,8 @@ func TestRunFunction(t *testing.T) {
                   "name": "np1"
                 },
                 "spec": {
-                  "CxEnv": "production"
+                  "CxEnv": "production",
+                  "AwsRegion": "us-east-1"
                 }
               }`),
 						},
@@ -199,10 +236,25 @@ func TestRunFunction(t *testing.T) {
 											Kind:  "EC2NodeClass",
 											Name:  "default2",
 										},
+										Requirements: []karpenterv1.NodeSelectorRequirementWithMinValues{
+											{
+												NodeSelectorRequirement: corev1.NodeSelectorRequirement{
+													Key:      "karpenter.k8s.aws/instance-category",
+													Operator: "In",
+													Values:   []string{"m", "c"},
+												},
+											},
+										},
 									},
 								},
 							},
 						}
+
+						// - key: karpenter.k8s.aws/instance-category
+						//   operator: In
+						//   values:
+						//   - c
+						//   - m
 
 						schemeGroupVersion := schema.GroupVersion{
 							Group:   "karpenter.sh",
@@ -237,8 +289,11 @@ func TestRunFunction(t *testing.T) {
 
 	for name, tc := range cases {
 		t.Run(name, func(t *testing.T) {
-			f := &Function{log: logging.NewNopLogger()}
-			rsp, err := f.RunFunction(tc.args.ctx, tc.args.req)
+			// Create a verbose logger for testing
+			logger := logr.New(&testLogSink{t: t})
+			f := &Function{log: logging.NewLogrLogger(logger)}
+			ctx := context.Background()
+			rsp, err := f.RunFunction(ctx, tc.args.req)
 
 			if diff := cmp.Diff(tc.want.rsp, rsp, protocmp.Transform()); diff != "" {
 				t.Errorf("%s\nf.RunFunction(...): -want rsp, +got rsp:\n%s", tc.reason, diff)

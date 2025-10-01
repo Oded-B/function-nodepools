@@ -71,7 +71,7 @@ jobs:
   # speed this up we build single-platform packages in parallel. We then upload
   # those packages to GitHub as a build artifact. The push job downloads those
   # artifacts and pushes them as a single multi-platform package.
-  build:
+  build-and-e2e:
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: true
@@ -122,11 +122,6 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
-  # This job downloads the single-platform packages built by the build job, and
-  # pushes them as a multi-platform package.
-  e2e-test-with-kind:
-    runs-on: ubuntu-latest
-    steps:
       - name: Kubernetes KinD Cluster
         id: kind
         uses: helm/kind-action@v1

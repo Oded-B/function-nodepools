@@ -124,6 +124,24 @@ jobs:
 
   # This job downloads the single-platform packages built by the build job, and
   # pushes them as a multi-platform package.
+  e2e-test-with-kind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kubernetes KinD Cluster
+        id: kind
+        uses: helm/kind-action@v1
+        with:
+          registry: true
+          registry_name: my-registry
+          registry_port: 5001
+          registry_enable_delete: true
+      - name: Setup the Crossplane CLI #TODO run this only once
+        run: "curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh"
+      - name: Push Multi-Platform Package to kind Container Registry
+        # XPKG repo name can't contain uppercase characters like UpboundCare, we need to lowercase if the GithubOrg contains them.
+        # See https://github.com/orgs/community/discussions/25768#discussioncomment-8057564 for XPKG@L lowercase explanation
+        run: "./crossplane --verbose xpkg push --package-files $(echo *.xpkg|tr ' ' ,) ${{ steps.kind.outputs.LOCAL_REGISTRY }}/${{ github.repository}}:${{ env.XPKG_VERSION }}"
+
   push:
     permissions:
       contents: read

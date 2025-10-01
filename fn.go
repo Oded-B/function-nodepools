@@ -98,6 +98,16 @@ func (f *Function) RunFunction(ctx context.Context, req *fnv1.RunFunctionRequest
 		return rsp, nil
 	}
 
+	// This whole part shound not be in the function, as it forces API interaction during unit tests and generally mixes the logic with plumbing.
+	// Current plan its serelize the whole InstanceTypeOfferings in to some k8 object by some outside process and use it as input for the function.
+	// so we wouldn't need to moch AWS as part of the logic uni tests
+
+	awsRegion, err := xr.Resource.GetString("spec.AwsRegion")
+	if err != nil {
+		response.Fatal(rsp, errors.Wrapf(err, "cannot read spec.AwsRegion field of %s", xr.Resource.GetKind()))
+		return rsp, nil
+	}
+
 	cfg, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion(awsRegion))
 	if err != nil {
 		response.Fatal(rsp, errors.Wrapf(err, "unable to load SDK config, %v", err))
@@ -113,15 +123,6 @@ func (f *Function) RunFunction(ctx context.Context, req *fnv1.RunFunctionRequest
 				Values: []string{awsRegion},
 			},
 		},
-	}
-
-	// This whole part shound be in the function, as forces API interaction during unit tests and we can avoid mocking AWS API
-	// Current plan its serelize the whole InstanceTypeOfferings in to some k8 object by some outside process and use it as input for the function.
-
-	awsRegion, err := xr.Resource.GetString("spec.AwsRegion")
-	if err != nil {
-		response.Fatal(rsp, errors.Wrapf(err, "cannot read spec.AwsRegion field of %s", xr.Resource.GetKind()))
-		return rsp, nil
 	}
 
 	instanceOffering, err := ec2Client.DescribeInstanceTypeOfferings(ctx, params)

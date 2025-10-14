@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"testing"
 
 	"github.com/crossplane/function-sdk-go/logging"
@@ -19,11 +20,25 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	karpenterv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
+
+	ec2v1alpha1 "github.com/Oded-B/ec2offering-crossplane-provider/apis/ec2/v1alpha1"
 )
 
 // testLogSink implements logr.LogSink for testing
 type testLogSink struct {
 	t *testing.T
+}
+
+// createInstanceTypeOfferingResource creates a fnv1.Resource from an InstanceTypeOffering struct
+func createInstanceTypeOfferingResource(offering *ec2v1alpha1.InstanceTypeOffering) *fnv1.Resource {
+	// Convert the struct to JSON and then to structpb.Struct, similar to how it's done in the main function
+	jsonBytes, err := json.Marshal(offering)
+	if err != nil {
+		panic(err)
+	}
+
+	structResource := resource.MustStructJSON(string(jsonBytes))
+	return &fnv1.Resource{Resource: structResource}
 }
 
 func (s *testLogSink) Init(info logr.RuntimeInfo) {}
@@ -84,6 +99,29 @@ func TestRunFunction(t *testing.T) {
                   "AwsRegion": "af-south-1"
                 }
               }`),
+						},
+						Resources: map[string]*fnv1.Resource{
+							"currentClusterEc2offering": createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
+								ObjectMeta: metav1.ObjectMeta{
+									Name: "test-offering",
+								},
+								Status: ec2v1alpha1.InstanceTypeOfferingStatus{
+									AtProvider: ec2v1alpha1.InstanceTypeOfferingObservation{
+										InstanceTypeOfferings: []ec2v1alpha1.InstanceTypeOfferingInfo{
+											{
+												InstanceType: "m5.large",
+												Location:     "af-south-1",
+												LocationType: "region",
+											},
+											{
+												InstanceType: "c5.large",
+												Location:     "af-south-1",
+												LocationType: "region",
+											},
+										},
+									},
+								},
+							}),
 						},
 					},
 				},
@@ -193,6 +231,29 @@ func TestRunFunction(t *testing.T) {
                   "AwsRegion": "us-east-1"
                 }
               }`),
+						},
+						Resources: map[string]*fnv1.Resource{
+							"currentClusterEc2offering": createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
+								ObjectMeta: metav1.ObjectMeta{
+									Name: "test-offering",
+								},
+								Status: ec2v1alpha1.InstanceTypeOfferingStatus{
+									AtProvider: ec2v1alpha1.InstanceTypeOfferingObservation{
+										InstanceTypeOfferings: []ec2v1alpha1.InstanceTypeOfferingInfo{
+											{
+												InstanceType: "m5.large",
+												Location:     "us-east-1",
+												LocationType: "region",
+											},
+											{
+												InstanceType: "c8g.16xlarge",
+												Location:     "us-east-1",
+												LocationType: "region",
+											},
+										},
+									},
+								},
+							}),
 						},
 					},
 				},

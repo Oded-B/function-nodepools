@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/crossplane/function-nodepools/input/v1beta1"
 	"github.com/crossplane/function-sdk-go/errors"
@@ -17,9 +18,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	karpenterv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
 
-	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/aws/aws-sdk-go-v2/service/ec2"
-	"github.com/aws/aws-sdk-go-v2/service/ec2/types"
+	ec2v1alpha1 "github.com/Oded-B/ec2offering-crossplane-provider/apis/ec2/v1alpha1"
 )
 
 // Function returns whatever response you ask it to.
@@ -29,13 +28,13 @@ type Function struct {
 	log logging.Logger
 }
 
-// This function checks if a specific instance type exists in DescribeInstanceTypeOfferingsOutput object
-func doesItanceTypeExists(instanceType string, offerings *ec2.DescribeInstanceTypeOfferingsOutput) bool {
-	if offerings == nil {
+// This function checks if a specific instance type exists in InstanceTypeOffering object
+func doesInstanceTypeExists(instanceType string, offering *ec2v1alpha1.InstanceTypeOffering) bool {
+	if offering == nil || offering.Status.AtProvider.InstanceTypeOfferings == nil {
 		return false
 	}
-	for _, offering := range offerings.InstanceTypeOfferings {
-		if string(offering.InstanceType) == instanceType {
+	for _, offeringItem := range offering.Status.AtProvider.InstanceTypeOfferings {
+		if offeringItem.InstanceType == instanceType {
 			return true
 		}
 	}
@@ -86,6 +85,39 @@ func (f *Function) RunFunction(ctx context.Context, req *fnv1.RunFunctionRequest
 		return rsp, nil
 	}
 
+	// Get observed resources to find InstanceTypeOffering
+	// Note: The InstanceTypeOffering should be provided as an observed resource
+	// by the Crossplane composition based on the requiredResources configuration
+	var instanceOffering *ec2v1alpha1.InstanceTypeOffering
+
+	// Check if there are observed resources and find InstanceTypeOffering
+	if req.Observed != nil && req.Observed.Resources != nil {
+		for name, res := range req.Observed.Resources {
+			// Check if this is the InstanceTypeOffering resource we're looking for
+			if name == "currentClusterEc2offering" {
+				// Convert structpb.Struct to our InstanceTypeOffering struct using JSON
+				jsonBytes, err := json.Marshal(res.Resource)
+				if err != nil {
+					f.log.Info("Failed to marshal resource to JSON", "error", err)
+					continue
+				}
+
+				offering := &ec2v1alpha1.InstanceTypeOffering{}
+				if err := json.Unmarshal(jsonBytes, offering); err != nil {
+					f.log.Info("Failed to unmarshal JSON to InstanceTypeOffering", "error", err)
+					continue
+				}
+				instanceOffering = offering
+				break
+			}
+		}
+	}
+
+	if instanceOffering == nil {
+		response.Fatal(rsp, errors.New("no InstanceTypeOffering resource found in observed resources"))
+		return rsp, nil
+	}
+
 	cxEnv, err := xr.Resource.GetString("spec.CxEnv")
 	if err != nil {
 		response.Fatal(rsp, errors.Wrapf(err, "cannot read spec.CxEnv field of %s", xr.Resource.GetKind()))
@@ -98,49 +130,19 @@ func (f *Function) RunFunction(ctx context.Context, req *fnv1.RunFunctionRequest
 		return rsp, nil
 	}
 
-	// This whole part shound not be in the function, as it forces API interaction during unit tests and generally mixes the logic with plumbing.
-	// Current plan its serelize the whole InstanceTypeOfferings in to some k8 object by some outside process and use it as input for the function.
-	// so we wouldn't need to moch AWS as part of the logic uni tests
-
 	awsRegion, err := xr.Resource.GetString("spec.AwsRegion")
 	if err != nil {
 		response.Fatal(rsp, errors.Wrapf(err, "cannot read spec.AwsRegion field of %s", xr.Resource.GetKind()))
 		return rsp, nil
 	}
 
-	cfg, err := config.LoadDefaultConfig(context.TODO(), config.WithRegion(awsRegion))
-	if err != nil {
-		response.Fatal(rsp, errors.Wrapf(err, "unable to load SDK config, %v", err))
-	}
-	ec2Client := ec2.NewFromConfig(cfg)
-
-	locationFilterName := "location"
-	params := &ec2.DescribeInstanceTypeOfferingsInput{
-		LocationType: types.LocationTypeRegion,
-		Filters: []types.Filter{
-			{
-				Name:   &locationFilterName,
-				Values: []string{awsRegion},
-			},
-		},
-	}
-
-	instanceOffering, err := ec2Client.DescribeInstanceTypeOfferings(ctx, params)
-	if err != nil {
-		// Fail the function if we can't describe instance type offerings
-		response.Fatal(rsp, errors.Wrapf(err, "unable to describe instance type offerings"))
-		f.log.Info("unable to describe instance type offerings")
-
-		return rsp, nil
-	}
-
-	usedIinstanceCategories := []string{"m"}
-	// Check if t3.medium is available
+	usedInstanceCategories := []string{"m"}
+	// Check if c8g.16xlarge is available
 	checkInstanceType := "c8g.16xlarge"
-	if doesItanceTypeExists(checkInstanceType, instanceOffering) {
-		// Use t3.medium for the NodePool
+	if doesInstanceTypeExists(checkInstanceType, instanceOffering) {
+		// Use c8g.16xlarge for the NodePool
 		f.log.Info(checkInstanceType + " instance type is available in " + awsRegion)
-		usedIinstanceCategories = append(usedIinstanceCategories, "c")
+		usedInstanceCategories = append(usedInstanceCategories, "c")
 	} else {
 		// Fall back to a different instance type
 		f.log.Info(checkInstanceType + " instance type is not available in " + awsRegion + ", using default")
@@ -181,7 +183,7 @@ func (f *Function) RunFunction(ctx context.Context, req *fnv1.RunFunctionRequest
 							NodeSelectorRequirement: corev1.NodeSelectorRequirement{
 								Key:      "karpenter.k8s.aws/instance-category",
 								Operator: "In",
-								Values:   usedIinstanceCategories,
+								Values:   usedInstanceCategories,
 							},
 						},
 					},

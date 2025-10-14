@@ -48,18 +48,23 @@ func (f *Function) getInstanceTypeOfferingFromObservedResources(req *fnv1.RunFun
 	}
 
 	for name, res := range req.GetObserved().GetResources() {
-		if name == "currentClusterEc2offering" {
-			jsonBytes, err := json.Marshal(res.GetResource())
-			if err != nil {
-				f.log.Info("Failed to marshal resource to JSON", "error", err)
-				continue
-			}
+		// Check if this resource is of kind InstanceTypeOffering
+		jsonBytes, err := json.Marshal(res.GetResource())
+		if err != nil {
+			f.log.Info("Failed to marshal resource to JSON", "name", name, "error", err)
+			continue
+		}
 
-			offering := &ec2v1alpha1.InstanceTypeOffering{}
-			if err := json.Unmarshal(jsonBytes, offering); err != nil {
-				f.log.Info("Failed to unmarshal JSON to InstanceTypeOffering", "error", err)
-				continue
-			}
+		// Try to unmarshal as InstanceTypeOffering to check if it's the right type
+		offering := &ec2v1alpha1.InstanceTypeOffering{}
+		if err := json.Unmarshal(jsonBytes, offering); err != nil {
+			// This resource is not an InstanceTypeOffering, continue to next
+			continue
+		}
+
+		// Verify that this is actually an InstanceTypeOffering by checking the kind
+		if offering.Kind == "InstanceTypeOffering" {
+			f.log.Info("Found InstanceTypeOffering resource", "name", name)
 			return offering, nil
 		}
 	}

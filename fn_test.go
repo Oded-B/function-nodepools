@@ -101,6 +101,9 @@ func TestRunFunction(t *testing.T) {
 						},
 						Resources: map[string]*fnv1.Resource{
 							"currentClusterEc2offering": createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
+								TypeMeta: metav1.TypeMeta{
+									Kind: "InstanceTypeOffering",
+								},
 								ObjectMeta: metav1.ObjectMeta{
 									Name: "test-offering",
 								},
@@ -233,6 +236,9 @@ func TestRunFunction(t *testing.T) {
 						},
 						Resources: map[string]*fnv1.Resource{
 							"currentClusterEc2offering": createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
+								TypeMeta: metav1.TypeMeta{
+									Kind: "InstanceTypeOffering",
+								},
 								ObjectMeta: metav1.ObjectMeta{
 									Name: "test-offering",
 								},

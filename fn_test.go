@@ -41,9 +41,9 @@ func createInstanceTypeOfferingResource(offering *ec2v1alpha1.InstanceTypeOfferi
 	return &fnv1.Resource{Resource: structResource}
 }
 
-func (s *testLogSink) Init(info logr.RuntimeInfo) {}
-func (s *testLogSink) Enabled(level int) bool     { return true }
-func (s *testLogSink) Info(level int, msg string, keysAndValues ...interface{}) {
+func (s *testLogSink) Init(_ logr.RuntimeInfo) {}
+func (s *testLogSink) Enabled(_ int) bool      { return true }
+func (s *testLogSink) Info(_ int, msg string, keysAndValues ...interface{}) {
 	s.t.Logf("[FUNCTION] %s %v", msg, keysAndValues)
 }
 
@@ -51,17 +51,16 @@ func (s *testLogSink) Error(err error, msg string, keysAndValues ...interface{})
 	s.t.Logf("[FUNCTION ERROR] %s: %v %v", msg, err, keysAndValues)
 }
 
-func (s *testLogSink) WithValues(keysAndValues ...interface{}) logr.LogSink {
+func (s *testLogSink) WithValues(_ ...interface{}) logr.LogSink {
 	return s
 }
 
-func (s *testLogSink) WithName(name string) logr.LogSink {
+func (s *testLogSink) WithName(_ string) logr.LogSink {
 	return s
 }
 
 func TestRunFunction(t *testing.T) {
 	type args struct {
-		ctx context.Context
 		req *fnv1.RunFunctionRequest
 	}
 	type want struct {
@@ -69,7 +68,7 @@ func TestRunFunction(t *testing.T) {
 		err error
 	}
 
-	// TODO seperate region and env tests
+	// TODO separate region and env tests
 
 	cases := map[string]struct {
 		reason string

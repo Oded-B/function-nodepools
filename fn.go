@@ -41,8 +41,56 @@ func doesInstanceTypeExists(instanceType string, offering *ec2v1alpha1.InstanceT
 	return false
 }
 
+// getInstanceTypeOfferingFromObservedResources extracts InstanceTypeOffering from observed resources
+func (f *Function) getInstanceTypeOfferingFromObservedResources(req *fnv1.RunFunctionRequest) (*ec2v1alpha1.InstanceTypeOffering, error) {
+	if req.GetObserved() == nil || req.GetObserved().GetResources() == nil {
+		return nil, errors.New("no observed resources found")
+	}
+
+	for name, res := range req.GetObserved().GetResources() {
+		if name == "currentClusterEc2offering" {
+			jsonBytes, err := json.Marshal(res.GetResource())
+			if err != nil {
+				f.log.Info("Failed to marshal resource to JSON", "error", err)
+				continue
+			}
+
+			offering := &ec2v1alpha1.InstanceTypeOffering{}
+			if err := json.Unmarshal(jsonBytes, offering); err != nil {
+				f.log.Info("Failed to unmarshal JSON to InstanceTypeOffering", "error", err)
+				continue
+			}
+			return offering, nil
+		}
+	}
+	return nil, errors.New("no InstanceTypeOffering resource found in observed resources")
+}
+
+// determineInstanceCategories determines which instance categories to use based on availability
+func (f *Function) determineInstanceCategories(instanceOffering *ec2v1alpha1.InstanceTypeOffering, awsRegion string) []string {
+	usedInstanceCategories := []string{"m"}
+	checkInstanceType := "c8g.16xlarge"
+
+	if doesInstanceTypeExists(checkInstanceType, instanceOffering) {
+		f.log.Info(checkInstanceType + " instance type is available in " + awsRegion)
+		usedInstanceCategories = append(usedInstanceCategories, "c")
+	} else {
+		f.log.Info(checkInstanceType + " instance type is not available in " + awsRegion + ", using default")
+	}
+
+	return usedInstanceCategories
+}
+
+// getResourceLimits returns CPU and memory limits based on environment
+func getResourceLimits(cxEnv string) (string, string) {
+	if cxEnv == "production" {
+		return "2000m", "2000Mi"
+	}
+	return "1000m", "1000Mi"
+}
+
 // RunFunction runs the Function.
-func (f *Function) RunFunction(ctx context.Context, req *fnv1.RunFunctionRequest) (*fnv1.RunFunctionResponse, error) {
+func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) (*fnv1.RunFunctionResponse, error) {
 	f.log.Info("Running function", "tag", req.GetMeta().GetTag())
 
 	rsp := response.To(req, response.DefaultTTL)
@@ -85,36 +133,10 @@ func (f *Function) RunFunction(ctx context.Context, req *fnv1.RunFunctionRequest
 		return rsp, nil
 	}
 
-	// Get observed resources to find InstanceTypeOffering
-	// Note: The InstanceTypeOffering should be provided as an observed resource
-	// by the Crossplane composition based on the requiredResources configuration
-	var instanceOffering *ec2v1alpha1.InstanceTypeOffering
-
-	// Check if there are observed resources and find InstanceTypeOffering
-	if req.Observed != nil && req.Observed.Resources != nil {
-		for name, res := range req.Observed.Resources {
-			// Check if this is the InstanceTypeOffering resource we're looking for
-			if name == "currentClusterEc2offering" {
-				// Convert structpb.Struct to our InstanceTypeOffering struct using JSON
-				jsonBytes, err := json.Marshal(res.Resource)
-				if err != nil {
-					f.log.Info("Failed to marshal resource to JSON", "error", err)
-					continue
-				}
-
-				offering := &ec2v1alpha1.InstanceTypeOffering{}
-				if err := json.Unmarshal(jsonBytes, offering); err != nil {
-					f.log.Info("Failed to unmarshal JSON to InstanceTypeOffering", "error", err)
-					continue
-				}
-				instanceOffering = offering
-				break
-			}
-		}
-	}
-
-	if instanceOffering == nil {
-		response.Fatal(rsp, errors.New("no InstanceTypeOffering resource found in observed resources"))
+	// Get InstanceTypeOffering from observed resources
+	instanceOffering, err := f.getInstanceTypeOfferingFromObservedResources(req)
+	if err != nil {
+		response.Fatal(rsp, err)
 		return rsp, nil
 	}
 
@@ -136,27 +158,11 @@ func (f *Function) RunFunction(ctx context.Context, req *fnv1.RunFunctionRequest
 		return rsp, nil
 	}
 
-	usedInstanceCategories := []string{"m"}
-	// Check if c8g.16xlarge is available
-	checkInstanceType := "c8g.16xlarge"
-	if doesInstanceTypeExists(checkInstanceType, instanceOffering) {
-		// Use c8g.16xlarge for the NodePool
-		f.log.Info(checkInstanceType + " instance type is available in " + awsRegion)
-		usedInstanceCategories = append(usedInstanceCategories, "c")
-	} else {
-		// Fall back to a different instance type
-		f.log.Info(checkInstanceType + " instance type is not available in " + awsRegion + ", using default")
-	}
+	// Determine instance categories based on availability
+	usedInstanceCategories := f.determineInstanceCategories(instanceOffering, awsRegion)
 
 	// Set resource limits based on cxEnv from XR
-	var cpuLimit, memoryLimit string
-	if cxEnv == "production" {
-		cpuLimit = "2000m"
-		memoryLimit = "2000Mi"
-	} else {
-		cpuLimit = "1000m"
-		memoryLimit = "1000Mi"
-	}
+	cpuLimit, memoryLimit := getResourceLimits(cxEnv)
 
 	// Create NodePool using Karpenter struct
 	nodePool := &karpenterv1.NodePool{

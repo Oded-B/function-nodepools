@@ -1,5 +1,7 @@
 dario.cat/mergo v1.0.1 h1:Ra4+bf83h2ztPIQYNP99R6m+Y7KfnARDfID+a+vLl4s=
 dario.cat/mergo v1.0.1/go.mod h1:uNxQE+84aUszobStD9th8a29P2fMDhsBdgRYvZOxGmk=
+github.com/Oded-B/ec2offering-crossplane-provider v0.0.0-20251014093215-9b0fde2d09d1 h1:xm8SvZalbeZJtLKrl3mefgCKTm8snAKOVwlMGICSt2o=
+github.com/Oded-B/ec2offering-crossplane-provider v0.0.0-20251014093215-9b0fde2d09d1/go.mod h1:OMpI+jmTnma3oaOf6T4+y25Q0s8/z/friq/JmOQXL34=
 github.com/Pallinder/go-randomdata v1.2.0 h1:DZ41wBchNRb/0GfsePLiSwb0PHZmT67XY00lCDlaYPg=
 github.com/Pallinder/go-randomdata v1.2.0/go.mod h1:yHmJgulpD2Nfrm0cR9tI/+oAgRqCQQixsA8HyRZfV9Y=
 github.com/agext/levenshtein v1.2.3 h1:YB2fHEn0UJagG8T1rrWknE3ZQzWM06O8AMAatNn7lmo=

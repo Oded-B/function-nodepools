@@ -5,7 +5,7 @@ go 1.24.4
 toolchain go1.24.7
 
 require (
-	github.com/Oded-B/ec2offering-crossplane-provider v0.0.0-00010101000000-000000000000
+	github.com/Oded-B/ec2offering-crossplane-provider v0.0.0-20251014093215-9b0fde2d09d1
 	github.com/alecthomas/kong v0.9.0
 	github.com/crossplane/function-sdk-go v0.4.0
 	github.com/go-logr/logr v1.4.3
@@ -91,4 +91,4 @@ require (
 	sigs.k8s.io/yaml v1.5.0 // indirect
 )
 
-replace github.com/Oded-B/ec2offering-crossplane-provider => ../ec2offering-crossplane-provider
+replace github.com/Oded-B/ec2offering-crossplane-provider => github.com/Oded-B/ec2offering-crossplane-provider v0.0.0-20251014093215-9b0fde2d09d1

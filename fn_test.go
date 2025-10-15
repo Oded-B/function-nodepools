@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"testing"
 
 	"github.com/crossplane/function-sdk-go/logging"
@@ -19,6 +20,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	karpenterv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
+
+	ec2v1alpha1 "github.com/Oded-B/ec2offering-crossplane-provider/apis/ec2/v1alpha1"
 )
 
 // testLogSink implements logr.LogSink for testing
@@ -26,9 +29,21 @@ type testLogSink struct {
 	t *testing.T
 }
 
-func (s *testLogSink) Init(info logr.RuntimeInfo) {}
-func (s *testLogSink) Enabled(level int) bool     { return true }
-func (s *testLogSink) Info(level int, msg string, keysAndValues ...interface{}) {
+// createInstanceTypeOfferingResource creates a fnv1.Resource from an InstanceTypeOffering struct
+func createInstanceTypeOfferingResource(offering *ec2v1alpha1.InstanceTypeOffering) *fnv1.Resource {
+	// Convert the struct to JSON and then to structpb.Struct, similar to how it's done in the main function
+	jsonBytes, err := json.Marshal(offering)
+	if err != nil {
+		panic(err)
+	}
+
+	structResource := resource.MustStructJSON(string(jsonBytes))
+	return &fnv1.Resource{Resource: structResource}
+}
+
+func (s *testLogSink) Init(_ logr.RuntimeInfo) {}
+func (s *testLogSink) Enabled(_ int) bool      { return true }
+func (s *testLogSink) Info(_ int, msg string, keysAndValues ...interface{}) {
 	s.t.Logf("[FUNCTION] %s %v", msg, keysAndValues)
 }
 
@@ -36,17 +51,16 @@ func (s *testLogSink) Error(err error, msg string, keysAndValues ...interface{})
 	s.t.Logf("[FUNCTION ERROR] %s: %v %v", msg, err, keysAndValues)
 }
 
-func (s *testLogSink) WithValues(keysAndValues ...interface{}) logr.LogSink {
+func (s *testLogSink) WithValues(_ ...interface{}) logr.LogSink {
 	return s
 }
 
-func (s *testLogSink) WithName(name string) logr.LogSink {
+func (s *testLogSink) WithName(_ string) logr.LogSink {
 	return s
 }
 
 func TestRunFunction(t *testing.T) {
 	type args struct {
-		ctx context.Context
 		req *fnv1.RunFunctionRequest
 	}
 	type want struct {
@@ -54,7 +68,7 @@ func TestRunFunction(t *testing.T) {
 		err error
 	}
 
-	// TODO seperate region and env tests
+	// TODO separate region and env tests
 
 	cases := map[string]struct {
 		reason string
@@ -84,6 +98,32 @@ func TestRunFunction(t *testing.T) {
                   "AwsRegion": "af-south-1"
                 }
               }`),
+						},
+						Resources: map[string]*fnv1.Resource{
+							"currentClusterEc2offering": createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
+								TypeMeta: metav1.TypeMeta{
+									Kind: "InstanceTypeOffering",
+								},
+								ObjectMeta: metav1.ObjectMeta{
+									Name: "test-offering",
+								},
+								Status: ec2v1alpha1.InstanceTypeOfferingStatus{
+									AtProvider: ec2v1alpha1.InstanceTypeOfferingObservation{
+										InstanceTypeOfferings: []ec2v1alpha1.InstanceTypeOfferingInfo{
+											{
+												InstanceType: "m5.large",
+												Location:     "af-south-1",
+												LocationType: "region",
+											},
+											{
+												InstanceType: "c5.large",
+												Location:     "af-south-1",
+												LocationType: "region",
+											},
+										},
+									},
+								},
+							}),
 						},
 					},
 				},
@@ -193,6 +233,32 @@ func TestRunFunction(t *testing.T) {
                   "AwsRegion": "us-east-1"
                 }
               }`),
+						},
+						Resources: map[string]*fnv1.Resource{
+							"currentClusterEc2offering": createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
+								TypeMeta: metav1.TypeMeta{
+									Kind: "InstanceTypeOffering",
+								},
+								ObjectMeta: metav1.ObjectMeta{
+									Name: "test-offering",
+								},
+								Status: ec2v1alpha1.InstanceTypeOfferingStatus{
+									AtProvider: ec2v1alpha1.InstanceTypeOfferingObservation{
+										InstanceTypeOfferings: []ec2v1alpha1.InstanceTypeOfferingInfo{
+											{
+												InstanceType: "m5.large",
+												Location:     "us-east-1",
+												LocationType: "region",
+											},
+											{
+												InstanceType: "c8g.16xlarge",
+												Location:     "us-east-1",
+												LocationType: "region",
+											},
+										},
+									},
+								},
+							}),
 						},
 					},
 				},

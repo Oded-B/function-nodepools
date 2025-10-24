@@ -1,0 +1,3032 @@
+apiVersion: ec2.ec2offering.crossplane.io/v1alpha1
+kind: InstanceTypeOffering
+metadata:
+  annotations:
+    crossplane.io/external-name: virginia
+  creationTimestamp: "2025-10-13T15:01:12Z"
+  finalizers:
+  - finalizer.managedresource.crossplane.io
+  generation: 1
+  labels:
+    foo: bar2
+  name: virginia
+  resourceVersion: "1556360"
+  uid: d69051dd-24f6-42b3-b96b-abe0e9a9434b
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    awsRegion: us-east-1
+  managementPolicies:
+  - '*'
+  providerConfigRef:
+    name: example
+status:
+  atProvider:
+    instanceTypeOfferings:
+    - instanceType: m6g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r6idn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5a.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x1e.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: mac2-m2pro.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m5d.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5b.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6idn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6gd.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gd.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5a.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5b.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: c4.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: im4gn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6id.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5d.large
+      location: us-east-1
+      locationType: region
+    - instanceType: i7ie.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2idn.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c4.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7ie.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: r5n.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gn.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: x2idn.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t3.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6gd.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6id.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6in.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5d.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: u7i-8tb.112xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m4.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: f2.6xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t2.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r7g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: m6i.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: r7gd.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: i7ie.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: u7i-6tb.112xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5ad.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: i2.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5d.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t4g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: gr6.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i-flex.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5ad.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6a.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i-flex.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7iz.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: x2gd.large
+      location: us-east-1
+      locationType: region
+    - instanceType: i2.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: g4dn.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.96xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5d.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t3a.nano
+      location: us-east-1
+      locationType: region
+    - instanceType: m6i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m5n.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c1.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: c6id.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6in.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c3.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: u-6tb1.56xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r3.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iezn.6xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r4.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r3.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: is4gen.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6a.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m6i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5n.large
+      location: us-east-1
+      locationType: region
+    - instanceType: g6e.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m5.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5d.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gd.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: r6gd.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5a.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: u7i-12tb.224xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: is4gen.large
+      location: us-east-1
+      locationType: region
+    - instanceType: trn1.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8ge.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m7g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8g.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6gd.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t3.small
+      location: us-east-1
+      locationType: region
+    - instanceType: im4gn.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r7g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6i.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: u7in-32tb.224xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5dn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gn.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r7g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: inf1.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g4ad.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i-flex.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.96xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5dn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6in.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5dn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: inf2.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6e.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7gd.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m6g.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: g6e.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6id.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6f.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7iz.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r4.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x1e.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8ge.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5ad.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8g.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: z1d.large
+      location: us-east-1
+      locationType: region
+    - instanceType: g5.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6a.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: is4gen.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: i8g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m3.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5b.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5a.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6gd.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5b.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m5ad.large
+      location: us-east-1
+      locationType: region
+    - instanceType: t4g.micro
+      location: us-east-1
+      locationType: region
+    - instanceType: r6g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m6id.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5n.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r5d.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i-flex.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5d.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5n.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r5a.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5a.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: h1.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: r6id.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i-flex.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g4ad.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gb.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iedn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7ie.6xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5ad.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5ad.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: mac2.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m5a.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c6id.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: d2.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6id.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c6g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iedn.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6idn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7gd.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5a.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: p4d.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6id.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: vt1.6xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i-flex.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x1.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g4ad.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5dn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: d3en.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6idn.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g4dn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m4.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: inf2.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iedn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: gr6f.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6idn.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7gd.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i3en.3xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5n.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m3.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6gd.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i3.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6idn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5n.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: t3.micro
+      location: us-east-1
+      locationType: region
+    - instanceType: m5d.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: g6f.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gd.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gd.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m5d.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r7iz.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6gd.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m6id.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iedn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: f1.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: m5.large
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5n.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gd.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.metal-96xl
+      location: us-east-1
+      locationType: region
+    - instanceType: is4gen.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gd.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: is4gen.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6gd.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6gd.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: c6i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5ad.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m2.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7iz.metal-16xl
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: p4de.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6a.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6idn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: f2.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: f1.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5ad.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6gd.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8ge.18xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7iz.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i-flex.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6id.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6in.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6gd.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gd.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2gd.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7gd.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.metal-96xl
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gd.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5a.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: m6idn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5n.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g4ad.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: d2.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6in.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: a1.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i-flex.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i3.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6idn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5b.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m6i.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5dn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.large
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: z1d.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gb.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5a.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6id.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iezn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iezn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5ad.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gd.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: g4dn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i-flex.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: inf1.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6id.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5d.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7ie.18xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t3.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5a.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8ge.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5a.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m4.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x1e.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6e.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5d.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gb.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5d.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.large
+      location: us-east-1
+      locationType: region
+    - instanceType: im4gn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: p5.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: p3.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5ad.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.large
+      location: us-east-1
+      locationType: region
+    - instanceType: z1d.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8ge.6xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6i.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: x1e.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: z1d.6xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t1.micro
+      location: us-east-1
+      locationType: region
+    - instanceType: m3.large
+      location: us-east-1
+      locationType: region
+    - instanceType: vt1.3xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: h1.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6id.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5b.large
+      location: us-east-1
+      locationType: region
+    - instanceType: x2gd.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r6i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6i.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5dn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5n.9xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8ge.3xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i-flex.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5ad.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5n.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i-flex.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6idn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2gd.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7iz.metal-32xl
+      location: us-east-1
+      locationType: region
+    - instanceType: r5b.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5dn.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: a1.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: g6f.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r4.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: im4gn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t3a.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r5.large
+      location: us-east-1
+      locationType: region
+    - instanceType: p5en.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r4.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5zn.3xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: im4gn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: c6i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gd.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6in.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t3.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: x2gd.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5d.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iedn.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c5ad.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6in.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: d3en.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: d3.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5n.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: z1d.3xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6i.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: p6-b200.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6in.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t2.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: c6in.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: p3dn.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gb.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i-flex.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6in.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2gd.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: r5n.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gd.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r6gd.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r5a.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i-flex.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5ad.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6id.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gd.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5a.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t2.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5d.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6in.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7iz.large
+      location: us-east-1
+      locationType: region
+    - instanceType: h1.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: u7in-24tb.224xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6a.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6g.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c7g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i2.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5a.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: d3.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i3en.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c6i.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2idn.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c4.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5d.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gb.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iedn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7gd.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: p5.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8ge.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m5zn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: f2.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6in.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: hpc7g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5n.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6gd.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6id.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6in.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i3en.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gd.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i-flex.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5.9xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7iz.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c3.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t2.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: d3en.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.metal-96xl
+      location: us-east-1
+      locationType: region
+    - instanceType: r7gd.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: c6i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5ad.large
+      location: us-east-1
+      locationType: region
+    - instanceType: t2.nano
+      location: us-east-1
+      locationType: region
+    - instanceType: r5.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: mac1.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: i7ie.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6in.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i-flex.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6a.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i-flex.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6in.large
+      location: us-east-1
+      locationType: region
+    - instanceType: i3.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: d2.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6in.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: u7in-16tb.224xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: d2.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5ad.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iezn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i3en.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4i.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i-flex.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8ge.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r6in.large
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r3.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2gd.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6a.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8g.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t4g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r5.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: r6gd.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r4.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i3.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x1e.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6in.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: hpc7g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6idn.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: r6i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: c5a.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: h1.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6idn.large
+      location: us-east-1
+      locationType: region
+    - instanceType: mac2-m1ultra.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: g6e.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5zn.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r6g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6e.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7ie.3xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i3.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6f.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6in.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5zn.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i-flex.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: trn1.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6a.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5d.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c5a.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5d.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6id.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5n.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gd.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gn.large
+      location: us-east-1
+      locationType: region
+    - instanceType: z1d.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c3.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6in.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t3.nano
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: u-6tb1.112xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6e.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r3.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: p3.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: mac2-m2.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m6id.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5d.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m6idn.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i2.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5d.18xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: mac-m4.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m5d.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: z1d.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i-flex.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m6gd.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i-flex.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c5d.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m5d.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m5ad.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r6id.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c6g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: a1.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m7gd.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m4.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5n.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: g4ad.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r3.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iedn.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.96xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6id.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m6id.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6gd.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iedn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gn.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i-flex.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6a.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: a1.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5ad.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c1.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5d.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2gd.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5n.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6in.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: i7ie.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: gr6.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c3.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5a.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5n.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r6i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: i8ge.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: d3.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5dn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iezn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gb.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7g.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x1e.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t2.small
+      location: us-east-1
+      locationType: region
+    - instanceType: hpc7g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: d3en.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i-flex.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m7gd.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: t3a.small
+      location: us-east-1
+      locationType: region
+    - instanceType: m5dn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6i.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5d.9xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: trn1n.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6id.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7ie.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: inf2.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c3.large
+      location: us-east-1
+      locationType: region
+    - instanceType: x2gd.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6id.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c5a.large
+      location: us-east-1
+      locationType: region
+    - instanceType: d3en.6xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6e.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6in.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m2.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5dn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6id.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6gd.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i-flex.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m6id.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: inf2.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6idn.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t4g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5ad.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6in.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m1.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: p3.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: m5ad.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i-flex.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m6a.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5dn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i-flex.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m2.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i-flex.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6id.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6id.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m1.small
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5a.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g4dn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6in.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g6.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7g.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: r7g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7gd.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m6in.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: a1.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: u-3tb1.56xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i3en.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7ie.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i-flex.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i3en.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: i3.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r5dn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: m5zn.6xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gb.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2idn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7g.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6i.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5dn.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m5zn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r4.large
+      location: us-east-1
+      locationType: region
+    - instanceType: d3.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: inf1.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5zn.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5dn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5dn.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6i.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: g5.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i-flex.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6in.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m6idn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5n.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i-flex.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.large
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m7gd.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gd.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7a.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7iz.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: r5a.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6i.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c5ad.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5n.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c5.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7gd.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4i.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t3a.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i-flex.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6a.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: inf1.6xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6idn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7gd.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: dl1.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7i.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: r5b.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: mac-m4pro.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c4.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i8ge.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m4.10xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gd.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5ad.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5a.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4i.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gn.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m8g.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: m5dn.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i-flex.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8gd.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: vt1.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7gd.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: f1.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5n.18xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gb.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7g.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5d.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: a1.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: i3en.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t3a.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r6idn.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: r6gd.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: r8g.metal-24xl
+      location: us-east-1
+      locationType: region
+    - instanceType: x1.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6gd.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5n.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6in.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m3.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: d3en.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t4g.small
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i-flex.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6a.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i4g.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5dn.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c5ad.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7g.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gb.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.metal-48xl
+      location: us-east-1
+      locationType: region
+    - instanceType: g4dn.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: m6idn.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7gd.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7a.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i-flex.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6id.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t2.micro
+      location: us-east-1
+      locationType: region
+    - instanceType: t3.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r5d.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gn.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m4.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x2iezn.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: c7i.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6idn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c5ad.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c7gd.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7gd.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t4g.nano
+      location: us-east-1
+      locationType: region
+    - instanceType: m5n.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c4.large
+      location: us-east-1
+      locationType: region
+    - instanceType: is4gen.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5b.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gd.large
+      location: us-east-1
+      locationType: region
+    - instanceType: c8i.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5n.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gn.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6id.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7gd.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m8i.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r5.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r7iz.32xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5g.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c6id.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: x8g.large
+      location: us-east-1
+      locationType: region
+    - instanceType: r7gd.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r8i.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: i7i.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: im4gn.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: c8gn.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: r8gb.2xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7a.48xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m7i-flex.12xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: r6g.16xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: t4g.medium
+      location: us-east-1
+      locationType: region
+    - instanceType: c8g.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: g5g.metal
+      location: us-east-1
+      locationType: region
+    - instanceType: m5ad.4xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6in.xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6idn.8xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m5a.24xlarge
+      location: us-east-1
+      locationType: region
+    - instanceType: m6in.2xlarge
+      location: us-east-1
+      locationType: region
+    nextToken: AAIAAVz9xFIP-_oiowUdce-QT0VkACJWuA-dUzOU5sftrg0BDPMUuDhwhdU8GYV3rKlBqhsSVMAng87UAb4SSXgq-LXN2ffvZ_ecFsVDWgxh_JgiQ-F2G8t785rEWSnTzVMFP_XTmY1PFrOp0EwK_nXquhXrGR3-uHlP09X2lb23JiGc301InuvLVKFVdclVMoC2Q-DBSiNI3TTPdZUK
+  conditions:
+  - lastTransitionTime: "2025-10-14T07:40:55Z"
+    observedGeneration: 1
+    reason: ReconcileSuccess
+    status: "True"
+    type: Synced

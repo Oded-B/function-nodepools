@@ -1,0 +1,7 @@
+apiVersion: cx.crossplane.io/v1alpha1
+kind: XNodePool
+metadata:
+  name: nodepool-default
+spec:
+  CxEnv: "development"
+  AwsRegion: mx-central-1

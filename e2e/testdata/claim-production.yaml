@@ -1,0 +1,6 @@
+apiVersion: cx.crossplane.io/v1alpha1
+kind: XNodePool
+metadata:
+  name: nodepool-production
+spec:
+  CxEnv: "production"

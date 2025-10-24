@@ -1,0 +1,46 @@
+apiVersion: apiextensions.crossplane.io/v2
+kind: CompositeResourceDefinition
+metadata:
+  name: xnodepools.cx.crossplane.io
+spec:
+  group: cx.crossplane.io
+  names:
+    kind: XNodePool
+    plural: xnodepools
+  scope: Cluster
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                CxEnv:
+                  type: string
+                  description: "Environment type (e.g., development, production)"
+                AwsRegion:
+                  type: string
+                  description: "AWS region (e.g. us-east-1)"
+              required:
+                - CxEnv
+                - AwsRegion
+            status:
+              type: object
+              properties:
+                conditions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      status:
+                        type: string
+                      reason:
+                        type: string
+                      message:
+                        type: string

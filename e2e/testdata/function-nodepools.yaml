@@ -1,0 +1,15 @@
+apiVersion: pkg.crossplane.io/v1
+kind: Function
+metadata:
+  name: function-nodepools
+spec:
+  ignoreCrossplaneConstraints: false
+  # package: ghcr.io/oded-b/function-nodepools:v0.0.0-20250915140050-e8a7b4a89aaa
+  package: ghcr.io/oded-b/function-nodepools:v0.0.0-20251014124133-1f02d81eec25
+  packagePullPolicy: IfNotPresent
+  revisionActivationPolicy: Automatic
+  runtimeConfigRef:
+    apiVersion: pkg.crossplane.io/v1beta1
+    kind: DeploymentRuntimeConfig
+    name: default
+  skipDependencyResolution: false

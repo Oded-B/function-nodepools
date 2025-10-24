@@ -1,0 +1,22 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: nodepool-composition
+  labels:
+    provider: karpenter
+spec:
+  compositeTypeRef:
+    apiVersion: cx.crossplane.io/v1alpha1
+    kind: XNodePool
+  mode: Pipeline
+  pipeline:
+    - step: nodepool-function
+      functionRef:
+        name: function-nodepools
+      requirements:
+        requiredResources:
+          - requirementName: currentClusterEc2offering
+            apiVersion: v1alpha1
+            kind: InstanceTypeOffering
+            name: mexico
+            namespace: default

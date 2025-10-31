@@ -1,6 +1,6 @@
 # E2E Tests for Function Nodepools
 
-This directory contains end-to-end tests for the function-nodepools Crossplane function using the Kubernetes e2e framework.
+This directory contains end-to-end tests for the function-nodepools Crossplane function using the [Kubernetes e2e framework](https://github.com/kubernetes-sigs/e2e-framework).
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ The e2e tests are organized as follows:
 
 ```
 e2e/
-├── e2e_test.go          # Main test file with test logic
+├── simple_e2e_test.go   # Main test file using e2e framework
 ├── testdata/            # YAML files used by tests
 │   ├── function-nodepools.yaml
 │   ├── xrd.yaml
@@ -43,21 +43,25 @@ e2e/
 │   ├── us-west-2-spot-data.spotadvisordata.yaml
 │   ├── ec2.ec2offering.crossplane.io_instancetypeofferings.yaml
 │   └── ec2.ec2offering.crossplane.io_spotadvisordata.yaml
-└── README.md            # This file
+├── README.md            # This file
+└── SUMMARY.md           # Implementation summary
 ```
 
 ## Test Flow
 
-The e2e tests perform the following steps in order:
+The e2e tests use the [Kubernetes e2e framework](https://github.com/kubernetes-sigs/e2e-framework) to perform the following steps in order:
 
-1. **Create Kind Cluster** - Sets up a local Kubernetes cluster
-2. **Install Crossplane** - Installs Crossplane using Helm
-3. **Install CRDs** - Installs required Custom Resource Definitions
-4. **Install Function and XRD** - Installs the function and Composite Resource Definition
-5. **Install Composition** - Installs the Crossplane composition
-6. **Install Dependent Objects** - Installs InstanceTypeOffering and SpotAdvisorData objects
-7. **Install XR Claims** - Installs the Composite Resource claims
-8. **Test Created Objects** - Verifies the content and state of created objects
+1. **Create Kind Cluster** - Uses `envfuncs.CreateCluster()` to set up a local Kubernetes cluster
+2. **Install Crossplane** - Uses `helm.New()` and `manager.RunInstall()` from the e2e framework's Helm integration
+3. **Create Namespace** - Uses `envfuncs.CreateNamespace()` for test resources
+4. **Apply All Manifests** - Uses `decoder.ApplyWithManifestDir()` to apply all YAML files from the testdata directory at once
+5. **Test Created Objects** - Verifies the content and state of created objects
+6. **Cleanup** - Uses `envfuncs.DeleteNamespace()` and `envfuncs.DestroyCluster()` for automatic cleanup
+
+The key improvements are:
+- **No Shell Commands**: Eliminates dependency on external binaries like `helm` and `kubectl`
+- **Framework Integration**: Uses `sigs.k8s.io/e2e-framework/third_party/helm` for Helm operations
+- **Bulk Manifest Application**: Uses `decoder.ApplyWithManifestDir()` to apply all manifests at once
 
 ## Running the Tests
 

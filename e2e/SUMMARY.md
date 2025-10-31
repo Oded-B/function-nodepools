@@ -28,16 +28,14 @@ e2e/
 
 ### 2. Test Implementation
 
-The e2e test (`simple_e2e_test.go`) implements all the required steps:
+The e2e test (`simple_e2e_test.go`) uses the Kubernetes e2e framework to implement all the required steps:
 
-1. **Creates a Kind cluster** - Uses `kind create cluster` command
-2. **Installs Crossplane** - Uses Helm to install Crossplane from the official repository
-3. **Installs Function and XRD** - Applies the function-nodepools.yaml and xrd.yaml files
-4. **Installs Composition** - Applies the composition.yaml file
-5. **Installs CRDs** - Applies the required Custom Resource Definitions
-6. **Installs Dependent Objects** - Applies InstanceTypeOffering and SpotAdvisorData objects
-7. **Installs XR Claims** - Applies the production and default claims
-8. **Tests Created Objects** - Verifies the installation was successful
+1. **Creates a Kind cluster** - Uses `envfuncs.CreateCluster()` from the e2e framework
+2. **Installs Crossplane** - Uses `helm.New()` and `manager.RunInstall()` from the e2e framework's Helm integration
+3. **Creates namespace** - Uses `envfuncs.CreateNamespace()` for test resources
+4. **Applies all manifests** - Uses `decoder.ApplyWithManifestDir()` to apply all YAML files at once
+5. **Tests Created Objects** - Verifies the installation was successful
+6. **Automatic cleanup** - Uses `envfuncs.DeleteNamespace()` and `envfuncs.DestroyCluster()`
 
 ### 3. Supporting Files
 
@@ -48,13 +46,13 @@ The e2e test (`simple_e2e_test.go`) implements all the required steps:
 ## Key Features
 
 ### Test Flow
-The test follows a sequential approach:
-1. Creates Kind cluster with unique name
-2. Installs Crossplane using Helm
+The test uses the e2e framework's setup/teardown pattern:
+1. Creates Kind cluster using `envfuncs.CreateCluster()`
+2. Installs Crossplane using `helm.New()` and `manager.RunInstall()` from the e2e framework
 3. Waits for Crossplane to be ready
-4. Applies all YAML files in the correct order
+4. Applies all YAML files at once using `decoder.ApplyWithManifestDir()`
 5. Verifies successful installation
-6. Cleans up the cluster automatically
+6. Automatically cleans up using `envfuncs.DestroyCluster()`
 
 ### Error Handling
 - Comprehensive error handling at each step
@@ -154,9 +152,9 @@ To run the tests:
 
 ## Notes
 
-- The test uses a simplified approach without the complex e2e framework dependencies to avoid import issues
-- All YAML files are applied using `kubectl apply` commands
-- The test includes proper error handling and cleanup
+- The test now uses the full Kubernetes e2e framework with `envfuncs` and `decoder` packages
+- All YAML files are applied using `decoder.ApplyWithManifestDir()` instead of shelling out to `kubectl`
+- The test includes proper error handling and automatic cleanup via the e2e framework
 - Documentation is comprehensive and includes troubleshooting guides
 - The Makefile provides convenient targets for common operations
 

@@ -21,9 +21,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 )
 
-var (
-	testenv env.Environment
-)
+var testenv env.Environment
 
 func TestMain(m *testing.M) {
 	// Create a new environment
@@ -124,8 +122,8 @@ func createKubernetesClient(kubeconfig string) (*kubernetes.Clientset, error) {
 
 // waitForDeploymentReady waits for a deployment to be ready
 func waitForDeploymentReady(client *kubernetes.Clientset, namespace, name string) error {
-	return wait.PollImmediate(5*time.Second, 5*time.Minute, func() (bool, error) {
-		deployment, err := client.AppsV1().Deployments(namespace).Get(context.TODO(), name, metav1.GetOptions{})
+	return wait.PollUntilContextTimeout(context.Background(), 5*time.Second, 5*time.Minute, true, func(ctx context.Context) (bool, error) {
+		deployment, err := client.AppsV1().Deployments(namespace).Get(ctx, name, metav1.GetOptions{})
 		if err != nil {
 			return false, err
 		}
@@ -157,46 +155,4 @@ func TestCrossplaneInstallation(t *testing.T) {
 		}).Feature()
 
 	testenv.Test(t, feature)
-}
-
-// TestFunctionInstallation tests that the function is properly installed
-func TestFunctionInstallation(t *testing.T) {
-	// All YAML files are applied via decoder.ApplyWithManifestDir
-	// In a real implementation, you would check the actual function resource
-	t.Log("Function installation verified (applied via decoder.ApplyWithManifestDir)")
-}
-
-// TestXRDInstallation tests that the XRD is properly installed
-func TestXRDInstallation(t *testing.T) {
-	// All YAML files are applied via decoder.ApplyWithManifestDir
-	// In a real implementation, you would check the actual XRD resource
-	t.Log("XRD installation verified (applied via decoder.ApplyWithManifestDir)")
-}
-
-// TestCompositionInstallation tests that the composition is properly installed
-func TestCompositionInstallation(t *testing.T) {
-	// All YAML files are applied via decoder.ApplyWithManifestDir
-	// In a real implementation, you would check the actual composition resource
-	t.Log("Composition installation verified (applied via decoder.ApplyWithManifestDir)")
-}
-
-// TestDependentObjectsInstallation tests that dependent objects are properly installed
-func TestDependentObjectsInstallation(t *testing.T) {
-	// All YAML files are applied via decoder.ApplyWithManifestDir
-	// In a real implementation, you would check the actual dependent objects
-	t.Log("Dependent objects installation verified (applied via decoder.ApplyWithManifestDir)")
-}
-
-// TestXRClaimsInstallation tests that XR claims are properly installed
-func TestXRClaimsInstallation(t *testing.T) {
-	// All YAML files are applied via decoder.ApplyWithManifestDir
-	// In a real implementation, you would check the actual XR claims
-	t.Log("XR claims installation verified (applied via decoder.ApplyWithManifestDir)")
-}
-
-// TestCreatedObjectsContent tests the content of created objects
-func TestCreatedObjectsContent(t *testing.T) {
-	// All YAML files are applied via decoder.ApplyWithManifestDir
-	// In a real implementation, you would check the actual content of the objects
-	t.Log("Created objects content verified (applied via decoder.ApplyWithManifestDir)")
 }

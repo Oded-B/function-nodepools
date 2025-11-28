@@ -158,8 +158,7 @@ func installKarpenter(ctx context.Context, cfg *envconf.Config) (context.Context
 
 // applyManifestsFromDir applies all YAML manifests from the testdata directory
 func applyManifestsFromDir(ctx context.Context, cfg *envconf.Config) (context.Context, error) {
-	// manifestDir := "./e2e/testdata"
-	manifestDir := "/Users/oded.benozer/github/Oded-B/function-nodepools/e2e/testdata"
+	manifestDir := "./testdata"
 
 	// List all YAML files in the directory before applying
 	fmt.Printf("📁 Scanning directory: %s\n", manifestDir)

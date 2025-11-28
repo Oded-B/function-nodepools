@@ -3,24 +3,21 @@ kind: SpotAdvisorData
 metadata:
   annotations:
     crossplane.io/external-name: us-west-2-spot-data
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"ec2.ec2offering.crossplane.io/v1alpha1","kind":"SpotAdvisorData","metadata":{"annotations":{},"labels":{"app":"spot-advisor","region":"us-west-2"},"name":"us-west-2-spot-data"},"spec":{"deletionPolicy":"Delete","forProvider":{"awsRegion":"us-west-2"},"managementPolicies":["*"],"providerConfigRef":{"name":"example"}}}
-  creationTimestamp: "2025-10-17T08:24:46Z"
   finalizers:
-  - finalizer.managedresource.crossplane.io
+    - finalizer.managedresource.crossplane.io
   generation: 1
   labels:
     app: spot-advisor
     region: us-west-2
   name: us-west-2-spot-data
-  resourceVersion: "1745109"
-  uid: 4a58825b-acb6-4474-9e55-4d089d147170
+  namespace: default
+
 spec:
   deletionPolicy: Delete
   forProvider:
     awsRegion: us-west-2
   managementPolicies:
-  - '*'
+    - "*"
   providerConfigRef:
     name: example
 status:
@@ -3609,24 +3606,24 @@ status:
         emr: true
         ram_gb: "32.0"
     ranges:
-    - label: <5%
-      max: 5
-    - dots: 1
-      index: 1
-      label: 5-10%
-      max: 11
-    - dots: 2
-      index: 2
-      label: 10-15%
-      max: 16
-    - dots: 3
-      index: 3
-      label: 15-20%
-      max: 22
-    - dots: 4
-      index: 4
-      label: '>20%'
-      max: 100
+      - label: <5%
+        max: 5
+      - dots: 1
+        index: 1
+        label: 5-10%
+        max: 11
+      - dots: 2
+        index: 2
+        label: 10-15%
+        max: 16
+      - dots: 3
+        index: 3
+        label: 15-20%
+        max: 22
+      - dots: 4
+        index: 4
+        label: ">20%"
+        max: 100
     spotAdvisor:
       Linux:
         a1.2xlarge:
@@ -6252,8 +6249,8 @@ status:
           r: 4
           s: 64
   conditions:
-  - lastTransitionTime: "2025-10-17T08:31:33Z"
-    observedGeneration: 1
-    reason: ReconcileSuccess
-    status: "True"
-    type: Synced
+    - lastTransitionTime: "2025-10-17T08:31:33Z"
+      observedGeneration: 1
+      reason: ReconcileSuccess
+      status: "True"
+      type: Synced

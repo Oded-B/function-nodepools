@@ -4,3 +4,4 @@ metadata:
   name: nodepool-production
 spec:
   CxEnv: "production"
+  AwsRegion: us-west-2

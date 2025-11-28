@@ -16,7 +16,7 @@ spec:
       requirements:
         requiredResources:
           - requirementName: currentClusterEc2offering
-            apiVersion: v1alpha1
+            apiVersion: ec2.ec2offering.crossplane.io/v1alpha1
             kind: InstanceTypeOffering
             name: mexico
             namespace: default

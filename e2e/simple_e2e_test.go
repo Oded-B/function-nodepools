@@ -261,12 +261,12 @@ func waitForXNodePoolReady(dynamicClient dynamic.Interface, name string) error {
 		// Check status conditions
 		status, found, err := unstructured.NestedMap(obj.Object, "status")
 		if !found || err != nil {
-			return false, nil
+			return false, err
 		}
 
 		conditions, found, err := unstructured.NestedSlice(status, "conditions")
 		if !found || err != nil {
-			return false, nil
+			return false, err
 		}
 
 		// Check if there's a Ready condition that is True

@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: "2025-12-02T14:05:58Z"
+  labels:
+    rbac.crossplane.io/aggregate-to-crossplane: "true"
+  name: crossplamne:instancetypeofferings.ec2.ec2offering:aggregate-to-crossplane
+rules:
+  - apiGroups:
+      - ec2.ec2offering.crossplane.io
+    resources:
+      - instancetypeofferings
+    verbs:
+      - "*"

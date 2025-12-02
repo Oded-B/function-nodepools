@@ -41,34 +41,47 @@ func doesInstanceTypeExists(instanceType string, offering *ec2v1alpha1.InstanceT
 	return false
 }
 
-// getInstanceTypeOfferingFromObservedResources extracts InstanceTypeOffering from observed resources
-func (f *Function) getInstanceTypeOfferingFromObservedResources(req *fnv1.RunFunctionRequest) (*ec2v1alpha1.InstanceTypeOffering, error) {
-	if req.GetObserved() == nil || req.GetObserved().GetResources() == nil {
-		return nil, errors.New("no observed resources found")
+// getInstanceTypeOfferingFromExtraResources extracts InstanceTypeOffering from extra resources
+func (f *Function) getInstanceTypeOfferingFromExtraResources(req *fnv1.RunFunctionRequest) (*ec2v1alpha1.InstanceTypeOffering, error) {
+	extraResources, err := request.GetExtraResources(req)
+	if err != nil {
+		return nil, errors.Wrapf(err, "cannot get extra resources from %T", req)
 	}
 
-	for name, res := range req.GetObserved().GetResources() {
-		// Check if this resource is of kind InstanceTypeOffering
-		jsonBytes, err := json.Marshal(res.GetResource())
-		if err != nil {
-			f.log.Info("Failed to marshal resource to JSON", "name", name, "error", err)
-			continue
-		}
+	if len(extraResources) == 0 {
+		return nil, errors.New("no extra resources found")
+	}
 
-		// Try to unmarshal as InstanceTypeOffering to check if it's the right type
-		offering := &ec2v1alpha1.InstanceTypeOffering{}
-		if err := json.Unmarshal(jsonBytes, offering); err != nil {
-			// This resource is not an InstanceTypeOffering, continue to next
-			continue
-		}
+	for name, extras := range extraResources {
+		// Iterate through the slice of Extra resources
+		for _, extra := range extras {
+			if extra.Resource == nil {
+				continue
+			}
 
-		// Verify that this is actually an InstanceTypeOffering by checking the kind
-		if offering.Kind == "InstanceTypeOffering" {
-			f.log.Info("Found InstanceTypeOffering resource", "name", name)
-			return offering, nil
+			// Check if this resource is of kind InstanceTypeOffering
+			jsonBytes, err := json.Marshal(extra.Resource.Object)
+			if err != nil {
+				f.log.Info("Failed to marshal resource to JSON", "name", name, "error", err)
+				continue
+			}
+
+			// Try to unmarshal as InstanceTypeOffering to check if it's the right type
+			offering := &ec2v1alpha1.InstanceTypeOffering{}
+			err = json.Unmarshal(jsonBytes, offering)
+			if err != nil {
+				f.log.Info("Failed to unmarshal resource to InstanceTypeOffering", "name", name, "error", err)
+				continue
+			}
+
+			// Verify that this is actually an InstanceTypeOffering by checking the kind
+			if offering.Kind == "InstanceTypeOffering" {
+				f.log.Info("Found InstanceTypeOffering resource", "name", name)
+				return offering, nil
+			}
 		}
 	}
-	return nil, errors.New("no InstanceTypeOffering resource found in observed resources")
+	return nil, errors.New("no InstanceTypeOffering resource found in extra resources")
 }
 
 // determineInstanceCategories determines which instance categories to use based on availability
@@ -138,8 +151,8 @@ func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) 
 		return rsp, nil
 	}
 
-	// Get InstanceTypeOffering from observed resources
-	instanceOffering, err := f.getInstanceTypeOfferingFromObservedResources(req)
+	// Get InstanceTypeOffering from extra resources
+	instanceOffering, err := f.getInstanceTypeOfferingFromExtraResources(req)
 	if err != nil {
 		response.Fatal(rsp, err)
 		return rsp, nil

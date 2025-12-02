@@ -3,8 +3,6 @@ kind: SpotAdvisorData
 metadata:
   annotations:
     crossplane.io/external-name: us-east-1-spot-data
-  finalizers:
-    - finalizer.managedresource.crossplane.io
   generation: 1
   labels:
     app: spot-advisor

@@ -3,8 +3,6 @@ kind: InstanceTypeOffering
 metadata:
   annotations:
     crossplane.io/external-name: mexico
-  finalizers:
-    - finalizer.managedresource.crossplane.io
   generation: 1
   labels:
     foo: bar2

@@ -9,6 +9,7 @@ import (
 	"testing"
 	"time"
 
+	"gopkg.in/yaml.v3"
 	"sigs.k8s.io/e2e-framework/klient/decoder"
 	"sigs.k8s.io/e2e-framework/pkg/env"
 	"sigs.k8s.io/e2e-framework/pkg/envconf"
@@ -16,6 +17,7 @@ import (
 	"sigs.k8s.io/e2e-framework/pkg/features"
 	"sigs.k8s.io/e2e-framework/support/kind"
 	"sigs.k8s.io/e2e-framework/third_party/helm"
+	"sigs.k8s.io/kind/pkg/apis/config/v1alpha4"
 
 	corev1 "k8s.io/api/core/v1"
 	k8sresource "k8s.io/apimachinery/pkg/api/resource"
@@ -31,6 +33,97 @@ import (
 
 var testenv env.Environment
 
+// createKindConfigWithAuditing creates a Kind cluster configuration file with Kubernetes API server auditing enabled
+// Based on: https://kind.sigs.k8s.io/docs/user/auditing/
+// Returns the path to the created config file
+func createKindConfigWithAuditing() (string, error) {
+	// Use current working directory to ensure the audit policy file is accessible to Kind
+	// Get absolute path to ensure it works correctly
+	cwd, err := os.Getwd()
+	if err != nil {
+		return "", fmt.Errorf("failed to get current working directory: %w", err)
+	}
+
+	auditPolicyPath := filepath.Join(cwd, "e2e", "audit-policy.yaml")
+	auditPolicyContent := `apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+- level: Metadata
+`
+
+	// Ensure the directory exists
+	if err := os.MkdirAll(filepath.Dir(auditPolicyPath), 0755); err != nil {
+		return "", fmt.Errorf("failed to create audit policy directory: %w", err)
+	}
+
+	if err := os.WriteFile(auditPolicyPath, []byte(auditPolicyContent), 0644); err != nil {
+		return "", fmt.Errorf("failed to write audit policy file: %w", err)
+	}
+
+	// Get absolute path for the audit policy file
+	absAuditPolicyPath, err := filepath.Abs(auditPolicyPath)
+	if err != nil {
+		return "", fmt.Errorf("failed to get absolute path for audit policy: %w", err)
+	}
+
+	// Create Kind config with auditing enabled
+	config := &v1alpha4.Cluster{
+		TypeMeta: v1alpha4.TypeMeta{
+			Kind:       "Cluster",
+			APIVersion: "kind.x-k8s.io/v1alpha4",
+		},
+		Nodes: []v1alpha4.Node{
+			{
+				Role: v1alpha4.ControlPlaneRole,
+				KubeadmConfigPatches: []string{
+					`kind: ClusterConfiguration
+apiServer:
+  extraArgs:
+    audit-log-path: /var/log/kubernetes/kube-apiserver-audit.log
+    audit-policy-file: /etc/kubernetes/policies/audit-policy.yaml
+  extraVolumes:
+    - name: audit-policies
+      hostPath: /etc/kubernetes/policies
+      mountPath: /etc/kubernetes/policies
+      readOnly: true
+      pathType: "DirectoryOrCreate"
+    - name: "audit-logs"
+      hostPath: "/var/log/kubernetes"
+      mountPath: "/var/log/kubernetes"
+      readOnly: false
+      pathType: DirectoryOrCreate`,
+				},
+				ExtraMounts: []v1alpha4.Mount{
+					{
+						HostPath:      absAuditPolicyPath,
+						ContainerPath: "/etc/kubernetes/policies/audit-policy.yaml",
+						Readonly:      true,
+					},
+				},
+			},
+		},
+	}
+
+	// Write config to YAML file in e2e directory
+	configPath := filepath.Join(cwd, "e2e", "kind-config.yaml")
+	configBytes, err := yaml.Marshal(config)
+	if err != nil {
+		return "", fmt.Errorf("failed to encode kind config: %w", err)
+	}
+
+	if err := os.WriteFile(configPath, configBytes, 0644); err != nil {
+		return "", fmt.Errorf("failed to write kind config file: %w", err)
+	}
+
+	// Return absolute path
+	absConfigPath, err := filepath.Abs(configPath)
+	if err != nil {
+		return "", fmt.Errorf("failed to get absolute path for config: %w", err)
+	}
+
+	return absConfigPath, nil
+}
+
 func TestMain(m *testing.M) {
 	// Create a new environment
 	testenv = env.New()
@@ -44,10 +137,17 @@ func TestMain(m *testing.M) {
 		namespace = namespace[:len(namespace)-1]
 	}
 
+	// Create Kind config file with auditing enabled
+	kindConfigPath, err := createKindConfigWithAuditing()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to create Kind config: %v\n", err)
+		os.Exit(1)
+	}
+
 	// Setup steps
 	testenv.Setup(
-		// Create Kind cluster
-		envfuncs.CreateCluster(kind.NewProvider(), clusterName),
+		// Create Kind cluster with auditing enabled
+		envfuncs.CreateClusterWithConfig(kind.NewProvider(), clusterName, kindConfigPath),
 		// Install Crossplane
 		installCrossplane,
 		// Install Karpenter

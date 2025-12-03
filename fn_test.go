@@ -100,7 +100,8 @@ func TestRunFunction(t *testing.T) {
               }`),
 						},
 					},
-					ExtraResources: map[string]*fnv1.Resources{
+					RequiredResources: map[string]*fnv1.Resources{
+						// ExtraResources: map[string]*fnv1.Resources{
 						"currentClusterEc2offering": {
 							Items: []*fnv1.Resource{
 								createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
@@ -239,7 +240,8 @@ func TestRunFunction(t *testing.T) {
               }`),
 						},
 					},
-					ExtraResources: map[string]*fnv1.Resources{
+					RequiredResources: map[string]*fnv1.Resources{
+						// ExtraResources: map[string]*fnv1.Resources{
 						"currentClusterEc2offering": {
 							Items: []*fnv1.Resource{
 								createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{

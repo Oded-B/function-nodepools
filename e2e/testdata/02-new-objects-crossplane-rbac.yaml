@@ -12,3 +12,17 @@ rules:
       - instancetypeofferings
     verbs:
       - "*"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    rbac.crossplane.io/aggregate-to-crossplane: "true"
+  name: crossplamne:karpenter:nodepool:aggregate-to-crossplane
+rules:
+  - apiGroups:
+      - karpenter.sh
+    resources:
+      - nodepools
+    verbs:
+      - "*"

@@ -108,38 +108,6 @@ func getResourceLimits(cxEnv string) (string, string) {
 	return "1000m", "1000Mi"
 }
 
-//	func getRequiredResource[R any](rsp *fnv1.RunFunctionResponse, req *fnv1.RunFunctionRequest, selector *fnv1.ResourceSelector) (*R, error) {
-//		key := fmt.Sprintf("%s/%s", selector.GetKind(), selector.GetMatchName())
-//
-//		if rsp.GetRequirements() == nil {
-//			rsp.Requirements = &fnv1.Requirements{}
-//		}
-//		if rsp.GetRequirements().GetResources() == nil {
-//			rsp.Requirements.Resources = make(map[string]*fnv1.ResourceSelector)
-//		}
-//		rsp.Requirements.Resources[key] = selector
-//
-//		requiredResources, err := request.GetRequiredResources(req)
-//		if err != nil {
-//			return nil, errors.Wrapf(err, "cannot get requiredResources resources with secret")
-//		}
-//		rr, ok := requiredResources[key]
-//		if !ok {
-//			return nil, nil
-//		}
-//
-//		if len(rr) > 1 {
-//			return nil, errors.Errorf("Too many resources returned")
-//		}
-//
-//		var rs R
-//		if err = runtime.DefaultUnstructuredConverter.
-//			FromUnstructured(rr[0].Resource.Object, &rs); err != nil {
-//			return nil, errors.Wrapf(err, "cannot convert Secret")
-//		}
-//		return &rs, nil
-//	}
-//
 // RunFunction runs the Function.
 func (f *Function) RunFunction(_ context.Context, req *fnv1.RunFunctionRequest) (*fnv1.RunFunctionResponse, error) {
 	f.log.Info("Running function", "tag", req.GetMeta().GetTag())

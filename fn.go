@@ -77,7 +77,7 @@ func (f *Function) getInstanceTypeOfferingFromExtraResources(req *fnv1.RunFuncti
 
 			// Verify that this is actually an InstanceTypeOffering by checking the kind
 			if offering.Kind == "InstanceTypeOffering" {
-				f.log.Info("Found InstanceTypeOffering resource", "name", name)
+				f.log.Info("Found InstanceTypeOffering resource", "name", offering.Name)
 				return offering, nil
 			}
 		}

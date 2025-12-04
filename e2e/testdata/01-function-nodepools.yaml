@@ -5,7 +5,10 @@ metadata:
 spec:
   ignoreCrossplaneConstraints: false
   # package: ghcr.io/oded-b/function-nodepools:v0.0.0-20250915140050-e8a7b4a89aaa
-  package: ghcr.io/oded-b/function-nodepools:v0.0.0-20251014124133-1f02d81eec25
+  # package: ghcr.io/oded-b/function-nodepools:v0.0.0-20251014124133-1f02d81eec25
+  # TODO use kind local repo with current image
+  # package: ghcr.io/oded-b/function-nodepools:v0.0.0-20251202162220-0e4587f20415
+  package: ghcr.io/oded-b/function-nodepools:v0.0.0-20251203155349-f9663cfd2d1d
   packagePullPolicy: IfNotPresent
   revisionActivationPolicy: Automatic
   runtimeConfigRef:

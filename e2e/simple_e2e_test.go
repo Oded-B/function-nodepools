@@ -377,7 +377,7 @@ func waitForXNodePoolReady(dynamicClient dynamic.Interface, name string) error {
 			}
 			condType, _ := condMap["type"].(string)
 			condStatus, _ := condMap["status"].(string)
-			if condType == "Ready" && condStatus == "True" {
+			if condType == "FunctionSuccess" && condStatus == "True" {
 				return true, nil
 			}
 		}

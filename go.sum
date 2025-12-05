@@ -6,6 +6,8 @@ github.com/Microsoft/go-winio v0.6.2 h1:F2VQgta7ecxGYO8k3ZZz3RS8fVIXVxONVUPlNERo
 github.com/Microsoft/go-winio v0.6.2/go.mod h1:yd8OoFMLzJbo9gZq8j5qaps8bJ9aShtEA8Ipt1oGCvU=
 github.com/Oded-B/ec2offering-crossplane-provider v0.0.0-20251014093215-9b0fde2d09d1 h1:xm8SvZalbeZJtLKrl3mefgCKTm8snAKOVwlMGICSt2o=
 github.com/Oded-B/ec2offering-crossplane-provider v0.0.0-20251014093215-9b0fde2d09d1/go.mod h1:OMpI+jmTnma3oaOf6T4+y25Q0s8/z/friq/JmOQXL34=
+github.com/Oded-B/xp-testing v0.0.0-20251205133224-3d2dba75882a h1:gzjC1UdnkKF5IQDnlh0b9DJwKg6n00t1Q27BdN/cRKA=
+github.com/Oded-B/xp-testing v0.0.0-20251205133224-3d2dba75882a/go.mod h1:m0LRN/advg63QJ1AjbXZtSEJifOmjqt8JHnkZTXZu4Q=
 github.com/Pallinder/go-randomdata v1.2.0 h1:DZ41wBchNRb/0GfsePLiSwb0PHZmT67XY00lCDlaYPg=
 github.com/Pallinder/go-randomdata v1.2.0/go.mod h1:yHmJgulpD2Nfrm0cR9tI/+oAgRqCQQixsA8HyRZfV9Y=
 github.com/alecthomas/assert/v2 v2.6.0 h1:o3WJwILtexrEUk3cUVal3oiQY2tfgr/FHWiz/v2n4FU=
@@ -37,8 +39,6 @@ github.com/containerd/log v0.1.0/go.mod h1:VRRf09a7mHDIRezVKTRCrOq78v577GXq3bSa3
 github.com/containerd/stargz-snapshotter/estargz v0.17.0 h1:+TyQIsR/zSFI1Rm31EQBwpAA1ovYgIKHy7kctL3sLcE=
 github.com/containerd/stargz-snapshotter/estargz v0.17.0/go.mod h1:s06tWAiJcXQo9/8AReBCIo/QxcXFZ2n4qfsRnpl71SM=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
-github.com/crossplane-contrib/xp-testing v1.9.0 h1:hl5e6J6+FDUaGP/e/wfE3XdqsPVuHhZK162wHcRUeO8=
-github.com/crossplane-contrib/xp-testing v1.9.0/go.mod h1:m0LRN/advg63QJ1AjbXZtSEJifOmjqt8JHnkZTXZu4Q=
 github.com/crossplane/crossplane-runtime v1.20.0 h1:I54uipRIecqZyms+vz1J/l62yjVQ7HV5w+Nh3RMrUtc=
 github.com/crossplane/crossplane-runtime v1.20.0/go.mod h1:lfV1VJenDc9PNVLxDC80YjPoTm+JdSZ13xlS2h37Dvg=
 github.com/crossplane/crossplane-runtime/v2 v2.0.0 h1:PK2pTKfshdDZ5IfoiMRiCi0PBnIjqbS0KGXEJgRdrb4=

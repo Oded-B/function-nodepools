@@ -9,7 +9,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/crossplane-contrib/xp-testing/pkg/setup"
 	"github.com/crossplane-contrib/xp-testing/pkg/xpenvfuncs"
 	"gopkg.in/yaml.v3"
 	"sigs.k8s.io/e2e-framework/klient/decoder"
@@ -151,16 +150,22 @@ func TestMain(m *testing.M) {
 		fmt.Fprintf(os.Stderr, "Failed to create Kind config: %v\n", err)
 		os.Exit(1)
 	}
+	functionImage := "local.local/oded-b/function-nodepools:latest"
+
+	functionOptions := xpenvfuncs.InstallCrossplaneFunctionOptions{
+		Name:            "function-nodepools",
+		Package:         "function-nodepools",
+		ControllerImage: &functionImage,
+	}
 
 	// Setup steps
 	testenv.Setup(
 		// Create Kind cluster with auditing enabled
 		envfuncs.CreateClusterWithConfig(kind.NewProvider(), clusterName, kindConfigPath),
-		envfuncs.LoadImageToCluster(clusterName, "local./oded-b/function-nodepools:latest", "--verbose"),
+		envfuncs.LoadImageToCluster(clusterName, functionImage, "--verbose"),
 		// Install Crossplane
-		xpenvfuncs.InstallCrossplane(clusterName, xpenvfuncs.Registry(setup.DockerRegistry)),
-
-		// installCrossplane,
+		xpenvfuncs.InstallCrossplane(clusterName),
+		xpenvfuncs.InstallCrossplaneFunction(clusterName, functionOptions),
 		// Install Karpenter
 		installKarpenter,
 		// Create namespace for our resources

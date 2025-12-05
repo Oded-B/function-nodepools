@@ -131,3 +131,5 @@ require (
 )
 
 replace github.com/Oded-B/ec2offering-crossplane-provider => github.com/Oded-B/ec2offering-crossplane-provider v0.0.0-20251014093215-9b0fde2d09d1
+
+replace github.com/crossplane-contrib/xp-testing v1.9.0 => github.com/Oded-B/xp-testing v0.0.0-20251205133224-3d2dba75882a

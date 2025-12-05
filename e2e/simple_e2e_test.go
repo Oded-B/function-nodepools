@@ -9,6 +9,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/crossplane-contrib/xp-testing/pkg/setup"
+	"github.com/crossplane-contrib/xp-testing/pkg/xpenvfuncs"
 	"gopkg.in/yaml.v3"
 	"sigs.k8s.io/e2e-framework/klient/decoder"
 	"sigs.k8s.io/e2e-framework/pkg/env"
@@ -125,6 +127,12 @@ apiServer:
 }
 
 func TestMain(m *testing.M) {
+	// Skip all tests if SKIP_E2E environment variable is set to "true"
+	if os.Getenv("SKIP_E2E") == "true" {
+		fmt.Println("⏭️  Skipping e2e tests (SKIP_E2E=true)")
+		os.Exit(0)
+	}
+
 	// Create a new environment
 	testenv = env.New()
 
@@ -148,8 +156,11 @@ func TestMain(m *testing.M) {
 	testenv.Setup(
 		// Create Kind cluster with auditing enabled
 		envfuncs.CreateClusterWithConfig(kind.NewProvider(), clusterName, kindConfigPath),
+		envfuncs.LoadImageToCluster(clusterName, "local./oded-b/function-nodepools:latest", "--verbose"),
 		// Install Crossplane
-		installCrossplane,
+		xpenvfuncs.InstallCrossplane(clusterName, xpenvfuncs.Registry(setup.DockerRegistry)),
+
+		// installCrossplane,
 		// Install Karpenter
 		installKarpenter,
 		// Create namespace for our resources
@@ -185,7 +196,7 @@ func installCrossplane(ctx context.Context, cfg *envconf.Config) (context.Contex
 		return ctx, fmt.Errorf("failed to update helm repos: %w", err)
 	}
 
-	// Install Crossplane
+	// Install Crossplane,  TODO pin version
 	err = manager.RunInstall(
 		helm.WithName("crossplane"),
 		helm.WithNamespace("crossplane-system"),

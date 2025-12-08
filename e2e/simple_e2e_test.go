@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"testing"
 	"time"
@@ -150,11 +151,49 @@ func TestMain(m *testing.M) {
 		fmt.Fprintf(os.Stderr, "Failed to create Kind config: %v\n", err)
 		os.Exit(1)
 	}
+
+	// Pack function to local OCI registry before setting up the test environment
+	fmt.Println("📦 Packing function to local OCI registry...")
+	cwd, err := os.Getwd()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to get current working directory: %v\n", err)
+		os.Exit(1)
+	}
+	// The script is in the project root, which is one level up from e2e directory
+	// If we're already in the root, use current directory; otherwise go up one level
+	scriptPath := filepath.Join(cwd, "pack_function_to_local_oci_registry.sh")
+	if _, err := os.Stat(scriptPath); os.IsNotExist(err) {
+		// Try going up one level if script not found in current directory
+		scriptPath = filepath.Join(filepath.Dir(cwd), "pack_function_to_local_oci_registry.sh")
+	}
+	// Get absolute path to ensure it works correctly
+	absScriptPath, err := filepath.Abs(scriptPath)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to get absolute path for script: %v\n", err)
+		os.Exit(1)
+	}
+	// Verify script exists
+	if _, err := os.Stat(absScriptPath); os.IsNotExist(err) {
+		fmt.Fprintf(os.Stderr, "Script not found at %s\n", absScriptPath)
+		os.Exit(1)
+	}
+	// Get the directory containing the script (project root)
+	scriptDir := filepath.Dir(absScriptPath)
+	cmd := exec.Command("bash", absScriptPath)
+	cmd.Dir = scriptDir
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	if err := cmd.Run(); err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to pack function to local OCI registry: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Println("✓ Function packed to local OCI registry successfully")
+
 	functionImage := "local.local/oded-b/function-nodepools:latest"
 
 	functionOptions := xpenvfuncs.InstallCrossplaneFunctionOptions{
 		Name:            "function-nodepools",
-		Package:         "function-nodepools",
+		Package:         functionImage,
 		ControllerImage: &functionImage,
 	}
 

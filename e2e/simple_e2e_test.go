@@ -179,7 +179,7 @@ func TestMain(m *testing.M) {
 	}
 	// Get the directory containing the script (project root)
 	scriptDir := filepath.Dir(absScriptPath)
-	cmd := exec.Command("bash", absScriptPath)
+	cmd := exec.Command("/bin/bash", absScriptPath)
 	cmd.Dir = scriptDir
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

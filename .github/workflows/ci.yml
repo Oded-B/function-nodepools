@@ -28,7 +28,6 @@ env:
   # xpkg.crossplane.io is just an alias for ghcr.io, so we upload to ghcr.io but
   # this'll be pulled from xpkg.crossplane.io.
   XPKG: ghcr.io/${{ github.repository}}
-  LOCALXPKG: lcoal.local/${{ github.repository}}
 
   # The package version to push. The default is 0.0.0-gitsha.
   XPKG_VERSION: ${{ inputs.version }}
@@ -148,37 +147,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Download Single-Platform Packages
-        uses: actions/download-artifact@v4
-        with:
-          # See https://github.com/docker/build-push-action/blob/263435/README.md#summaries
-          pattern: "!*.dockerbuild"
-          path: .
-          merge-multiple: true
-
       - name: Setup the Crossplane CLI
         run: "curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh"
-
-      # If a version wasn't explicitly passed as a workflow_dispatch input we
-      # default to version v0.0.0-<git-commit-date>-<git-short-sha>, for example
-      # v0.0.0-20231101115142-1091066df799. This is a simple implementation of
-      # Go's pseudo-versions: https://go.dev/ref/mod#pseudo-versions.
-      - name: Set Default Multi-Platform Package Version
-        if: env.XPKG_VERSION == ''
-        run: echo "XPKG_VERSION=v0.0.0-$(date -d@$(git show -s --format=%ct) +%Y%m%d%H%M%S)-$(git rev-parse --short=12 HEAD)" >> $GITHUB_ENV
-
-      - name: Push Multi-Platform Package to LOCAL Container Registry
-        # XPKG repo name can't contain uppercase characters like UpboundCare, we need to lowercase if the GithubOrg contains them.
-        # See https://github.com/orgs/community/discussions/25768#discussioncomment-8057564 for XPKG@L lowercase explanation
-        #TODO is latest safe?????
-        run: "./crossplane --verbose xpkg push --package-files $(echo *.xpkg|tr ' ' ,) ${LOCALXPKG@L}:latest"
-
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GO_VERSION }}
-
       # Run tests without skipping E2E
       - name: Run Unit Tests
         run: SKIP_E2E=false go test -v -cover ./...

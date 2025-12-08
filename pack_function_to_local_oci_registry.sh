@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+export PATH="${PATH}:${PWD}:/usr/bin/"
 
 # This script packages a the function in pushes it in to the **Local** OCI registry.
 #  crossplane xpkg push only suopport remote repos, and that is not suitable for local development/testsing

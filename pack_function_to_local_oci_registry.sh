@@ -7,7 +7,16 @@ set -e
 #
 #
 # Build container image, output to a Tar file
-ARCH=$(uname -m)
+# Detect architecture: use RUNNER_ARCH env var if set, otherwise use uname
+if [ -n "$RUNNER_ARCH" ]; then
+  if [ "$RUNNER_ARCH" = "ARM64" ]; then
+    ARCH="arm64"
+  else
+    ARCH="amd64"
+  fi
+else
+  ARCH=$(uname -m)
+fi
 docker build . --output "type=docker,dest=runtime-${ARCH}.tar" --platform linux/${ARCH}
 # Add crossplane metadata and re-pack as  .xpkg file
 crossplane xpkg build --package-file=${ARCH}.xpkg --package-root=package/ --embed-runtime-image-tarball=runtime-${ARCH}.tar

@@ -149,6 +149,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup the Crossplane CLI
         run: "curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh"
+        #adding current dir to path to allow refrencing it without path in pack_function_to_local_oci_registry.sh
+        #Not a good practice in local environments, but OK in this context (is it?)
+      - name: Add CWD to path
+        run: echo 'PATH="${PATH}:${PWD}"' >> $GITHUB_ENV
       - name: Setup Go
         uses: actions/setup-go@v5
         with:

@@ -1,0 +1,491 @@
+package e2e
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"testing"
+	"time"
+
+	"github.com/crossplane-contrib/xp-testing/pkg/xpenvfuncs"
+	"gopkg.in/yaml.v3"
+	"sigs.k8s.io/e2e-framework/klient/decoder"
+	"sigs.k8s.io/e2e-framework/pkg/env"
+	"sigs.k8s.io/e2e-framework/pkg/envconf"
+	"sigs.k8s.io/e2e-framework/pkg/envfuncs"
+	"sigs.k8s.io/e2e-framework/pkg/features"
+	"sigs.k8s.io/e2e-framework/support/kind"
+	"sigs.k8s.io/e2e-framework/third_party/helm"
+	"sigs.k8s.io/kind/pkg/apis/config/v1alpha4"
+
+	corev1 "k8s.io/api/core/v1"
+	k8sresource "k8s.io/apimachinery/pkg/api/resource"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/apimachinery/pkg/util/wait"
+	"k8s.io/client-go/dynamic"
+	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/tools/clientcmd"
+	karpenterv1 "sigs.k8s.io/karpenter/pkg/apis/v1"
+)
+
+var testenv env.Environment
+
+// createKindConfigWithAuditing creates a Kind cluster configuration file with Kubernetes API server auditing enabled
+// Based on: https://kind.sigs.k8s.io/docs/user/auditing/
+// Returns the path to the created config file
+func createKindConfigWithAuditing() (string, error) {
+	// Use current working directory to ensure the audit policy file is accessible to Kind
+	// Get absolute path to ensure it works correctly
+	cwd, err := os.Getwd()
+	if err != nil {
+		return "", fmt.Errorf("failed to get current working directory: %w", err)
+	}
+
+	auditPolicyPath := filepath.Join(cwd, "e2e", "audit-policy.yaml")
+	auditPolicyContent := `apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+- level: Metadata
+`
+
+	// Ensure the directory exists
+	if err := os.MkdirAll(filepath.Dir(auditPolicyPath), 0755); err != nil {
+		return "", fmt.Errorf("failed to create audit policy directory: %w", err)
+	}
+
+	if err := os.WriteFile(auditPolicyPath, []byte(auditPolicyContent), 0644); err != nil {
+		return "", fmt.Errorf("failed to write audit policy file: %w", err)
+	}
+
+	// Get absolute path for the audit policy file
+	absAuditPolicyPath, err := filepath.Abs(auditPolicyPath)
+	if err != nil {
+		return "", fmt.Errorf("failed to get absolute path for audit policy: %w", err)
+	}
+
+	// Create Kind config with auditing enabled
+	config := &v1alpha4.Cluster{
+		TypeMeta: v1alpha4.TypeMeta{
+			Kind:       "Cluster",
+			APIVersion: "kind.x-k8s.io/v1alpha4",
+		},
+		Nodes: []v1alpha4.Node{
+			{
+				Role: v1alpha4.ControlPlaneRole,
+				KubeadmConfigPatches: []string{
+					`kind: ClusterConfiguration
+apiServer:
+  extraArgs:
+    audit-log-path: /var/log/kubernetes/kube-apiserver-audit.log
+    audit-policy-file: /etc/kubernetes/policies/audit-policy.yaml
+  extraVolumes:
+    - name: audit-policies
+      hostPath: /etc/kubernetes/policies
+      mountPath: /etc/kubernetes/policies
+      readOnly: true
+      pathType: "DirectoryOrCreate"
+    - name: "audit-logs"
+      hostPath: "/var/log/kubernetes"
+      mountPath: "/var/log/kubernetes"
+      readOnly: false
+      pathType: DirectoryOrCreate`,
+				},
+				ExtraMounts: []v1alpha4.Mount{
+					{
+						HostPath:      absAuditPolicyPath,
+						ContainerPath: "/etc/kubernetes/policies/audit-policy.yaml",
+						Readonly:      true,
+					},
+				},
+			},
+		},
+	}
+
+	// Write config to YAML file in e2e directory
+	configPath := filepath.Join(cwd, "e2e", "kind-config.yaml")
+	configBytes, err := yaml.Marshal(config)
+	if err != nil {
+		return "", fmt.Errorf("failed to encode kind config: %w", err)
+	}
+
+	if err := os.WriteFile(configPath, configBytes, 0644); err != nil {
+		return "", fmt.Errorf("failed to write kind config file: %w", err)
+	}
+
+	// Return absolute path
+	absConfigPath, err := filepath.Abs(configPath)
+	if err != nil {
+		return "", fmt.Errorf("failed to get absolute path for config: %w", err)
+	}
+
+	return absConfigPath, nil
+}
+
+func TestMain(m *testing.M) {
+	// Skip all tests if SKIP_E2E environment variable is set to "true"
+	if os.Getenv("SKIP_E2E") == "true" {
+		fmt.Println("⏭️  Skipping e2e tests (SKIP_E2E=true)")
+		os.Exit(0)
+	}
+
+	// Create a new environment
+	testenv = env.New()
+
+	// Generate unique cluster name
+	clusterName := envconf.RandomName("nodepools-e2e", 16)
+	namespace := envconf.RandomName("crossplane-test", 16)
+
+	// Ensure namespace name doesn't end with dash
+	if namespace[len(namespace)-1] == '-' {
+		namespace = namespace[:len(namespace)-1]
+	}
+
+	// Create Kind config file with auditing enabled
+	kindConfigPath, err := createKindConfigWithAuditing()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to create Kind config: %v\n", err)
+		os.Exit(1)
+	}
+
+	// Pack function to local OCI registry before setting up the test environment
+	fmt.Println("📦 Packing function to local OCI registry...")
+	cwd, err := os.Getwd()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to get current working directory: %v\n", err)
+		os.Exit(1)
+	}
+	// The script is in the project root, which is one level up from e2e directory
+	// If we're already in the root, use current directory; otherwise go up one level
+	scriptPath := filepath.Join(cwd, "pack_function_to_local_oci_registry.sh")
+	if _, err := os.Stat(scriptPath); os.IsNotExist(err) {
+		// Try going up one level if script not found in current directory
+		scriptPath = filepath.Join(filepath.Dir(cwd), "pack_function_to_local_oci_registry.sh")
+	}
+	// Get absolute path to ensure it works correctly
+	absScriptPath, err := filepath.Abs(scriptPath)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to get absolute path for script: %v\n", err)
+		os.Exit(1)
+	}
+	// Verify script exists
+	if _, err := os.Stat(absScriptPath); os.IsNotExist(err) {
+		fmt.Fprintf(os.Stderr, "Script not found at %s\n", absScriptPath)
+		os.Exit(1)
+	}
+	// Get the directory containing the script (project root)
+	scriptDir := filepath.Dir(absScriptPath)
+	cmd := exec.CommandContext(context.Background(), "/bin/bash", absScriptPath)
+	cmd.Dir = scriptDir
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	if err := cmd.Run(); err != nil {
+		fmt.Fprintf(os.Stderr, "Failed to pack function to local OCI registry: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Println("✓ Function packed to local OCI registry successfully")
+
+	functionImage := "local.local/oded-b/function-nodepools:latest"
+
+	functionOptions := xpenvfuncs.InstallCrossplaneFunctionOptions{
+		Name:            "function-nodepools",
+		Package:         functionImage,
+		ControllerImage: &functionImage,
+	}
+
+	// Setup steps
+	testenv.Setup(
+		// Create Kind cluster with auditing enabled
+		envfuncs.CreateClusterWithConfig(kind.NewProvider(), clusterName, kindConfigPath),
+		envfuncs.LoadImageToCluster(clusterName, functionImage, "--verbose"),
+		// Install Crossplane
+		xpenvfuncs.InstallCrossplane(clusterName),
+		xpenvfuncs.InstallCrossplaneFunction(clusterName, functionOptions),
+		// Install Karpenter
+		installKarpenter,
+		// Create namespace for our resources
+		envfuncs.CreateNamespace(namespace),
+		// Apply all YAML manifests from testdata directory
+		applyManifestsFromDir,
+	)
+
+	// Teardown steps
+	testenv.Finish(
+		envfuncs.DeleteNamespace(namespace), // TODO Do we need to delete the namespace if we destroy the cluster?
+		envfuncs.DestroyCluster(clusterName),
+	)
+
+	// Run tests
+	os.Exit(testenv.Run(m))
+}
+
+// installKarpenter installs Karpenter using Helm via e2e framework
+func installKarpenter(ctx context.Context, cfg *envconf.Config) (context.Context, error) {
+	// Create Helm manager using the e2e framework
+	manager := helm.New(cfg.KubeconfigFile())
+
+	// Get cluster name from kubeconfig context
+	config, err := clientcmd.LoadFromFile(cfg.KubeconfigFile())
+	if err != nil {
+		return ctx, fmt.Errorf("failed to load kubeconfig: %w", err)
+	}
+
+	clusterName := config.CurrentContext
+	if clusterName == "" {
+		// Fallback: try to get cluster name from context
+		if len(config.Contexts) > 0 {
+			for name := range config.Contexts {
+				clusterName = name
+				break
+			}
+		}
+		if clusterName == "" {
+			clusterName = "kind-cluster" // Default fallback
+		}
+	}
+
+	// Install Karpenter from OCI registry
+	// Equivalent to: helm upgrade --install karpenter oci://public.ecr.aws/karpenter/karpenter
+	// We only need Karpenter CRDs for our tests, not the controller itself, so we set replicas=0
+	// Karpenter requires settings.clusterName to be set
+	err = manager.RunInstall(
+		helm.WithName("karpenter"),
+		helm.WithNamespace("karpenter"),
+		helm.WithReleaseName("oci://public.ecr.aws/karpenter/karpenter"),
+		helm.WithArgs("--create-namespace", "--wait", "--timeout", "10m",
+			"--set", fmt.Sprintf("settings.clusterName=%s", clusterName),
+			"--set", "replicas=0"),
+	)
+	if err != nil {
+		return ctx, fmt.Errorf("failed to install karpenter: %w", err)
+	}
+
+	// Note: We don't wait for deployment readiness since replicas=0 (controller is disabled)
+	// We only need the CRDs to be installed for our NodePool tests
+
+	return ctx, nil
+}
+
+// applyManifestsFromDir applies all YAML manifests from the testdata directory
+func applyManifestsFromDir(ctx context.Context, cfg *envconf.Config) (context.Context, error) {
+	manifestDir := "./testdata"
+
+	// List all YAML files in the directory before applying
+	fmt.Printf("📁 Scanning directory: %s\n", manifestDir)
+	files, err := filepath.Glob(filepath.Join(manifestDir, "*.yaml"))
+	if err != nil {
+		return ctx, fmt.Errorf("failed to list YAML files in directory: %w", err)
+	}
+
+	if len(files) == 0 {
+		return ctx, fmt.Errorf("no YAML files found in %s", manifestDir)
+	}
+
+	fmt.Printf("📄 Found %d YAML file(s) to apply:\n", len(files))
+	for i, file := range files {
+		fmt.Printf("  %d. %s\n", i+1, filepath.Base(file))
+	}
+
+	// Use the decoder package to apply manifests from directory
+	client := cfg.Client()
+	resources := client.Resources()
+	fmt.Printf("🚀 Applying manifests from %s...\n", manifestDir)
+	err = decoder.ApplyWithManifestDir(ctx, resources, manifestDir, "*", nil)
+	if err != nil {
+		return ctx, fmt.Errorf("failed to apply manifests from directory: %w", err)
+	}
+	fmt.Println("✓ Successfully applied all manifests from ./e2e/testdata directory")
+	return ctx, nil
+}
+
+// createKubernetesClient creates a Kubernetes client
+func createKubernetesClient(kubeconfig string) (*kubernetes.Clientset, error) {
+	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
+	if err != nil {
+		return nil, err
+	}
+	return kubernetes.NewForConfig(config)
+}
+
+// TestCrossplaneInstallation tests that Crossplane is properly installed
+func TestCrossplaneInstallation(t *testing.T) {
+	feature := features.New("Crossplane Installation Test").
+		Assess("Crossplane is installed and ready", func(ctx context.Context, t *testing.T, cfg *envconf.Config) context.Context {
+			client, err := createKubernetesClient(cfg.KubeconfigFile())
+			if err != nil {
+				t.Fatalf("Failed to create client: %v", err)
+			}
+
+			// Check Crossplane deployment
+			deployment, err := client.AppsV1().Deployments("crossplane-system").Get(ctx, "crossplane", metav1.GetOptions{})
+			if err != nil {
+				t.Fatalf("Failed to get Crossplane deployment: %v", err)
+			}
+
+			if deployment.Status.ReadyReplicas != *deployment.Spec.Replicas {
+				t.Fatalf("Crossplane deployment not ready: %d/%d replicas ready", deployment.Status.ReadyReplicas, *deployment.Spec.Replicas)
+			}
+
+			t.Log("Crossplane installation verified")
+			return ctx
+		}).Feature()
+
+	testenv.Test(t, feature)
+}
+
+// createDynamicClient creates a dynamic Kubernetes client for accessing CRDs
+func createDynamicClient(kubeconfig string) (dynamic.Interface, error) {
+	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
+	if err != nil {
+		return nil, err
+	}
+	return dynamic.NewForConfig(config)
+}
+
+// waitForXNodePoolReady waits for an XNodePool claim to be ready
+// Note: XNodePool is cluster-scoped, so we don't use namespace
+func waitForXNodePoolReady(dynamicClient dynamic.Interface, name string) error {
+	xrGVR := schema.GroupVersionResource{
+		Group:    "cx.crossplane.io",
+		Version:  "v1alpha1",
+		Resource: "xnodepools",
+	}
+
+	return wait.PollUntilContextTimeout(context.Background(), 2*time.Second, 5*time.Minute, true, func(ctx context.Context) (bool, error) {
+		obj, err := dynamicClient.Resource(xrGVR).Get(ctx, name, metav1.GetOptions{})
+		if err != nil {
+			return false, err
+		}
+
+		// Check status conditions
+		status, found, err := unstructured.NestedMap(obj.Object, "status")
+		if !found || err != nil {
+			return false, err
+		}
+
+		conditions, found, err := unstructured.NestedSlice(status, "conditions")
+		if !found || err != nil {
+			return false, err
+		}
+
+		// Check if there's a Ready condition that is True
+		for _, cond := range conditions {
+			condMap, ok := cond.(map[string]interface{})
+			if !ok {
+				continue
+			}
+			condType, _ := condMap["type"].(string)
+			condStatus, _ := condMap["status"].(string)
+			if condType == "FunctionSuccess" && condStatus == "True" {
+				return true, nil
+			}
+		}
+
+		return false, nil
+	})
+}
+
+// getNodePool retrieves a Karpenter NodePool by name
+func getNodePool(dynamicClient dynamic.Interface, name string) (*karpenterv1.NodePool, error) {
+	nodePoolGVR := schema.GroupVersionResource{
+		Group:    "karpenter.sh",
+		Version:  "v1",
+		Resource: "nodepools",
+	}
+
+	obj, err := dynamicClient.Resource(nodePoolGVR).Get(context.Background(), name, metav1.GetOptions{})
+	if err != nil {
+		return nil, err
+	}
+
+	// Convert unstructured to NodePool using JSON marshaling/unmarshaling
+	jsonBytes, err := json.Marshal(obj.Object)
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal unstructured to JSON: %w", err)
+	}
+
+	nodePool := &karpenterv1.NodePool{}
+	if err := json.Unmarshal(jsonBytes, nodePool); err != nil {
+		return nil, fmt.Errorf("failed to unmarshal JSON to NodePool: %w", err)
+	}
+
+	return nodePool, nil
+}
+
+// verifyNodePoolSpec verifies that a NodePool has the expected spec
+func verifyNodePoolSpec(t *testing.T, nodePool *karpenterv1.NodePool, expectedCPU, expectedMemory string, expectedInstanceCategories []string) {
+	// Verify limits
+	if cpuLimit, ok := nodePool.Spec.Limits[corev1.ResourceCPU]; ok {
+		expectedCPUQty := k8sresource.MustParse(expectedCPU)
+		if cpuLimit.Cmp(expectedCPUQty) != 0 {
+			t.Errorf("Expected CPU limit %s, got %s", expectedCPU, cpuLimit.String())
+		}
+	} else {
+		t.Error("CPU limit not found in NodePool spec")
+	}
+
+	if memoryLimit, ok := nodePool.Spec.Limits[corev1.ResourceMemory]; ok {
+		expectedMemoryQty := k8sresource.MustParse(expectedMemory)
+		if memoryLimit.Cmp(expectedMemoryQty) != 0 {
+			t.Errorf("Expected Memory limit %s, got %s", expectedMemory, memoryLimit.String())
+		}
+	} else {
+		t.Error("Memory limit not found in NodePool spec")
+	}
+
+	// Verify disruption policy
+	if nodePool.Spec.Disruption.ConsolidationPolicy != karpenterv1.ConsolidationPolicyWhenEmptyOrUnderutilized {
+		t.Errorf("Expected consolidation policy %s, got %s",
+			karpenterv1.ConsolidationPolicyWhenEmptyOrUnderutilized,
+			nodePool.Spec.Disruption.ConsolidationPolicy)
+	}
+
+	// Verify NodeClassRef
+	if nodePool.Spec.Template.Spec.NodeClassRef == nil {
+		t.Error("NodeClassRef is nil")
+	} else {
+		if nodePool.Spec.Template.Spec.NodeClassRef.Group != "karpenter.sh" {
+			t.Errorf("Expected NodeClassRef.Group karpenter.sh, got %s", nodePool.Spec.Template.Spec.NodeClassRef.Group)
+		}
+		if nodePool.Spec.Template.Spec.NodeClassRef.Kind != "EC2NodeClass" {
+			t.Errorf("Expected NodeClassRef.Kind EC2NodeClass, got %s", nodePool.Spec.Template.Spec.NodeClassRef.Kind)
+		}
+		if nodePool.Spec.Template.Spec.NodeClassRef.Name != "default2" {
+			t.Errorf("Expected NodeClassRef.Name default2, got %s", nodePool.Spec.Template.Spec.NodeClassRef.Name)
+		}
+	}
+
+	// Verify requirements
+	if len(nodePool.Spec.Template.Spec.Requirements) == 0 {
+		t.Error("No requirements found in NodePool spec")
+	} else {
+		foundInstanceCategoryReq := false
+		for _, req := range nodePool.Spec.Template.Spec.Requirements {
+			if req.Key == "karpenter.k8s.aws/instance-category" && req.Operator == corev1.NodeSelectorOpIn {
+				foundInstanceCategoryReq = true
+				// Check if values match expected
+				if len(req.Values) != len(expectedInstanceCategories) {
+					t.Errorf("Expected %d instance categories, got %d", len(expectedInstanceCategories), len(req.Values))
+				} else {
+					valuesMap := make(map[string]bool)
+					for _, v := range req.Values {
+						valuesMap[v] = true
+					}
+					for _, expected := range expectedInstanceCategories {
+						if !valuesMap[expected] {
+							t.Errorf("Expected instance category %s not found in values", expected)
+						}
+					}
+				}
+				break
+			}
+		}
+		if !foundInstanceCategoryReq {
+			t.Error("Instance category requirement not found in NodePool spec")
+		}
+	}
+}

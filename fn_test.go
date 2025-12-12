@@ -99,31 +99,36 @@ func TestRunFunction(t *testing.T) {
                 }
               }`),
 						},
-						Resources: map[string]*fnv1.Resource{
-							"currentClusterEc2offering": createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
-								TypeMeta: metav1.TypeMeta{
-									Kind: "InstanceTypeOffering",
-								},
-								ObjectMeta: metav1.ObjectMeta{
-									Name: "test-offering",
-								},
-								Status: ec2v1alpha1.InstanceTypeOfferingStatus{
-									AtProvider: ec2v1alpha1.InstanceTypeOfferingObservation{
-										InstanceTypeOfferings: []ec2v1alpha1.InstanceTypeOfferingInfo{
-											{
-												InstanceType: "m5.large",
-												Location:     "af-south-1",
-												LocationType: "region",
-											},
-											{
-												InstanceType: "c5.large",
-												Location:     "af-south-1",
-												LocationType: "region",
+					},
+					RequiredResources: map[string]*fnv1.Resources{
+						// ExtraResources: map[string]*fnv1.Resources{
+						"currentClusterEc2offering": {
+							Items: []*fnv1.Resource{
+								createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
+									TypeMeta: metav1.TypeMeta{
+										Kind: "InstanceTypeOffering",
+									},
+									ObjectMeta: metav1.ObjectMeta{
+										Name: "test-offering",
+									},
+									Status: ec2v1alpha1.InstanceTypeOfferingStatus{
+										AtProvider: ec2v1alpha1.InstanceTypeOfferingObservation{
+											InstanceTypeOfferings: []ec2v1alpha1.InstanceTypeOfferingInfo{
+												{
+													InstanceType: "m5.large",
+													Location:     "af-south-1",
+													LocationType: "region",
+												},
+												{
+													InstanceType: "c5.large",
+													Location:     "af-south-1",
+													LocationType: "region",
+												},
 											},
 										},
 									},
-								},
-							}),
+								}),
+							},
 						},
 					},
 				},
@@ -234,31 +239,36 @@ func TestRunFunction(t *testing.T) {
                 }
               }`),
 						},
-						Resources: map[string]*fnv1.Resource{
-							"currentClusterEc2offering": createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
-								TypeMeta: metav1.TypeMeta{
-									Kind: "InstanceTypeOffering",
-								},
-								ObjectMeta: metav1.ObjectMeta{
-									Name: "test-offering",
-								},
-								Status: ec2v1alpha1.InstanceTypeOfferingStatus{
-									AtProvider: ec2v1alpha1.InstanceTypeOfferingObservation{
-										InstanceTypeOfferings: []ec2v1alpha1.InstanceTypeOfferingInfo{
-											{
-												InstanceType: "m5.large",
-												Location:     "us-east-1",
-												LocationType: "region",
-											},
-											{
-												InstanceType: "c8g.16xlarge",
-												Location:     "us-east-1",
-												LocationType: "region",
+					},
+					RequiredResources: map[string]*fnv1.Resources{
+						// ExtraResources: map[string]*fnv1.Resources{
+						"currentClusterEc2offering": {
+							Items: []*fnv1.Resource{
+								createInstanceTypeOfferingResource(&ec2v1alpha1.InstanceTypeOffering{
+									TypeMeta: metav1.TypeMeta{
+										Kind: "InstanceTypeOffering",
+									},
+									ObjectMeta: metav1.ObjectMeta{
+										Name: "test-offering",
+									},
+									Status: ec2v1alpha1.InstanceTypeOfferingStatus{
+										AtProvider: ec2v1alpha1.InstanceTypeOfferingObservation{
+											InstanceTypeOfferings: []ec2v1alpha1.InstanceTypeOfferingInfo{
+												{
+													InstanceType: "m5.large",
+													Location:     "us-east-1",
+													LocationType: "region",
+												},
+												{
+													InstanceType: "c8g.16xlarge",
+													Location:     "us-east-1",
+													LocationType: "region",
+												},
 											},
 										},
 									},
-								},
-							}),
+								}),
+							},
 						},
 					},
 				},

@@ -1,0 +1,6254 @@
+apiVersion: ec2.ec2offering.crossplane.io/v1alpha1
+kind: SpotAdvisorData
+metadata:
+  annotations:
+    crossplane.io/external-name: us-west-2-spot-data
+  generation: 1
+  labels:
+    app: spot-advisor
+    region: us-west-2
+  name: us-west-2-spot-data
+  namespace: default
+
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    awsRegion: us-west-2
+  managementPolicies:
+    - "*"
+  providerConfigRef:
+    name: example
+status:
+  atProvider:
+    globalRate: <10%
+    instanceTypes:
+      a1.2xlarge:
+        cores: 8
+        ram_gb: "16.0"
+      a1.4xlarge:
+        cores: 16
+        ram_gb: "32.0"
+      a1.large:
+        cores: 2
+        ram_gb: "4.0"
+      a1.medium:
+        cores: 1
+        ram_gb: "2.0"
+      a1.metal:
+        cores: 16
+        ram_gb: "32.0"
+      a1.xlarge:
+        cores: 4
+        ram_gb: "8.0"
+      c1.medium:
+        cores: 2
+        emr: true
+        ram_gb: "1.7"
+      c1.xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "7.0"
+      c3.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "15.0"
+      c3.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "30.0"
+      c3.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "60.0"
+      c3.large:
+        cores: 2
+        ram_gb: "3.8"
+      c3.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "7.5"
+      c4.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "15.0"
+      c4.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "30.0"
+      c4.8xlarge:
+        cores: 36
+        emr: true
+        ram_gb: "60.0"
+      c4.large:
+        cores: 2
+        emr: true
+        ram_gb: "3.8"
+      c4.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "7.5"
+      c5.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c5.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c5.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c5.9xlarge:
+        cores: 36
+        emr: true
+        ram_gb: "72.0"
+      c5.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c5.18xlarge:
+        cores: 72
+        emr: true
+        ram_gb: "144.0"
+      c5.large:
+        cores: 2
+        ram_gb: "4.0"
+      c5.metal:
+        cores: 96
+        ram_gb: "192.0"
+      c5.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c5a.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c5a.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c5a.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c5a.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c5a.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c5a.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c5a.large:
+        cores: 2
+        ram_gb: "4.0"
+      c5a.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c5ad.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c5ad.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c5ad.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c5ad.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c5ad.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c5ad.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c5ad.large:
+        cores: 2
+        ram_gb: "4.0"
+      c5ad.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c5d.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c5d.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c5d.9xlarge:
+        cores: 36
+        emr: true
+        ram_gb: "72.0"
+      c5d.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c5d.18xlarge:
+        cores: 72
+        emr: true
+        ram_gb: "144.0"
+      c5d.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c5d.large:
+        cores: 2
+        ram_gb: "4.0"
+      c5d.metal:
+        cores: 96
+        ram_gb: "192.0"
+      c5d.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c5n.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "21.0"
+      c5n.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "42.0"
+      c5n.9xlarge:
+        cores: 36
+        emr: true
+        ram_gb: "96.0"
+      c5n.18xlarge:
+        cores: 72
+        emr: true
+        ram_gb: "192.0"
+      c5n.large:
+        cores: 2
+        ram_gb: "5.2"
+      c5n.metal:
+        cores: 72
+        ram_gb: "192.0"
+      c5n.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "10.5"
+      c6a.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c6a.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c6a.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c6a.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c6a.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c6a.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c6a.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "256.0"
+      c6a.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "384.0"
+      c6a.large:
+        cores: 2
+        ram_gb: "4.0"
+      c6a.metal:
+        cores: 192
+        ram_gb: "384.0"
+      c6a.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c6g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c6g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c6g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c6g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c6g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c6g.large:
+        cores: 2
+        ram_gb: "4.0"
+      c6g.medium:
+        cores: 1
+        ram_gb: "2.0"
+      c6g.metal:
+        cores: 64
+        ram_gb: "128.0"
+      c6g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c6gd.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c6gd.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c6gd.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c6gd.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c6gd.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c6gd.large:
+        cores: 2
+        ram_gb: "4.0"
+      c6gd.medium:
+        cores: 1
+        ram_gb: "2.0"
+      c6gd.metal:
+        cores: 64
+        ram_gb: "128.0"
+      c6gd.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c6gn.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c6gn.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c6gn.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c6gn.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c6gn.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c6gn.large:
+        cores: 2
+        ram_gb: "4.0"
+      c6gn.medium:
+        cores: 1
+        ram_gb: "2.0"
+      c6gn.metal:
+        cores: 64
+        ram_gb: "128.0"
+      c6gn.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c6i.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c6i.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c6i.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c6i.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c6i.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c6i.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c6i.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "256.0"
+      c6i.large:
+        cores: 2
+        ram_gb: "4.0"
+      c6i.metal:
+        cores: 128
+        ram_gb: "256.0"
+      c6i.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c6id.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c6id.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c6id.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c6id.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c6id.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c6id.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c6id.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "256.0"
+      c6id.large:
+        cores: 2
+        ram_gb: "4.0"
+      c6id.metal:
+        cores: 128
+        ram_gb: "256.0"
+      c6id.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c6in.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c6in.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c6in.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c6in.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c6in.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c6in.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c6in.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "256.0"
+      c6in.large:
+        cores: 2
+        ram_gb: "4.0"
+      c6in.metal:
+        cores: 128
+        ram_gb: "256.0"
+      c6in.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c7a.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c7a.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c7a.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c7a.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c7a.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c7a.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c7a.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "256.0"
+      c7a.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "384.0"
+      c7a.large:
+        cores: 2
+        ram_gb: "4.0"
+      c7a.medium:
+        cores: 1
+        ram_gb: "2.0"
+      c7a.metal-48xl:
+        cores: 192
+        ram_gb: "384.0"
+      c7a.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c7g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c7g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c7g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c7g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c7g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c7g.large:
+        cores: 2
+        ram_gb: "4.0"
+      c7g.medium:
+        cores: 1
+        ram_gb: "2.0"
+      c7g.metal:
+        cores: 64
+        ram_gb: "128.0"
+      c7g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c7gd.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c7gd.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c7gd.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c7gd.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c7gd.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c7gd.large:
+        cores: 2
+        ram_gb: "4.0"
+      c7gd.medium:
+        cores: 1
+        ram_gb: "2.0"
+      c7gd.metal:
+        cores: 64
+        ram_gb: "128.0"
+      c7gd.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c7gn.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c7gn.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c7gn.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c7gn.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c7gn.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c7gn.large:
+        cores: 2
+        ram_gb: "4.0"
+      c7gn.medium:
+        cores: 1
+        ram_gb: "2.0"
+      c7gn.metal:
+        cores: 64
+        ram_gb: "128.0"
+      c7gn.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c7i-flex.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c7i-flex.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c7i-flex.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c7i-flex.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c7i-flex.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c7i-flex.large:
+        cores: 2
+        ram_gb: "4.0"
+      c7i-flex.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c7i.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c7i.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "384.0"
+      c7i.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c7i.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c7i.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c7i.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c7i.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c7i.large:
+        cores: 2
+        ram_gb: "4.0"
+      c7i.metal-24xl:
+        cores: 96
+        ram_gb: "192.0"
+      c7i.metal-48xl:
+        cores: 192
+        ram_gb: "384.0"
+      c7i.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c8g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c8g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c8g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c8g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c8g.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c8g.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "384.0"
+      c8g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c8g.large:
+        cores: 2
+        ram_gb: "4.0"
+      c8g.medium:
+        cores: 1
+        ram_gb: "2.0"
+      c8g.metal-24xl:
+        cores: 96
+        ram_gb: "192.0"
+      c8g.metal-48xl:
+        cores: 192
+        ram_gb: "384.0"
+      c8g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c8gd.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "64.0"
+      c8gd.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "128.0"
+      c8gd.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "192.0"
+      c8gd.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "16.0"
+      c8gd.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "96.0"
+      c8gd.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "384.0"
+      c8gd.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "32.0"
+      c8gd.large:
+        cores: 2
+        ram_gb: "4.0"
+      c8gd.medium:
+        cores: 1
+        ram_gb: "2.0"
+      c8gd.metal-24xl:
+        cores: 96
+        ram_gb: "192.0"
+      c8gd.metal-48xl:
+        cores: 192
+        ram_gb: "384.0"
+      c8gd.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "8.0"
+      c8gn.24xlarge:
+        cores: 96
+        ram_gb: "192.0"
+      c8gn.2xlarge:
+        cores: 8
+        ram_gb: "16.0"
+      c8gn.4xlarge:
+        cores: 16
+        ram_gb: "32.0"
+      c8gn.8xlarge:
+        cores: 32
+        ram_gb: "64.0"
+      c8gn.12xlarge:
+        cores: 48
+        ram_gb: "96.0"
+      c8gn.16xlarge:
+        cores: 64
+        ram_gb: "128.0"
+      c8gn.48xlarge:
+        cores: 192
+        ram_gb: "384.0"
+      c8gn.large:
+        cores: 2
+        ram_gb: "4.0"
+      c8gn.medium:
+        cores: 1
+        ram_gb: "2.0"
+      c8gn.metal-24xl:
+        cores: 96
+        ram_gb: "192.0"
+      c8gn.metal-48xl:
+        cores: 192
+        ram_gb: "384.0"
+      c8gn.xlarge:
+        cores: 4
+        ram_gb: "8.0"
+      cr1.8xlarge:
+        cores: 32
+        ram_gb: "244.0"
+      d2.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "61.0"
+      d2.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "122.0"
+      d2.8xlarge:
+        cores: 36
+        emr: true
+        ram_gb: "244.0"
+      d2.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "30.5"
+      d3.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      d3.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      d3.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      d3.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      d3en.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      d3en.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      d3en.6xlarge:
+        cores: 24
+        emr: true
+        ram_gb: "96.0"
+      d3en.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      d3en.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      d3en.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      dl1.24xlarge:
+        cores: 96
+        ram_gb: "768.0"
+      dl2q.24xlarge:
+        cores: 96
+        ram_gb: "768.0"
+      f1.2xlarge:
+        cores: 8
+        ram_gb: "122.0"
+      f1.4xlarge:
+        cores: 16
+        ram_gb: "244.0"
+      f1.16xlarge:
+        cores: 64
+        ram_gb: "976.0"
+      f2.6xlarge:
+        cores: 24
+        emr: true
+        ram_gb: "256.0"
+      f2.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "512.0"
+      f2.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "2048.0"
+      g2.2xlarge:
+        cores: 8
+        ram_gb: "15.0"
+      g2.8xlarge:
+        cores: 32
+        ram_gb: "60.0"
+      g3.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "122.0"
+      g3.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "244.0"
+      g3.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "488.0"
+      g3s.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "30.5"
+      g4ad.2xlarge:
+        cores: 8
+        ram_gb: "32.0"
+      g4ad.4xlarge:
+        cores: 16
+        ram_gb: "64.0"
+      g4ad.8xlarge:
+        cores: 32
+        ram_gb: "128.0"
+      g4ad.16xlarge:
+        cores: 64
+        ram_gb: "256.0"
+      g4ad.xlarge:
+        cores: 4
+        ram_gb: "16.0"
+      g4dn.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      g4dn.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      g4dn.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      g4dn.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      g4dn.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      g4dn.metal:
+        cores: 96
+        ram_gb: "384.0"
+      g4dn.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      g5.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      g5.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      g5.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      g5.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "768.0"
+      g5.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      g5.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      g5.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      g5.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      g5g.2xlarge:
+        cores: 8
+        ram_gb: "16.0"
+      g5g.4xlarge:
+        cores: 16
+        ram_gb: "32.0"
+      g5g.8xlarge:
+        cores: 32
+        ram_gb: "64.0"
+      g5g.16xlarge:
+        cores: 64
+        ram_gb: "128.0"
+      g5g.metal:
+        cores: 64
+        ram_gb: "128.0"
+      g5g.xlarge:
+        cores: 4
+        ram_gb: "8.0"
+      g6.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      g6.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      g6.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      g6.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      g6.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      g6.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "768.0"
+      g6.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      g6.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      g6e.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      g6e.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      g6e.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      g6e.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      g6e.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      g6e.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "1536.0"
+      g6e.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      g6e.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      g6f.2xlarge:
+        cores: 8
+        ram_gb: "32.0"
+      g6f.4xlarge:
+        cores: 16
+        ram_gb: "64.0"
+      g6f.large:
+        cores: 2
+        ram_gb: "8.0"
+      g6f.xlarge:
+        cores: 4
+        ram_gb: "16.0"
+      gr6.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      gr6.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      gr6f.4xlarge:
+        cores: 16
+        ram_gb: "128.0"
+      h1.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      h1.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      h1.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      h1.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      hpc6a.48xlarge:
+        cores: 96
+        ram_gb: "384.0"
+      hpc6id.32xlarge:
+        cores: 64
+        ram_gb: "1024.0"
+      hpc7a.12xlarge:
+        cores: 24
+        ram_gb: "768.0"
+      hpc7a.24xlarge:
+        cores: 48
+        ram_gb: "768.0"
+      hpc7a.48xlarge:
+        cores: 96
+        ram_gb: "768.0"
+      hpc7a.96xlarge:
+        cores: 192
+        ram_gb: "768.0"
+      hpc7g.4xlarge:
+        cores: 16
+        ram_gb: "128.0"
+      hpc7g.8xlarge:
+        cores: 32
+        ram_gb: "128.0"
+      hpc7g.16xlarge:
+        cores: 64
+        ram_gb: "128.0"
+      i2.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "61.0"
+      i2.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "122.0"
+      i2.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "244.0"
+      i2.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "30.5"
+      i3.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "61.0"
+      i3.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "122.0"
+      i3.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "244.0"
+      i3.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "488.0"
+      i3.large:
+        cores: 2
+        ram_gb: "15.2"
+      i3.metal:
+        cores: 72
+        ram_gb: "512.0"
+      i3.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "30.5"
+      i3en.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      i3en.3xlarge:
+        cores: 12
+        emr: true
+        ram_gb: "96.0"
+      i3en.6xlarge:
+        cores: 24
+        emr: true
+        ram_gb: "192.0"
+      i3en.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      i3en.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      i3en.large:
+        cores: 2
+        ram_gb: "16.0"
+      i3en.metal:
+        cores: 96
+        ram_gb: "768.0"
+      i3en.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      i4g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      i4g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      i4g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      i4g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      i4g.large:
+        cores: 2
+        ram_gb: "16.0"
+      i4g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      i4i.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      i4i.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      i4i.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      i4i.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      i4i.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      i4i.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      i4i.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "1024.0"
+      i4i.large:
+        cores: 2
+        ram_gb: "16.0"
+      i4i.metal:
+        cores: 128
+        ram_gb: "1024.0"
+      i4i.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      i7i.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      i7i.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      i7i.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      i7i.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      i7i.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      i7i.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      i7i.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "1536.0"
+      i7i.large:
+        cores: 2
+        ram_gb: "16.0"
+      i7i.metal-24xl:
+        cores: 96
+        ram_gb: "768.0"
+      i7i.metal-48xl:
+        cores: 192
+        ram_gb: "1536.0"
+      i7i.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      i7ie.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      i7ie.3xlarge:
+        cores: 12
+        emr: true
+        ram_gb: "96.0"
+      i7ie.6xlarge:
+        cores: 24
+        emr: true
+        ram_gb: "192.0"
+      i7ie.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      i7ie.18xlarge:
+        cores: 72
+        emr: true
+        ram_gb: "576.0"
+      i7ie.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      i7ie.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "1536.0"
+      i7ie.large:
+        cores: 2
+        ram_gb: "16.0"
+      i7ie.metal-24xl:
+        cores: 96
+        ram_gb: "768.0"
+      i7ie.metal-48xl:
+        cores: 192
+        ram_gb: "1536.0"
+      i7ie.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      i8g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      i8g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      i8g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      i8g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      i8g.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "1536.0"
+      i8g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      i8g.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      i8g.large:
+        cores: 2
+        ram_gb: "16.0"
+      i8g.metal-24xl:
+        cores: 96
+        ram_gb: "768.0"
+      i8g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      im4gn.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      im4gn.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      im4gn.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      im4gn.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      im4gn.large:
+        cores: 2
+        ram_gb: "8.0"
+      im4gn.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      inf1.2xlarge:
+        cores: 8
+        ram_gb: "16.0"
+      inf1.6xlarge:
+        cores: 24
+        ram_gb: "48.0"
+      inf1.24xlarge:
+        cores: 96
+        ram_gb: "192.0"
+      inf1.xlarge:
+        cores: 4
+        ram_gb: "8.0"
+      inf2.8xlarge:
+        cores: 32
+        ram_gb: "128.0"
+      inf2.24xlarge:
+        cores: 96
+        ram_gb: "384.0"
+      inf2.48xlarge:
+        cores: 192
+        ram_gb: "768.0"
+      inf2.xlarge:
+        cores: 4
+        ram_gb: "16.0"
+      is4gen.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "48.0"
+      is4gen.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "96.0"
+      is4gen.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "192.0"
+      is4gen.large:
+        cores: 2
+        ram_gb: "12.0"
+      is4gen.medium:
+        cores: 1
+        ram_gb: "6.0"
+      is4gen.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "24.0"
+      m1.large:
+        cores: 2
+        emr: true
+        ram_gb: "7.5"
+      m1.medium:
+        cores: 1
+        emr: true
+        ram_gb: "3.8"
+      m1.small:
+        cores: 1
+        emr: true
+        ram_gb: "1.7"
+      m1.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "15.0"
+      m2.2xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "34.2"
+      m2.4xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "68.4"
+      m2.xlarge:
+        cores: 2
+        emr: true
+        ram_gb: "17.1"
+      m3.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "30.0"
+      m3.large:
+        cores: 2
+        ram_gb: "7.5"
+      m3.medium:
+        cores: 1
+        ram_gb: "3.8"
+      m3.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "15.0"
+      m4.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m4.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m4.10xlarge:
+        cores: 40
+        emr: true
+        ram_gb: "160.0"
+      m4.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m4.large:
+        cores: 2
+        emr: true
+        ram_gb: "8.0"
+      m4.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m5.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m5.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m5.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m5.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m5.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m5.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m5.large:
+        cores: 2
+        ram_gb: "8.0"
+      m5.metal:
+        cores: 96
+        ram_gb: "384.0"
+      m5.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m5a.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m5a.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m5a.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m5a.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m5a.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m5a.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m5a.large:
+        cores: 2
+        ram_gb: "8.0"
+      m5a.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m5ad.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m5ad.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m5ad.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m5ad.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m5ad.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m5ad.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m5ad.large:
+        cores: 2
+        ram_gb: "8.0"
+      m5ad.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m5d.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m5d.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m5d.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m5d.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m5d.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m5d.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m5d.large:
+        cores: 2
+        ram_gb: "8.0"
+      m5d.metal:
+        cores: 96
+        ram_gb: "384.0"
+      m5d.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m5dn.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m5dn.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m5dn.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m5dn.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m5dn.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m5dn.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m5dn.large:
+        cores: 2
+        ram_gb: "8.0"
+      m5dn.metal:
+        cores: 96
+        ram_gb: "384.0"
+      m5dn.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m5n.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m5n.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m5n.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m5n.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m5n.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m5n.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m5n.large:
+        cores: 2
+        ram_gb: "8.0"
+      m5n.metal:
+        cores: 96
+        ram_gb: "384.0"
+      m5n.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m5zn.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m5zn.3xlarge:
+        cores: 12
+        emr: true
+        ram_gb: "48.0"
+      m5zn.6xlarge:
+        cores: 24
+        emr: true
+        ram_gb: "96.0"
+      m5zn.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m5zn.large:
+        cores: 2
+        ram_gb: "8.0"
+      m5zn.metal:
+        cores: 48
+        ram_gb: "192.0"
+      m5zn.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m6a.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m6a.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m6a.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m6a.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m6a.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m6a.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m6a.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "512.0"
+      m6a.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "768.0"
+      m6a.large:
+        cores: 2
+        ram_gb: "8.0"
+      m6a.metal:
+        cores: 192
+        ram_gb: "768.0"
+      m6a.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m6g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m6g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m6g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m6g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m6g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m6g.large:
+        cores: 2
+        ram_gb: "8.0"
+      m6g.medium:
+        cores: 1
+        ram_gb: "4.0"
+      m6g.metal:
+        cores: 64
+        ram_gb: "256.0"
+      m6g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m6gd.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m6gd.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m6gd.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m6gd.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m6gd.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m6gd.large:
+        cores: 2
+        ram_gb: "8.0"
+      m6gd.medium:
+        cores: 1
+        ram_gb: "4.0"
+      m6gd.metal:
+        cores: 64
+        ram_gb: "256.0"
+      m6gd.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m6i.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m6i.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m6i.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m6i.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m6i.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m6i.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m6i.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "512.0"
+      m6i.large:
+        cores: 2
+        ram_gb: "8.0"
+      m6i.metal:
+        cores: 128
+        ram_gb: "512.0"
+      m6i.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m6id.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m6id.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m6id.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m6id.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m6id.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m6id.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m6id.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "512.0"
+      m6id.large:
+        cores: 2
+        ram_gb: "8.0"
+      m6id.metal:
+        cores: 128
+        ram_gb: "512.0"
+      m6id.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m6idn.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m6idn.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m6idn.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m6idn.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m6idn.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m6idn.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m6idn.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "512.0"
+      m6idn.large:
+        cores: 2
+        ram_gb: "8.0"
+      m6idn.metal:
+        cores: 128
+        ram_gb: "512.0"
+      m6idn.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m6in.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m6in.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m6in.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m6in.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m6in.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m6in.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m6in.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "512.0"
+      m6in.large:
+        cores: 2
+        ram_gb: "8.0"
+      m6in.metal:
+        cores: 128
+        ram_gb: "512.0"
+      m6in.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m7a.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m7a.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m7a.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m7a.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m7a.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m7a.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m7a.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "512.0"
+      m7a.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "768.0"
+      m7a.large:
+        cores: 2
+        ram_gb: "8.0"
+      m7a.medium:
+        cores: 1
+        ram_gb: "4.0"
+      m7a.metal-48xl:
+        cores: 192
+        ram_gb: "768.0"
+      m7a.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m7g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m7g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m7g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m7g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m7g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m7g.large:
+        cores: 2
+        ram_gb: "8.0"
+      m7g.medium:
+        cores: 1
+        ram_gb: "4.0"
+      m7g.metal:
+        cores: 64
+        ram_gb: "256.0"
+      m7g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m7gd.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m7gd.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m7gd.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m7gd.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m7gd.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m7gd.large:
+        cores: 2
+        ram_gb: "8.0"
+      m7gd.medium:
+        cores: 1
+        ram_gb: "4.0"
+      m7gd.metal:
+        cores: 64
+        ram_gb: "256.0"
+      m7gd.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m7i-flex.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m7i-flex.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m7i-flex.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m7i-flex.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m7i-flex.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m7i-flex.large:
+        cores: 2
+        ram_gb: "8.0"
+      m7i-flex.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m7i.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m7i.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "768.0"
+      m7i.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m7i.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m7i.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m7i.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m7i.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m7i.large:
+        cores: 2
+        ram_gb: "8.0"
+      m7i.metal-24xl:
+        cores: 96
+        ram_gb: "384.0"
+      m7i.metal-48xl:
+        cores: 192
+        ram_gb: "768.0"
+      m7i.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m8g.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m8g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m8g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m8g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m8g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m8g.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "768.0"
+      m8g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m8g.large:
+        cores: 2
+        ram_gb: "8.0"
+      m8g.medium:
+        cores: 1
+        ram_gb: "4.0"
+      m8g.metal-24xl:
+        cores: 96
+        ram_gb: "384.0"
+      m8g.metal-48xl:
+        cores: 192
+        ram_gb: "768.0"
+      m8g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m8gd.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "32.0"
+      m8gd.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "64.0"
+      m8gd.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "128.0"
+      m8gd.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "192.0"
+      m8gd.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "256.0"
+      m8gd.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "384.0"
+      m8gd.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "768.0"
+      m8gd.large:
+        cores: 2
+        ram_gb: "8.0"
+      m8gd.medium:
+        cores: 1
+        ram_gb: "4.0"
+      m8gd.metal-24xl:
+        cores: 96
+        ram_gb: "384.0"
+      m8gd.metal-48xl:
+        cores: 192
+        ram_gb: "768.0"
+      m8gd.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "16.0"
+      m8i.2xlarge:
+        cores: 8
+        ram_gb: "32.0"
+      m8i.4xlarge:
+        cores: 16
+        ram_gb: "64.0"
+      m8i.8xlarge:
+        cores: 32
+        ram_gb: "128.0"
+      m8i.12xlarge:
+        cores: 48
+        ram_gb: "192.0"
+      m8i.16xlarge:
+        cores: 64
+        ram_gb: "256.0"
+      m8i.24xlarge:
+        cores: 96
+        ram_gb: "384.0"
+      m8i.32xlarge:
+        cores: 128
+        ram_gb: "512.0"
+      m8i.48xlarge:
+        cores: 192
+        ram_gb: "768.0"
+      m8i.96xlarge:
+        cores: 384
+        ram_gb: "1536.0"
+      m8i.large:
+        cores: 2
+        ram_gb: "8.0"
+      m8i.metal-48xl:
+        cores: 192
+        ram_gb: "768.0"
+      m8i.metal-96xl:
+        cores: 384
+        ram_gb: "1536.0"
+      m8i.xlarge:
+        cores: 4
+        ram_gb: "16.0"
+      p2.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "488.0"
+      p2.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "732.0"
+      p2.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "61.0"
+      p3.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "61.0"
+      p3.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "244.0"
+      p3.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "488.0"
+      p3dn.24xlarge:
+        cores: 96
+        ram_gb: "768.0"
+      p4d.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "1152.0"
+      p4de.24xlarge:
+        cores: 96
+        ram_gb: "1152.0"
+      p5.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "2048.0"
+      p5.4xlarge:
+        cores: 16
+        ram_gb: "256.0"
+      p5en.48xlarge:
+        cores: 192
+        ram_gb: "2048.0"
+      p6-b200.48xlarge:
+        cores: 192
+        ram_gb: "2048.0"
+      r3.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "61.0"
+      r3.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "122.0"
+      r3.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "244.0"
+      r3.large:
+        cores: 2
+        ram_gb: "15.2"
+      r3.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "30.5"
+      r4.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "61.0"
+      r4.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "122.0"
+      r4.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "244.0"
+      r4.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "488.0"
+      r4.large:
+        cores: 2
+        ram_gb: "15.2"
+      r4.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "30.5"
+      r5.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r5.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r5.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r5.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r5.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r5.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r5.large:
+        cores: 2
+        ram_gb: "16.0"
+      r5.metal:
+        cores: 96
+        ram_gb: "768.0"
+      r5.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r5a.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r5a.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r5a.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r5a.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r5a.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r5a.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r5a.large:
+        cores: 2
+        ram_gb: "16.0"
+      r5a.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r5ad.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r5ad.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r5ad.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r5ad.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r5ad.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r5ad.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r5ad.large:
+        cores: 2
+        ram_gb: "16.0"
+      r5ad.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r5b.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r5b.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r5b.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r5b.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r5b.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r5b.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r5b.large:
+        cores: 2
+        ram_gb: "16.0"
+      r5b.metal:
+        cores: 96
+        ram_gb: "768.0"
+      r5b.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r5d.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r5d.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r5d.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r5d.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r5d.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r5d.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r5d.large:
+        cores: 2
+        ram_gb: "16.0"
+      r5d.metal:
+        cores: 96
+        ram_gb: "768.0"
+      r5d.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r5dn.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r5dn.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r5dn.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r5dn.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r5dn.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r5dn.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r5dn.large:
+        cores: 2
+        ram_gb: "16.0"
+      r5dn.metal:
+        cores: 96
+        ram_gb: "768.0"
+      r5dn.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r5n.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r5n.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r5n.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r5n.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r5n.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r5n.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r5n.large:
+        cores: 2
+        ram_gb: "16.0"
+      r5n.metal:
+        cores: 96
+        ram_gb: "768.0"
+      r5n.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r6a.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r6a.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r6a.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "1536.0"
+      r6a.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r6a.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r6a.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r6a.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r6a.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "1024.0"
+      r6a.large:
+        cores: 2
+        ram_gb: "16.0"
+      r6a.metal:
+        cores: 192
+        ram_gb: "1536.0"
+      r6a.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r6g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r6g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r6g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r6g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r6g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r6g.large:
+        cores: 2
+        ram_gb: "16.0"
+      r6g.medium:
+        cores: 1
+        ram_gb: "8.0"
+      r6g.metal:
+        cores: 64
+        ram_gb: "512.0"
+      r6g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r6gd.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r6gd.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r6gd.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r6gd.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r6gd.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r6gd.large:
+        cores: 2
+        ram_gb: "16.0"
+      r6gd.medium:
+        cores: 1
+        ram_gb: "8.0"
+      r6gd.metal:
+        cores: 64
+        ram_gb: "512.0"
+      r6gd.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r6i.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r6i.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r6i.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r6i.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r6i.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r6i.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r6i.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "1024.0"
+      r6i.large:
+        cores: 2
+        ram_gb: "16.0"
+      r6i.metal:
+        cores: 128
+        ram_gb: "1024.0"
+      r6i.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r6id.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r6id.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r6id.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r6id.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r6id.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r6id.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r6id.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "1024.0"
+      r6id.large:
+        cores: 2
+        ram_gb: "16.0"
+      r6id.metal:
+        cores: 128
+        ram_gb: "1024.0"
+      r6id.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r6idn.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r6idn.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r6idn.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r6idn.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r6idn.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r6idn.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r6idn.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "1024.0"
+      r6idn.large:
+        cores: 2
+        ram_gb: "16.0"
+      r6idn.metal:
+        cores: 128
+        ram_gb: "1024.0"
+      r6idn.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r6in.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r6in.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r6in.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r6in.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r6in.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r6in.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r6in.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "1024.0"
+      r6in.large:
+        cores: 2
+        ram_gb: "16.0"
+      r6in.metal:
+        cores: 128
+        ram_gb: "1024.0"
+      r6in.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r7a.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r7a.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "1536.0"
+      r7a.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r7a.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r7a.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r7a.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r7a.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r7a.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "1024.0"
+      r7a.large:
+        cores: 2
+        ram_gb: "16.0"
+      r7a.medium:
+        cores: 1
+        ram_gb: "8.0"
+      r7a.metal-48xl:
+        cores: 192
+        ram_gb: "1536.0"
+      r7a.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r7g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r7g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r7g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r7g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r7g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r7g.large:
+        cores: 2
+        ram_gb: "16.0"
+      r7g.medium:
+        cores: 1
+        ram_gb: "8.0"
+      r7g.metal:
+        cores: 64
+        ram_gb: "512.0"
+      r7g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r7gd.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r7gd.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r7gd.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r7gd.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r7gd.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r7gd.large:
+        cores: 2
+        ram_gb: "16.0"
+      r7gd.medium:
+        cores: 1
+        ram_gb: "8.0"
+      r7gd.metal:
+        cores: 64
+        ram_gb: "512.0"
+      r7gd.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r7i.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r7i.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r7i.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r7i.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r7i.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r7i.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r7i.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "1536.0"
+      r7i.large:
+        cores: 2
+        ram_gb: "16.0"
+      r7i.metal-24xl:
+        cores: 96
+        ram_gb: "768.0"
+      r7i.metal-48xl:
+        cores: 192
+        ram_gb: "1536.0"
+      r7i.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r7iz.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r7iz.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r7iz.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r7iz.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r7iz.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r7iz.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "1024.0"
+      r7iz.large:
+        cores: 2
+        ram_gb: "16.0"
+      r7iz.metal-16xl:
+        cores: 64
+        ram_gb: "512.0"
+      r7iz.metal-32xl:
+        cores: 128
+        ram_gb: "1024.0"
+      r7iz.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r8g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r8g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r8g.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r8g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r8g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r8g.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "1536.0"
+      r8g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r8g.large:
+        cores: 2
+        ram_gb: "16.0"
+      r8g.medium:
+        cores: 1
+        ram_gb: "8.0"
+      r8g.metal-24xl:
+        cores: 96
+        ram_gb: "768.0"
+      r8g.metal-48xl:
+        cores: 192
+        ram_gb: "1536.0"
+      r8g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r8gd.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      r8gd.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "1536.0"
+      r8gd.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "128.0"
+      r8gd.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "256.0"
+      r8gd.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      r8gd.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "512.0"
+      r8gd.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "768.0"
+      r8gd.large:
+        cores: 2
+        ram_gb: "16.0"
+      r8gd.medium:
+        cores: 1
+        ram_gb: "8.0"
+      r8gd.metal-24xl:
+        cores: 96
+        ram_gb: "768.0"
+      r8gd.metal-48xl:
+        cores: 192
+        ram_gb: "1536.0"
+      r8gd.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+      r8i-flex.2xlarge:
+        cores: 8
+        ram_gb: "64.0"
+      r8i-flex.4xlarge:
+        cores: 16
+        ram_gb: "128.0"
+      r8i-flex.8xlarge:
+        cores: 32
+        ram_gb: "256.0"
+      r8i-flex.12xlarge:
+        cores: 48
+        ram_gb: "384.0"
+      r8i-flex.16xlarge:
+        cores: 64
+        ram_gb: "512.0"
+      r8i-flex.large:
+        cores: 2
+        ram_gb: "16.0"
+      r8i-flex.xlarge:
+        cores: 4
+        ram_gb: "32.0"
+      r8i.2xlarge:
+        cores: 8
+        ram_gb: "64.0"
+      r8i.4xlarge:
+        cores: 16
+        ram_gb: "128.0"
+      r8i.8xlarge:
+        cores: 32
+        ram_gb: "256.0"
+      r8i.12xlarge:
+        cores: 48
+        ram_gb: "384.0"
+      r8i.16xlarge:
+        cores: 64
+        ram_gb: "512.0"
+      r8i.24xlarge:
+        cores: 96
+        ram_gb: "768.0"
+      r8i.32xlarge:
+        cores: 128
+        ram_gb: "1024.0"
+      r8i.48xlarge:
+        cores: 192
+        ram_gb: "1536.0"
+      r8i.96xlarge:
+        cores: 384
+        ram_gb: "3072.0"
+      r8i.large:
+        cores: 2
+        ram_gb: "16.0"
+      r8i.metal-48xl:
+        cores: 192
+        ram_gb: "1536.0"
+      r8i.metal-96xl:
+        cores: 384
+        ram_gb: "3072.0"
+      r8i.xlarge:
+        cores: 4
+        ram_gb: "32.0"
+      t1.micro:
+        cores: 1
+        ram_gb: "0.6"
+      t2.2xlarge:
+        cores: 8
+        ram_gb: "32.0"
+      t2.large:
+        cores: 2
+        ram_gb: "8.0"
+      t2.medium:
+        cores: 2
+        ram_gb: "4.0"
+      t2.micro:
+        cores: 1
+        ram_gb: "1.0"
+      t2.nano:
+        cores: 1
+        ram_gb: "0.5"
+      t2.small:
+        cores: 1
+        ram_gb: "2.0"
+      t2.xlarge:
+        cores: 4
+        ram_gb: "16.0"
+      t3.2xlarge:
+        cores: 8
+        ram_gb: "32.0"
+      t3.large:
+        cores: 2
+        ram_gb: "8.0"
+      t3.medium:
+        cores: 2
+        ram_gb: "4.0"
+      t3.micro:
+        cores: 2
+        ram_gb: "1.0"
+      t3.nano:
+        cores: 2
+        ram_gb: "0.5"
+      t3.small:
+        cores: 2
+        ram_gb: "2.0"
+      t3.xlarge:
+        cores: 4
+        ram_gb: "16.0"
+      t3a.2xlarge:
+        cores: 8
+        ram_gb: "32.0"
+      t3a.large:
+        cores: 2
+        ram_gb: "8.0"
+      t3a.medium:
+        cores: 2
+        ram_gb: "4.0"
+      t3a.micro:
+        cores: 2
+        ram_gb: "1.0"
+      t3a.nano:
+        cores: 2
+        ram_gb: "0.5"
+      t3a.small:
+        cores: 2
+        ram_gb: "2.0"
+      t3a.xlarge:
+        cores: 4
+        ram_gb: "16.0"
+      t4g.2xlarge:
+        cores: 8
+        ram_gb: "32.0"
+      t4g.large:
+        cores: 2
+        ram_gb: "8.0"
+      t4g.medium:
+        cores: 2
+        ram_gb: "4.0"
+      t4g.micro:
+        cores: 2
+        ram_gb: "1.0"
+      t4g.nano:
+        cores: 2
+        ram_gb: "0.5"
+      t4g.small:
+        cores: 2
+        ram_gb: "2.0"
+      t4g.xlarge:
+        cores: 4
+        ram_gb: "16.0"
+      trn1.2xlarge:
+        cores: 8
+        ram_gb: "32.0"
+      trn1.32xlarge:
+        cores: 128
+        ram_gb: "512.0"
+      trn1n.32xlarge:
+        cores: 128
+        ram_gb: "512.0"
+      u-3tb1.56xlarge:
+        cores: 224
+        ram_gb: "3072.0"
+      u-6tb1.56xlarge:
+        cores: 224
+        ram_gb: "6144.0"
+      u-6tb1.112xlarge:
+        cores: 448
+        ram_gb: "6144.0"
+      u-9tb1.112xlarge:
+        cores: 448
+        ram_gb: "9216.0"
+      u-12tb1.112xlarge:
+        cores: 448
+        ram_gb: "12288.0"
+      u-18tb1.112xlarge:
+        cores: 448
+        ram_gb: "18432.0"
+      u-24tb1.112xlarge:
+        cores: 448
+        ram_gb: "24576.0"
+      u7i-6tb.112xlarge:
+        cores: 448
+        ram_gb: "6144.0"
+      u7i-8tb.112xlarge:
+        cores: 448
+        ram_gb: "8192.0"
+      u7i-12tb.224xlarge:
+        cores: 896
+        ram_gb: "12288.0"
+      u7in-16tb.224xlarge:
+        cores: 896
+        ram_gb: "16384.0"
+      u7in-24tb.224xlarge:
+        cores: 896
+        ram_gb: "24576.0"
+      u7in-32tb.224xlarge:
+        cores: 896
+        ram_gb: "32768.0"
+      vt1.3xlarge:
+        cores: 12
+        ram_gb: "24.0"
+      vt1.6xlarge:
+        cores: 24
+        ram_gb: "48.0"
+      vt1.24xlarge:
+        cores: 96
+        ram_gb: "192.0"
+      x1.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "976.0"
+      x1.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "1952.0"
+      x1e.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "244.0"
+      x1e.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "488.0"
+      x1e.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "976.0"
+      x1e.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "1952.0"
+      x1e.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "3904.0"
+      x1e.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "122.0"
+      x2gd.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "128.0"
+      x2gd.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "256.0"
+      x2gd.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "512.0"
+      x2gd.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "768.0"
+      x2gd.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "1024.0"
+      x2gd.large:
+        cores: 2
+        ram_gb: "32.0"
+      x2gd.medium:
+        cores: 1
+        ram_gb: "16.0"
+      x2gd.metal:
+        cores: 64
+        ram_gb: "1024.0"
+      x2gd.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "64.0"
+      x2idn.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "1024.0"
+      x2idn.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "1536.0"
+      x2idn.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "2048.0"
+      x2idn.metal:
+        cores: 128
+        ram_gb: "2048.0"
+      x2iedn.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "256.0"
+      x2iedn.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "512.0"
+      x2iedn.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "1024.0"
+      x2iedn.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "2048.0"
+      x2iedn.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "3072.0"
+      x2iedn.32xlarge:
+        cores: 128
+        emr: true
+        ram_gb: "4096.0"
+      x2iedn.metal:
+        cores: 128
+        ram_gb: "4096.0"
+      x2iedn.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "128.0"
+      x2iezn.2xlarge:
+        cores: 8
+        ram_gb: "256.0"
+      x2iezn.4xlarge:
+        cores: 16
+        ram_gb: "512.0"
+      x2iezn.6xlarge:
+        cores: 24
+        ram_gb: "768.0"
+      x2iezn.8xlarge:
+        cores: 32
+        ram_gb: "1024.0"
+      x2iezn.12xlarge:
+        cores: 48
+        ram_gb: "1536.0"
+      x2iezn.metal:
+        cores: 48
+        ram_gb: "1536.0"
+      x8g.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "128.0"
+      x8g.4xlarge:
+        cores: 16
+        emr: true
+        ram_gb: "256.0"
+      x8g.8xlarge:
+        cores: 32
+        emr: true
+        ram_gb: "512.0"
+      x8g.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "768.0"
+      x8g.16xlarge:
+        cores: 64
+        emr: true
+        ram_gb: "1024.0"
+      x8g.24xlarge:
+        cores: 96
+        emr: true
+        ram_gb: "1536.0"
+      x8g.48xlarge:
+        cores: 192
+        emr: true
+        ram_gb: "3072.0"
+      x8g.large:
+        cores: 2
+        ram_gb: "32.0"
+      x8g.medium:
+        cores: 1
+        ram_gb: "16.0"
+      x8g.metal-24xl:
+        cores: 96
+        ram_gb: "1536.0"
+      x8g.metal-48xl:
+        cores: 192
+        ram_gb: "3072.0"
+      x8g.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "64.0"
+      z1d.2xlarge:
+        cores: 8
+        emr: true
+        ram_gb: "64.0"
+      z1d.3xlarge:
+        cores: 12
+        emr: true
+        ram_gb: "96.0"
+      z1d.6xlarge:
+        cores: 24
+        emr: true
+        ram_gb: "192.0"
+      z1d.12xlarge:
+        cores: 48
+        emr: true
+        ram_gb: "384.0"
+      z1d.large:
+        cores: 2
+        ram_gb: "16.0"
+      z1d.metal:
+        cores: 48
+        ram_gb: "384.0"
+      z1d.xlarge:
+        cores: 4
+        emr: true
+        ram_gb: "32.0"
+    ranges:
+      - label: <5%
+        max: 5
+      - dots: 1
+        index: 1
+        label: 5-10%
+        max: 11
+      - dots: 2
+        index: 2
+        label: 10-15%
+        max: 16
+      - dots: 3
+        index: 3
+        label: 15-20%
+        max: 22
+      - dots: 4
+        index: 4
+        label: ">20%"
+        max: 100
+    spotAdvisor:
+      Linux:
+        a1.2xlarge:
+          r: 4
+        a1.4xlarge:
+          r: 4
+        a1.large:
+          r: 4
+        a1.medium:
+          r: 4
+        a1.metal: {}
+        a1.xlarge:
+          r: 4
+        c1.medium:
+          r: 4
+          s: 66
+        c1.xlarge:
+          r: 4
+          s: 65
+        c3.2xlarge:
+          s: 61
+        c3.4xlarge:
+          s: 32
+        c3.8xlarge:
+          r: 3
+          s: 65
+        c3.large:
+          s: 67
+        c3.xlarge:
+          s: 61
+        c4.2xlarge:
+          r: 4
+          s: 62
+        c4.4xlarge:
+          r: 4
+          s: 58
+        c4.8xlarge:
+          r: 4
+          s: 61
+        c4.large:
+          r: 2
+          s: 52
+        c4.xlarge:
+          s: 62
+        c5.4xlarge:
+          r: 4
+          s: 65
+        c5.9xlarge:
+          r: 4
+          s: 61
+        c5.12xlarge:
+          r: 4
+          s: 66
+        c5.18xlarge:
+          r: 4
+          s: 67
+        c5.24xlarge:
+          r: 4
+          s: 63
+        c5.2xlarge:
+          r: 1
+          s: 58
+        c5.large:
+          r: 1
+          s: 68
+        c5.metal:
+          r: 4
+          s: 71
+        c5.xlarge:
+          s: 58
+        c5a.4xlarge:
+          r: 4
+          s: 48
+        c5a.8xlarge:
+          r: 4
+          s: 63
+        c5a.12xlarge:
+          r: 4
+          s: 57
+        c5a.16xlarge:
+          r: 4
+          s: 61
+        c5a.24xlarge:
+          r: 4
+          s: 61
+        c5a.2xlarge:
+          r: 1
+          s: 48
+        c5a.large:
+          s: 64
+        c5a.xlarge:
+          s: 49
+        c5ad.2xlarge:
+          r: 4
+          s: 59
+        c5ad.4xlarge:
+          r: 3
+          s: 52
+        c5ad.8xlarge:
+          r: 4
+          s: 60
+        c5ad.12xlarge:
+          r: 4
+          s: 62
+        c5ad.16xlarge:
+          r: 4
+          s: 62
+        c5ad.24xlarge:
+          r: 2
+          s: 63
+        c5ad.large:
+          r: 1
+          s: 68
+        c5ad.xlarge:
+          s: 60
+        c5d.24xlarge:
+          r: 4
+          s: 67
+        c5d.2xlarge:
+          s: 59
+        c5d.4xlarge:
+          r: 1
+          s: 52
+        c5d.9xlarge:
+          r: 1
+          s: 52
+        c5d.12xlarge:
+          r: 4
+          s: 68
+        c5d.18xlarge:
+          r: 1
+          s: 62
+        c5d.large:
+          s: 66
+        c5d.metal:
+          r: 4
+          s: 71
+        c5d.xlarge:
+          s: 61
+        c5n.2xlarge:
+          r: 3
+          s: 54
+        c5n.4xlarge:
+          r: 4
+          s: 58
+        c5n.9xlarge:
+          r: 4
+          s: 65
+        c5n.18xlarge:
+          r: 4
+          s: 65
+        c5n.large:
+          r: 4
+          s: 64
+        c5n.metal:
+          r: 4
+          s: 72
+        c5n.xlarge:
+          r: 1
+          s: 58
+        c6a.2xlarge:
+          r: 1
+          s: 61
+        c6a.4xlarge:
+          r: 2
+          s: 56
+        c6a.8xlarge:
+          r: 3
+          s: 59
+        c6a.12xlarge:
+          r: 3
+          s: 62
+        c6a.16xlarge:
+          r: 4
+          s: 61
+        c6a.24xlarge:
+          r: 4
+          s: 63
+        c6a.32xlarge:
+          r: 4
+          s: 65
+        c6a.48xlarge:
+          r: 3
+          s: 65
+        c6a.large:
+          s: 70
+        c6a.metal:
+          r: 4
+          s: 67
+        c6a.xlarge:
+          r: 1
+          s: 65
+        c6g.2xlarge:
+          r: 3
+          s: 62
+        c6g.4xlarge:
+          r: 4
+          s: 65
+        c6g.8xlarge:
+          r: 1
+          s: 63
+        c6g.12xlarge:
+          r: 4
+          s: 55
+        c6g.16xlarge:
+          r: 4
+          s: 68
+        c6g.large:
+          r: 1
+          s: 61
+        c6g.medium:
+          s: 70
+        c6g.metal:
+          r: 4
+          s: 73
+        c6g.xlarge:
+          r: 1
+          s: 58
+        c6gd.2xlarge:
+          r: 4
+          s: 76
+        c6gd.4xlarge:
+          r: 4
+          s: 66
+        c6gd.8xlarge:
+          r: 2
+          s: 69
+        c6gd.12xlarge:
+          r: 4
+          s: 68
+        c6gd.16xlarge:
+          r: 1
+          s: 70
+        c6gd.large:
+          r: 2
+          s: 62
+        c6gd.medium:
+          s: 73
+        c6gd.metal:
+          r: 2
+          s: 73
+        c6gd.xlarge:
+          r: 1
+          s: 59
+        c6gn.2xlarge:
+          r: 4
+          s: 64
+        c6gn.4xlarge:
+          r: 1
+          s: 59
+        c6gn.8xlarge:
+          r: 2
+          s: 63
+        c6gn.12xlarge:
+          r: 2
+          s: 67
+        c6gn.16xlarge:
+          r: 1
+          s: 68
+        c6gn.large:
+          r: 4
+          s: 56
+        c6gn.medium:
+          s: 72
+        c6gn.xlarge:
+          r: 4
+          s: 61
+        c6i.2xlarge:
+          r: 1
+          s: 61
+        c6i.4xlarge:
+          r: 4
+          s: 59
+        c6i.8xlarge:
+          r: 4
+          s: 63
+        c6i.12xlarge:
+          r: 4
+          s: 66
+        c6i.16xlarge:
+          r: 4
+          s: 65
+        c6i.24xlarge:
+          r: 4
+          s: 66
+        c6i.32xlarge:
+          r: 4
+          s: 66
+        c6i.large:
+          s: 63
+        c6i.metal:
+          r: 4
+          s: 69
+        c6i.xlarge:
+          r: 2
+          s: 58
+        c6id.2xlarge:
+          r: 4
+          s: 68
+        c6id.4xlarge:
+          r: 4
+          s: 64
+        c6id.8xlarge:
+          r: 4
+          s: 66
+        c6id.12xlarge:
+          r: 4
+          s: 66
+        c6id.16xlarge:
+          r: 4
+          s: 68
+        c6id.24xlarge:
+          r: 4
+          s: 69
+        c6id.32xlarge:
+          r: 4
+          s: 62
+        c6id.large:
+          r: 2
+          s: 68
+        c6id.metal:
+          r: 4
+          s: 69
+        c6id.xlarge:
+          r: 4
+          s: 62
+        c6in.2xlarge:
+          r: 1
+          s: 59
+        c6in.4xlarge:
+          r: 3
+          s: 50
+        c6in.8xlarge:
+          r: 4
+          s: 56
+        c6in.12xlarge:
+          r: 4
+          s: 57
+        c6in.16xlarge:
+          r: 4
+          s: 54
+        c6in.24xlarge:
+          r: 4
+          s: 60
+        c6in.32xlarge:
+          r: 4
+          s: 61
+        c6in.large:
+          r: 1
+          s: 62
+        c6in.metal:
+          r: 4
+          s: 69
+        c6in.xlarge:
+          r: 3
+          s: 59
+        c7a.24xlarge:
+          r: 4
+          s: 57
+        c7a.2xlarge:
+          r: 2
+          s: 56
+        c7a.8xlarge:
+          r: 4
+          s: 57
+        c7a.12xlarge:
+          r: 4
+          s: 59
+        c7a.16xlarge:
+          r: 4
+          s: 62
+        c7a.32xlarge:
+          r: 3
+          s: 64
+        c7a.48xlarge:
+          r: 2
+          s: 65
+        c7a.4xlarge:
+          r: 3
+          s: 56
+        c7a.large:
+          s: 62
+        c7a.medium:
+          s: 69
+        c7a.metal-48xl:
+          r: 4
+          s: 71
+        c7a.xlarge:
+          r: 1
+          s: 60
+        c7g.2xlarge:
+          s: 61
+        c7g.4xlarge:
+          s: 65
+        c7g.8xlarge:
+          s: 61
+        c7g.12xlarge:
+          r: 3
+          s: 64
+        c7g.16xlarge:
+          s: 67
+        c7g.large:
+          r: 1
+          s: 57
+        c7g.medium:
+          s: 73
+        c7g.metal:
+          r: 4
+          s: 63
+        c7g.xlarge:
+          r: 1
+          s: 58
+        c7gd.2xlarge:
+          s: 67
+        c7gd.4xlarge:
+          r: 1
+          s: 59
+        c7gd.8xlarge:
+          s: 60
+        c7gd.12xlarge:
+          s: 64
+        c7gd.16xlarge:
+          r: 1
+          s: 67
+        c7gd.large:
+          r: 1
+          s: 61
+        c7gd.medium:
+          s: 75
+        c7gd.metal:
+          s: 72
+        c7gd.xlarge:
+          r: 1
+          s: 57
+        c7gn.2xlarge:
+          r: 2
+          s: 62
+        c7gn.4xlarge:
+          s: 60
+        c7gn.8xlarge:
+          r: 4
+          s: 60
+        c7gn.12xlarge:
+          s: 64
+        c7gn.16xlarge:
+          r: 2
+          s: 59
+        c7gn.large:
+          r: 4
+          s: 63
+        c7gn.medium:
+          r: 1
+          s: 64
+        c7gn.metal:
+          r: 1
+          s: 77
+        c7gn.xlarge:
+          r: 1
+          s: 62
+        c7i-flex.2xlarge:
+          s: 57
+        c7i-flex.4xlarge:
+          r: 4
+          s: 56
+        c7i-flex.8xlarge:
+          r: 4
+          s: 50
+        c7i-flex.12xlarge:
+          r: 4
+          s: 64
+        c7i-flex.16xlarge:
+          r: 4
+          s: 63
+        c7i-flex.large:
+          s: 67
+        c7i-flex.xlarge:
+          s: 57
+        c7i.2xlarge:
+          r: 3
+          s: 62
+        c7i.4xlarge:
+          r: 4
+          s: 58
+        c7i.8xlarge:
+          r: 4
+          s: 60
+        c7i.12xlarge:
+          r: 3
+          s: 61
+        c7i.16xlarge:
+          r: 2
+          s: 62
+        c7i.24xlarge:
+          r: 2
+          s: 63
+        c7i.48xlarge:
+          r: 3
+          s: 57
+        c7i.large:
+          r: 1
+          s: 64
+        c7i.metal-24xl:
+          r: 4
+          s: 69
+        c7i.metal-48xl:
+          r: 3
+          s: 73
+        c7i.xlarge:
+          r: 3
+          s: 59
+        c8g.48xlarge:
+          s: 68
+        c8g.4xlarge:
+          r: 3
+          s: 65
+        c8g.8xlarge:
+          r: 4
+          s: 61
+        c8g.12xlarge:
+          r: 3
+          s: 64
+        c8g.16xlarge:
+          r: 1
+          s: 63
+        c8g.24xlarge:
+          r: 4
+          s: 64
+        c8g.2xlarge:
+          r: 2
+          s: 65
+        c8g.large:
+          r: 2
+          s: 66
+        c8g.medium:
+          r: 3
+          s: 69
+        c8g.metal-24xl:
+          s: 63
+        c8g.metal-48xl:
+          r: 1
+          s: 79
+        c8g.xlarge:
+          r: 1
+          s: 63
+        c8gd.4xlarge:
+          s: 59
+        c8gd.8xlarge:
+          r: 1
+          s: 55
+        c8gd.12xlarge:
+          r: 1
+          s: 62
+        c8gd.16xlarge:
+          r: 1
+          s: 67
+        c8gd.24xlarge:
+          r: 2
+          s: 64
+        c8gd.2xlarge:
+          r: 1
+          s: 65
+        c8gd.48xlarge:
+          s: 64
+        c8gd.large:
+          s: 65
+        c8gd.medium:
+          r: 1
+          s: 77
+        c8gd.metal-24xl:
+          r: 1
+          s: 74
+        c8gd.metal-48xl:
+          r: 3
+          s: 76
+        c8gd.xlarge:
+          r: 1
+          s: 58
+        c8gn.2xlarge:
+          s: 67
+        c8gn.4xlarge:
+          r: 1
+          s: 64
+        c8gn.8xlarge:
+          r: 1
+          s: 65
+        c8gn.12xlarge:
+          r: 1
+          s: 66
+        c8gn.16xlarge:
+          s: 70
+        c8gn.24xlarge:
+          r: 1
+          s: 68
+        c8gn.48xlarge:
+          r: 3
+          s: 68
+        c8gn.large:
+          r: 1
+          s: 65
+        c8gn.medium:
+          s: 78
+        c8gn.xlarge:
+          r: 1
+          s: 67
+        d2.2xlarge:
+          r: 4
+          s: 67
+        d2.4xlarge:
+          r: 4
+          s: 67
+        d2.8xlarge:
+          r: 4
+          s: 63
+        d2.xlarge:
+          r: 4
+          s: 74
+        d3.2xlarge:
+          s: 62
+        d3.4xlarge:
+          s: 64
+        d3.8xlarge:
+          s: 65
+        d3.xlarge:
+          s: 64
+        d3en.2xlarge:
+          s: 62
+        d3en.4xlarge:
+          r: 1
+          s: 62
+        d3en.6xlarge:
+          s: 60
+        d3en.8xlarge:
+          r: 1
+          s: 63
+        d3en.12xlarge:
+          r: 1
+          s: 62
+        d3en.xlarge:
+          r: 1
+          s: 56
+        dl1.24xlarge:
+          s: 73
+        dl2q.24xlarge:
+          r: 4
+          s: 70
+        f1.2xlarge:
+          r: 4
+          s: 68
+        f1.4xlarge:
+          r: 4
+          s: 70
+        f1.16xlarge:
+          r: 4
+          s: 74
+        f2.6xlarge:
+          r: 4
+          s: 85
+        g4ad.2xlarge:
+          s: 57
+        g4ad.4xlarge:
+          s: 44
+        g4ad.8xlarge:
+          s: 60
+        g4ad.16xlarge:
+          s: 62
+        g4ad.xlarge:
+          s: 57
+        g4dn.2xlarge:
+          r: 4
+          s: 58
+        g4dn.4xlarge:
+          r: 4
+          s: 66
+        g4dn.8xlarge:
+          r: 4
+          s: 65
+        g4dn.12xlarge:
+          r: 3
+          s: 62
+        g4dn.16xlarge:
+          r: 4
+          s: 70
+        g4dn.metal:
+          r: 3
+          s: 57
+        g4dn.xlarge:
+          r: 3
+          s: 57
+        g5.2xlarge:
+          r: 4
+          s: 56
+        g5.4xlarge:
+          r: 4
+          s: 63
+        g5.8xlarge:
+          r: 2
+          s: 63
+        g5.12xlarge:
+          r: 4
+          s: 57
+        g5.16xlarge:
+          r: 4
+          s: 48
+        g5.24xlarge:
+          r: 4
+          s: 57
+        g5.48xlarge:
+          r: 4
+          s: 64
+        g5.xlarge:
+          r: 4
+          s: 48
+        g5g.2xlarge:
+          r: 1
+          s: 57
+        g5g.4xlarge:
+          r: 4
+          s: 68
+        g5g.8xlarge:
+          s: 67
+        g5g.16xlarge:
+          s: 71
+        g5g.metal:
+          s: 73
+        g5g.xlarge:
+          s: 69
+        g6.4xlarge:
+          r: 4
+          s: 52
+        g6.8xlarge:
+          r: 4
+          s: 51
+        g6.12xlarge:
+          r: 4
+          s: 51
+        g6.16xlarge:
+          r: 4
+          s: 47
+        g6.24xlarge:
+          r: 4
+          s: 53
+        g6.2xlarge:
+          r: 4
+          s: 41
+        g6.48xlarge:
+          r: 4
+          s: 63
+        g6.xlarge:
+          r: 4
+          s: 46
+        g6e.2xlarge:
+          r: 4
+          s: 43
+        g6e.4xlarge:
+          r: 4
+          s: 54
+        g6e.8xlarge:
+          r: 4
+          s: 66
+        g6e.12xlarge:
+          r: 4
+          s: 53
+        g6e.16xlarge:
+          r: 4
+          s: 56
+        g6e.24xlarge:
+          r: 4
+          s: 61
+        g6e.48xlarge:
+          r: 4
+          s: 62
+        g6e.xlarge:
+          r: 4
+          s: 47
+        g6f.2xlarge:
+          r: 1
+          s: 78
+        g6f.4xlarge:
+          r: 4
+          s: 78
+        g6f.large:
+          r: 1
+          s: 81
+        g6f.xlarge:
+          s: 79
+        gr6.4xlarge:
+          r: 4
+          s: 61
+        gr6.8xlarge:
+          r: 3
+          s: 58
+        gr6f.4xlarge:
+          r: 4
+          s: 79
+        h1.2xlarge:
+          r: 4
+          s: 60
+        h1.4xlarge:
+          r: 4
+          s: 66
+        h1.8xlarge:
+          r: 4
+          s: 66
+        h1.16xlarge:
+          r: 4
+          s: 69
+        i2.2xlarge:
+          r: 4
+          s: 75
+        i2.4xlarge:
+          r: 4
+          s: 68
+        i2.8xlarge:
+          r: 4
+          s: 72
+        i2.xlarge:
+          r: 4
+          s: 75
+        i3.2xlarge:
+          r: 4
+          s: 51
+        i3.4xlarge:
+          r: 4
+          s: 52
+        i3.8xlarge:
+          r: 4
+          s: 64
+        i3.16xlarge:
+          r: 4
+          s: 64
+        i3.large:
+          r: 4
+          s: 73
+        i3.metal:
+          r: 4
+          s: 68
+        i3.xlarge:
+          r: 4
+          s: 62
+        i3en.2xlarge:
+          s: 59
+        i3en.3xlarge:
+          s: 66
+        i3en.6xlarge:
+          s: 64
+        i3en.12xlarge:
+          r: 4
+          s: 58
+        i3en.24xlarge:
+          r: 1
+          s: 56
+        i3en.large:
+          r: 1
+          s: 69
+        i3en.metal:
+          s: 63
+        i3en.xlarge:
+          s: 67
+        i4g.2xlarge:
+          s: 65
+        i4g.4xlarge:
+          r: 2
+          s: 67
+        i4g.8xlarge:
+          r: 1
+          s: 59
+        i4g.16xlarge:
+          s: 65
+        i4g.large:
+          s: 68
+        i4g.xlarge:
+          r: 3
+          s: 60
+        i4i.2xlarge:
+          r: 4
+          s: 43
+        i4i.4xlarge:
+          r: 4
+          s: 49
+        i4i.8xlarge:
+          s: 55
+        i4i.12xlarge:
+          r: 4
+          s: 68
+        i4i.16xlarge:
+          r: 4
+          s: 58
+        i4i.24xlarge:
+          r: 3
+          s: 62
+        i4i.32xlarge:
+          r: 4
+          s: 65
+        i4i.large:
+          s: 72
+        i4i.metal:
+          r: 4
+          s: 64
+        i4i.xlarge:
+          s: 66
+        i7i.24xlarge:
+          s: 62
+        i7i.2xlarge:
+          r: 4
+          s: 60
+        i7i.4xlarge:
+          r: 4
+          s: 55
+        i7i.8xlarge:
+          r: 2
+          s: 60
+        i7i.12xlarge:
+          r: 1
+          s: 62
+        i7i.16xlarge:
+          r: 1
+          s: 62
+        i7i.48xlarge:
+          s: 65
+        i7i.large:
+          r: 1
+          s: 73
+        i7i.metal-24xl:
+          r: 1
+          s: 74
+        i7i.metal-48xl:
+          r: 1
+          s: 74
+        i7i.xlarge:
+          s: 70
+        i7ie.2xlarge:
+          r: 1
+          s: 62
+        i7ie.3xlarge:
+          r: 1
+          s: 62
+        i7ie.6xlarge:
+          r: 2
+          s: 61
+        i7ie.12xlarge:
+          r: 3
+          s: 67
+        i7ie.18xlarge:
+          r: 1
+          s: 64
+        i7ie.24xlarge:
+          r: 1
+          s: 68
+        i7ie.48xlarge:
+          s: 52
+        i7ie.large:
+          r: 1
+          s: 73
+        i7ie.metal-24xl:
+          r: 4
+          s: 78
+        i7ie.metal-48xl:
+          r: 2
+          s: 72
+        i7ie.xlarge:
+          s: 65
+        i8g.4xlarge:
+          r: 1
+          s: 43
+        i8g.8xlarge:
+          r: 3
+          s: 43
+        i8g.12xlarge:
+          s: 45
+        i8g.16xlarge:
+          r: 1
+          s: 51
+        i8g.24xlarge:
+          r: 1
+          s: 45
+        i8g.2xlarge:
+          r: 1
+          s: 45
+        i8g.48xlarge:
+          s: 49
+        i8g.large:
+          r: 1
+          s: 45
+        i8g.metal-24xl:
+          r: 2
+          s: 57
+        i8g.xlarge:
+          s: 46
+        im4gn.2xlarge:
+          r: 2
+          s: 69
+        im4gn.4xlarge:
+          r: 3
+          s: 68
+        im4gn.8xlarge:
+          s: 60
+        im4gn.16xlarge:
+          s: 69
+        im4gn.large:
+          r: 1
+          s: 69
+        im4gn.xlarge:
+          r: 3
+          s: 68
+        inf1.24xlarge:
+          r: 4
+          s: 70
+        inf1.2xlarge:
+          r: 4
+          s: 68
+        inf1.6xlarge:
+          r: 4
+          s: 68
+        inf1.xlarge:
+          r: 4
+          s: 69
+        inf2.8xlarge:
+          r: 1
+          s: 67
+        inf2.24xlarge:
+          r: 1
+          s: 68
+        inf2.48xlarge:
+          s: 74
+        inf2.xlarge:
+          s: 71
+        is4gen.2xlarge:
+          r: 3
+          s: 69
+        is4gen.4xlarge:
+          s: 66
+        is4gen.8xlarge:
+          r: 4
+          s: 61
+        is4gen.large:
+          s: 69
+        is4gen.medium:
+          r: 1
+          s: 57
+        is4gen.xlarge:
+          r: 1
+          s: 70
+        m1.large:
+          r: 4
+          s: 67
+        m1.medium:
+          r: 4
+          s: 65
+        m1.small:
+          r: 4
+          s: 64
+        m1.xlarge:
+          r: 4
+          s: 64
+        m2.2xlarge:
+          r: 4
+          s: 67
+        m2.4xlarge:
+          r: 4
+          s: 64
+        m2.xlarge:
+          r: 4
+          s: 67
+        m3.2xlarge:
+          r: 2
+          s: 64
+        m3.large:
+          s: 66
+        m3.medium:
+          r: 1
+          s: 71
+        m3.xlarge:
+          s: 60
+        m4.2xlarge:
+          r: 1
+          s: 54
+        m4.4xlarge:
+          r: 2
+          s: 49
+        m4.10xlarge:
+          r: 3
+          s: 62
+        m4.16xlarge:
+          r: 2
+          s: 57
+        m4.large:
+          s: 62
+        m4.xlarge:
+          s: 56
+        m5.24xlarge:
+          r: 4
+          s: 63
+        m5.2xlarge:
+          r: 3
+          s: 59
+        m5.4xlarge:
+          r: 4
+          s: 57
+        m5.8xlarge:
+          r: 4
+          s: 66
+        m5.12xlarge:
+          r: 4
+          s: 69
+        m5.16xlarge:
+          r: 4
+          s: 64
+        m5.large:
+          r: 1
+          s: 62
+        m5.metal:
+          r: 4
+          s: 69
+        m5.xlarge:
+          r: 4
+          s: 66
+        m5a.2xlarge:
+          r: 4
+          s: 56
+        m5a.4xlarge:
+          r: 4
+          s: 51
+        m5a.8xlarge:
+          r: 4
+          s: 55
+        m5a.12xlarge:
+          r: 4
+          s: 59
+        m5a.16xlarge:
+          r: 4
+          s: 59
+        m5a.24xlarge:
+          r: 4
+          s: 60
+        m5a.large:
+          r: 1
+          s: 64
+        m5a.xlarge:
+          r: 1
+          s: 53
+        m5ad.2xlarge:
+          r: 4
+          s: 48
+        m5ad.4xlarge:
+          r: 4
+          s: 55
+        m5ad.8xlarge:
+          r: 4
+          s: 62
+        m5ad.12xlarge:
+          r: 4
+          s: 65
+        m5ad.16xlarge:
+          r: 4
+          s: 65
+        m5ad.24xlarge:
+          r: 2
+          s: 57
+        m5ad.large:
+          r: 1
+          s: 65
+        m5ad.xlarge:
+          r: 4
+          s: 56
+        m5d.2xlarge:
+          r: 4
+          s: 66
+        m5d.4xlarge:
+          r: 3
+          s: 58
+        m5d.8xlarge:
+          r: 3
+          s: 61
+        m5d.12xlarge:
+          r: 4
+          s: 67
+        m5d.16xlarge:
+          r: 4
+          s: 63
+        m5d.24xlarge:
+          r: 4
+          s: 60
+        m5d.large:
+          s: 63
+        m5d.metal:
+          r: 1
+          s: 61
+        m5d.xlarge:
+          s: 61
+        m5dn.4xlarge:
+          r: 3
+          s: 51
+        m5dn.8xlarge:
+          r: 4
+          s: 56
+        m5dn.12xlarge:
+          r: 4
+          s: 54
+        m5dn.16xlarge:
+          r: 4
+          s: 63
+        m5dn.24xlarge:
+          r: 1
+          s: 59
+        m5dn.2xlarge:
+          s: 49
+        m5dn.large:
+          s: 61
+        m5dn.metal:
+          s: 66
+        m5dn.xlarge:
+          s: 52
+        m5n.2xlarge:
+          r: 1
+          s: 48
+        m5n.4xlarge:
+          r: 4
+          s: 59
+        m5n.8xlarge:
+          r: 4
+          s: 57
+        m5n.12xlarge:
+          r: 4
+          s: 63
+        m5n.16xlarge:
+          r: 4
+          s: 58
+        m5n.24xlarge:
+          r: 3
+          s: 56
+        m5n.large:
+          r: 1
+          s: 52
+        m5n.metal:
+          r: 3
+          s: 68
+        m5n.xlarge:
+          r: 1
+          s: 55
+        m5zn.2xlarge:
+          r: 1
+          s: 52
+        m5zn.3xlarge:
+          s: 46
+        m5zn.6xlarge:
+          r: 1
+          s: 44
+        m5zn.12xlarge:
+          r: 2
+          s: 57
+        m5zn.large:
+          s: 67
+        m5zn.metal:
+          s: 65
+        m5zn.xlarge:
+          s: 56
+        m6a.2xlarge:
+          s: 51
+        m6a.4xlarge:
+          r: 1
+          s: 53
+        m6a.8xlarge:
+          r: 3
+          s: 57
+        m6a.12xlarge:
+          r: 4
+          s: 61
+        m6a.16xlarge:
+          r: 4
+          s: 59
+        m6a.24xlarge:
+          r: 4
+          s: 62
+        m6a.32xlarge:
+          r: 4
+          s: 66
+        m6a.48xlarge:
+          r: 4
+          s: 69
+        m6a.large:
+          s: 58
+        m6a.metal:
+          r: 4
+          s: 70
+        m6a.xlarge:
+          s: 58
+        m6g.2xlarge:
+          r: 4
+          s: 64
+        m6g.4xlarge:
+          r: 4
+          s: 66
+        m6g.8xlarge:
+          r: 4
+          s: 62
+        m6g.12xlarge:
+          r: 4
+          s: 65
+        m6g.16xlarge:
+          r: 4
+          s: 69
+        m6g.large:
+          r: 1
+          s: 64
+        m6g.medium:
+          s: 67
+        m6g.metal:
+          r: 2
+          s: 71
+        m6g.xlarge:
+          r: 4
+          s: 66
+        m6gd.2xlarge:
+          r: 4
+          s: 58
+        m6gd.4xlarge:
+          r: 4
+          s: 64
+        m6gd.8xlarge:
+          r: 4
+          s: 60
+        m6gd.12xlarge:
+          r: 4
+          s: 73
+        m6gd.16xlarge:
+          r: 4
+          s: 73
+        m6gd.large:
+          r: 4
+          s: 60
+        m6gd.medium:
+          r: 2
+          s: 75
+        m6gd.metal:
+          r: 4
+          s: 78
+        m6gd.xlarge:
+          r: 4
+          s: 58
+        m6i.8xlarge:
+          r: 4
+          s: 63
+        m6i.16xlarge:
+          r: 3
+          s: 57
+        m6i.24xlarge:
+          r: 4
+          s: 62
+        m6i.2xlarge:
+          r: 4
+          s: 63
+        m6i.4xlarge:
+          r: 4
+          s: 58
+        m6i.12xlarge:
+          r: 4
+          s: 65
+        m6i.32xlarge:
+          r: 4
+          s: 66
+        m6i.large:
+          s: 62
+        m6i.metal:
+          r: 4
+          s: 69
+        m6i.xlarge:
+          r: 1
+          s: 61
+        m6id.24xlarge:
+          r: 2
+          s: 64
+        m6id.2xlarge:
+          r: 4
+          s: 65
+        m6id.4xlarge:
+          r: 4
+          s: 61
+        m6id.8xlarge:
+          r: 4
+          s: 55
+        m6id.12xlarge:
+          r: 4
+          s: 67
+        m6id.16xlarge:
+          r: 4
+          s: 67
+        m6id.32xlarge:
+          r: 4
+          s: 59
+        m6id.large:
+          s: 66
+        m6id.metal:
+          r: 3
+          s: 71
+        m6id.xlarge:
+          r: 3
+          s: 66
+        m6idn.2xlarge:
+          r: 4
+          s: 57
+        m6idn.4xlarge:
+          r: 4
+          s: 65
+        m6idn.8xlarge:
+          r: 2
+          s: 47
+        m6idn.12xlarge:
+          r: 4
+          s: 53
+        m6idn.16xlarge:
+          r: 4
+          s: 55
+        m6idn.24xlarge:
+          r: 4
+          s: 57
+        m6idn.32xlarge:
+          r: 4
+          s: 55
+        m6idn.large:
+          s: 58
+        m6idn.metal:
+          r: 4
+          s: 65
+        m6idn.xlarge:
+          r: 2
+          s: 60
+        m6in.2xlarge:
+          r: 1
+          s: 52
+        m6in.4xlarge:
+          r: 1
+          s: 52
+        m6in.8xlarge:
+          r: 4
+          s: 55
+        m6in.12xlarge:
+          r: 3
+          s: 49
+        m6in.16xlarge:
+          r: 4
+          s: 52
+        m6in.24xlarge:
+          r: 3
+          s: 52
+        m6in.32xlarge:
+          r: 4
+          s: 51
+        m6in.large:
+          r: 1
+          s: 56
+        m6in.metal:
+          r: 4
+          s: 60
+        m6in.xlarge:
+          r: 1
+          s: 52
+        m7a.8xlarge:
+          r: 4
+          s: 60
+        m7a.12xlarge:
+          r: 4
+          s: 63
+        m7a.16xlarge:
+          r: 4
+          s: 63
+        m7a.24xlarge:
+          r: 4
+          s: 62
+        m7a.2xlarge:
+          r: 2
+          s: 58
+        m7a.32xlarge:
+          r: 4
+          s: 65
+        m7a.48xlarge:
+          r: 4
+          s: 67
+        m7a.4xlarge:
+          r: 4
+          s: 58
+        m7a.large:
+          s: 64
+        m7a.medium:
+          s: 71
+        m7a.metal-48xl:
+          r: 3
+          s: 71
+        m7a.xlarge:
+          r: 1
+          s: 63
+        m7g.2xlarge:
+          r: 3
+          s: 62
+        m7g.4xlarge:
+          r: 1
+          s: 63
+        m7g.8xlarge:
+          s: 63
+        m7g.12xlarge:
+          r: 2
+          s: 69
+        m7g.16xlarge:
+          s: 67
+        m7g.large:
+          r: 1
+          s: 63
+        m7g.medium:
+          s: 68
+        m7g.metal:
+          r: 1
+          s: 73
+        m7g.xlarge:
+          s: 63
+        m7gd.2xlarge:
+          s: 66
+        m7gd.4xlarge:
+          r: 3
+          s: 66
+        m7gd.8xlarge:
+          r: 1
+          s: 61
+        m7gd.12xlarge:
+          r: 1
+          s: 63
+        m7gd.16xlarge:
+          r: 1
+          s: 68
+        m7gd.large:
+          s: 66
+        m7gd.medium:
+          r: 1
+          s: 73
+        m7gd.metal:
+          s: 76
+        m7gd.xlarge:
+          r: 1
+          s: 61
+        m7i-flex.2xlarge:
+          r: 1
+          s: 56
+        m7i-flex.4xlarge:
+          r: 4
+          s: 56
+        m7i-flex.8xlarge:
+          r: 4
+          s: 60
+        m7i-flex.12xlarge:
+          r: 4
+          s: 64
+        m7i-flex.16xlarge:
+          r: 4
+          s: 63
+        m7i-flex.large:
+          s: 68
+        m7i-flex.xlarge:
+          r: 2
+          s: 63
+        m7i.2xlarge:
+          r: 1
+          s: 56
+        m7i.8xlarge:
+          r: 2
+          s: 53
+        m7i.12xlarge:
+          r: 4
+          s: 61
+        m7i.16xlarge:
+          r: 4
+          s: 62
+        m7i.24xlarge:
+          r: 4
+          s: 65
+        m7i.48xlarge:
+          r: 2
+          s: 57
+        m7i.4xlarge:
+          r: 3
+          s: 57
+        m7i.large:
+          s: 61
+        m7i.metal-24xl:
+          r: 4
+          s: 69
+        m7i.metal-48xl:
+          r: 4
+          s: 68
+        m7i.xlarge:
+          r: 1
+          s: 63
+        m8g.2xlarge:
+          s: 60
+        m8g.4xlarge:
+          r: 1
+          s: 60
+        m8g.8xlarge:
+          r: 1
+          s: 54
+        m8g.12xlarge:
+          r: 2
+          s: 61
+        m8g.16xlarge:
+          s: 68
+        m8g.24xlarge:
+          r: 3
+          s: 63
+        m8g.48xlarge:
+          s: 63
+        m8g.large:
+          s: 60
+        m8g.medium:
+          s: 65
+        m8g.metal-24xl:
+          r: 3
+          s: 73
+        m8g.metal-48xl:
+          r: 1
+          s: 72
+        m8g.xlarge:
+          r: 1
+          s: 63
+        m8gd.4xlarge:
+          r: 1
+          s: 61
+        m8gd.8xlarge:
+          r: 1
+          s: 54
+        m8gd.12xlarge:
+          r: 4
+          s: 60
+        m8gd.16xlarge:
+          r: 1
+          s: 65
+        m8gd.24xlarge:
+          r: 3
+          s: 68
+        m8gd.2xlarge:
+          s: 66
+        m8gd.48xlarge:
+          r: 2
+          s: 67
+        m8gd.large:
+          r: 2
+          s: 67
+        m8gd.medium:
+          r: 1
+          s: 74
+        m8gd.metal-24xl:
+          r: 3
+          s: 74
+        m8gd.metal-48xl:
+          r: 2
+          s: 76
+        m8gd.xlarge:
+          r: 1
+          s: 66
+        m8i.2xlarge:
+          s: 90
+        m8i.4xlarge:
+          s: 90
+        m8i.8xlarge:
+          s: 90
+        m8i.12xlarge:
+          s: 90
+        m8i.16xlarge:
+          s: 90
+        m8i.24xlarge:
+          s: 90
+        m8i.32xlarge:
+          s: 90
+        m8i.48xlarge:
+          s: 90
+        m8i.96xlarge:
+          s: 90
+        m8i.large:
+          s: 90
+        m8i.metal-48xl:
+          s: 90
+        m8i.metal-96xl:
+          s: 90
+        m8i.xlarge:
+          s: 90
+        p3.2xlarge:
+          r: 4
+          s: 73
+        p3.8xlarge:
+          r: 4
+          s: 63
+        p3.16xlarge:
+          r: 4
+          s: 66
+        p3dn.24xlarge:
+          r: 4
+          s: 67
+        p4d.24xlarge:
+          r: 4
+          s: 56
+        p4de.24xlarge:
+          r: 4
+          s: 47
+        p5.48xlarge:
+          r: 4
+          s: 67
+        p5en.48xlarge:
+          s: 67
+        p6-b200.48xlarge:
+          s: 81
+        r3.2xlarge:
+          s: 56
+        r3.4xlarge:
+          r: 3
+          s: 53
+        r3.8xlarge:
+          r: 4
+          s: 61
+        r3.large:
+          s: 67
+        r3.xlarge:
+          r: 2
+          s: 61
+        r4.2xlarge:
+          r: 1
+          s: 46
+        r4.4xlarge:
+          r: 1
+          s: 51
+        r4.8xlarge:
+          r: 1
+          s: 52
+        r4.16xlarge:
+          r: 1
+          s: 52
+        r4.large:
+          s: 65
+        r4.xlarge:
+          s: 56
+        r5.2xlarge:
+          r: 3
+          s: 59
+        r5.4xlarge:
+          r: 4
+          s: 59
+        r5.8xlarge:
+          r: 4
+          s: 58
+        r5.12xlarge:
+          r: 4
+          s: 61
+        r5.16xlarge:
+          r: 4
+          s: 62
+        r5.24xlarge:
+          r: 4
+          s: 59
+        r5.large:
+          r: 1
+          s: 69
+        r5.metal:
+          r: 2
+          s: 60
+        r5.xlarge:
+          r: 3
+          s: 68
+        r5a.2xlarge:
+          r: 4
+          s: 52
+        r5a.4xlarge:
+          r: 3
+          s: 55
+        r5a.8xlarge:
+          r: 4
+          s: 57
+        r5a.12xlarge:
+          r: 4
+          s: 60
+        r5a.16xlarge:
+          r: 4
+          s: 59
+        r5a.24xlarge:
+          r: 4
+          s: 58
+        r5a.large:
+          r: 1
+          s: 58
+        r5a.xlarge:
+          r: 1
+          s: 62
+        r5ad.2xlarge:
+          r: 4
+          s: 29
+        r5ad.4xlarge:
+          r: 4
+          s: 48
+        r5ad.8xlarge:
+          r: 2
+          s: 60
+        r5ad.12xlarge:
+          r: 4
+          s: 59
+        r5ad.16xlarge:
+          r: 4
+          s: 63
+        r5ad.24xlarge:
+          r: 4
+          s: 60
+        r5ad.large:
+          s: 61
+        r5ad.xlarge:
+          r: 3
+          s: 56
+        r5b.2xlarge:
+          s: 34
+        r5b.4xlarge:
+          s: 24
+        r5b.8xlarge:
+          r: 1
+          s: 43
+        r5b.12xlarge:
+          s: 30
+        r5b.16xlarge:
+          s: 45
+        r5b.24xlarge:
+          s: 47
+        r5b.large:
+          s: 61
+        r5b.metal:
+          s: 48
+        r5b.xlarge:
+          s: 45
+        r5d.8xlarge:
+          r: 3
+          s: 52
+        r5d.12xlarge:
+          r: 4
+          s: 54
+        r5d.16xlarge:
+          r: 4
+          s: 58
+        r5d.24xlarge:
+          r: 2
+          s: 58
+        r5d.2xlarge:
+          r: 2
+          s: 49
+        r5d.4xlarge:
+          r: 4
+          s: 49
+        r5d.large:
+          s: 61
+        r5d.metal:
+          s: 60
+        r5d.xlarge:
+          r: 1
+          s: 52
+        r5dn.2xlarge:
+          r: 4
+          s: 36
+        r5dn.4xlarge:
+          r: 4
+          s: 49
+        r5dn.8xlarge:
+          r: 4
+          s: 46
+        r5dn.12xlarge:
+          r: 3
+          s: 54
+        r5dn.16xlarge:
+          r: 4
+          s: 56
+        r5dn.24xlarge:
+          r: 3
+          s: 55
+        r5dn.large:
+          s: 65
+        r5dn.metal:
+          r: 1
+          s: 57
+        r5dn.xlarge:
+          r: 1
+          s: 48
+        r5n.2xlarge:
+          r: 3
+          s: 47
+        r5n.4xlarge:
+          r: 3
+          s: 52
+        r5n.8xlarge:
+          r: 2
+          s: 48
+        r5n.12xlarge:
+          r: 3
+          s: 59
+        r5n.16xlarge:
+          r: 4
+          s: 60
+        r5n.24xlarge:
+          r: 4
+          s: 59
+        r5n.large:
+          r: 1
+          s: 56
+        r5n.metal:
+          r: 1
+          s: 59
+        r5n.xlarge:
+          r: 1
+          s: 54
+        r6a.2xlarge:
+          r: 2
+          s: 50
+        r6a.4xlarge:
+          r: 2
+          s: 51
+        r6a.8xlarge:
+          r: 4
+          s: 55
+        r6a.12xlarge:
+          r: 4
+          s: 61
+        r6a.16xlarge:
+          r: 4
+          s: 61
+        r6a.24xlarge:
+          r: 4
+          s: 61
+        r6a.32xlarge:
+          r: 4
+          s: 62
+        r6a.48xlarge:
+          r: 4
+          s: 67
+        r6a.large:
+          s: 61
+        r6a.metal:
+          r: 4
+          s: 73
+        r6a.xlarge:
+          r: 2
+          s: 60
+        r6g.2xlarge:
+          r: 4
+          s: 66
+        r6g.4xlarge:
+          r: 4
+          s: 63
+        r6g.8xlarge:
+          r: 4
+          s: 64
+        r6g.12xlarge:
+          r: 3
+          s: 66
+        r6g.16xlarge:
+          r: 3
+          s: 65
+        r6g.large:
+          r: 1
+          s: 66
+        r6g.medium:
+          r: 2
+          s: 66
+        r6g.metal:
+          s: 77
+        r6g.xlarge:
+          r: 1
+          s: 68
+        r6gd.2xlarge:
+          r: 1
+          s: 55
+        r6gd.4xlarge:
+          r: 2
+          s: 53
+        r6gd.8xlarge:
+          r: 4
+          s: 51
+        r6gd.12xlarge:
+          r: 4
+          s: 63
+        r6gd.16xlarge:
+          r: 4
+          s: 63
+        r6gd.large:
+          s: 68
+        r6gd.medium:
+          r: 3
+          s: 68
+        r6gd.metal:
+          r: 4
+          s: 73
+        r6gd.xlarge:
+          r: 1
+          s: 51
+        r6i.2xlarge:
+          r: 4
+          s: 55
+        r6i.4xlarge:
+          r: 4
+          s: 56
+        r6i.8xlarge:
+          r: 4
+          s: 62
+        r6i.12xlarge:
+          r: 4
+          s: 63
+        r6i.16xlarge:
+          r: 4
+          s: 64
+        r6i.24xlarge:
+          r: 4
+          s: 62
+        r6i.32xlarge:
+          r: 4
+          s: 63
+        r6i.large:
+          r: 3
+          s: 66
+        r6i.metal:
+          r: 4
+          s: 70
+        r6i.xlarge:
+          r: 2
+          s: 59
+        r6id.8xlarge:
+          r: 4
+          s: 55
+        r6id.12xlarge:
+          r: 4
+          s: 60
+        r6id.16xlarge:
+          r: 4
+          s: 64
+        r6id.24xlarge:
+          r: 2
+          s: 59
+        r6id.2xlarge:
+          r: 4
+          s: 56
+        r6id.4xlarge:
+          r: 3
+          s: 60
+        r6id.32xlarge:
+          r: 4
+          s: 55
+        r6id.large:
+          r: 1
+          s: 66
+        r6id.metal:
+          r: 4
+          s: 53
+        r6id.xlarge:
+          r: 4
+          s: 52
+        r6idn.2xlarge:
+          r: 3
+          s: 49
+        r6idn.4xlarge:
+          r: 3
+          s: 52
+        r6idn.8xlarge:
+          r: 4
+          s: 51
+        r6idn.12xlarge:
+          r: 4
+          s: 59
+        r6idn.16xlarge:
+          r: 4
+          s: 61
+        r6idn.24xlarge:
+          r: 3
+          s: 60
+        r6idn.32xlarge:
+          r: 4
+          s: 59
+        r6idn.large:
+          r: 4
+          s: 67
+        r6idn.metal:
+          r: 4
+          s: 69
+        r6idn.xlarge:
+          r: 3
+          s: 55
+        r6in.24xlarge:
+          r: 2
+          s: 61
+        r6in.2xlarge:
+          r: 4
+          s: 53
+        r6in.4xlarge:
+          r: 4
+          s: 57
+        r6in.8xlarge:
+          r: 4
+          s: 54
+        r6in.12xlarge:
+          r: 4
+          s: 61
+        r6in.16xlarge:
+          r: 4
+          s: 66
+        r6in.32xlarge:
+          r: 4
+          s: 59
+        r6in.large:
+          r: 3
+          s: 76
+        r6in.metal:
+          r: 4
+          s: 68
+        r6in.xlarge:
+          r: 4
+          s: 60
+        r7a.2xlarge:
+          r: 1
+          s: 62
+        r7a.4xlarge:
+          r: 3
+          s: 56
+        r7a.8xlarge:
+          r: 4
+          s: 58
+        r7a.12xlarge:
+          r: 4
+          s: 59
+        r7a.16xlarge:
+          r: 4
+          s: 59
+        r7a.24xlarge:
+          r: 4
+          s: 58
+        r7a.32xlarge:
+          r: 4
+          s: 62
+        r7a.48xlarge:
+          r: 4
+          s: 67
+        r7a.large:
+          s: 68
+        r7a.medium:
+          r: 1
+          s: 67
+        r7a.metal-48xl:
+          r: 2
+          s: 76
+        r7a.xlarge:
+          r: 1
+          s: 66
+        r7g.2xlarge:
+          r: 2
+          s: 61
+        r7g.4xlarge:
+          r: 2
+          s: 65
+        r7g.8xlarge:
+          r: 1
+          s: 63
+        r7g.12xlarge:
+          r: 1
+          s: 62
+        r7g.16xlarge:
+          s: 66
+        r7g.large:
+          r: 2
+          s: 65
+        r7g.medium:
+          s: 71
+        r7g.metal:
+          r: 2
+          s: 76
+        r7g.xlarge:
+          r: 1
+          s: 68
+        r7gd.2xlarge:
+          r: 1
+          s: 59
+        r7gd.4xlarge:
+          r: 4
+          s: 58
+        r7gd.8xlarge:
+          r: 3
+          s: 57
+        r7gd.12xlarge:
+          r: 2
+          s: 63
+        r7gd.16xlarge:
+          r: 1
+          s: 68
+        r7gd.large:
+          s: 68
+        r7gd.medium:
+          r: 2
+          s: 71
+        r7gd.metal:
+          s: 75
+        r7gd.xlarge:
+          r: 3
+          s: 56
+        r7i.4xlarge:
+          r: 4
+          s: 57
+        r7i.8xlarge:
+          r: 4
+          s: 59
+        r7i.12xlarge:
+          r: 4
+          s: 62
+        r7i.16xlarge:
+          r: 4
+          s: 60
+        r7i.24xlarge:
+          r: 4
+          s: 53
+        r7i.2xlarge:
+          r: 3
+          s: 59
+        r7i.48xlarge:
+          r: 4
+          s: 61
+        r7i.large:
+          s: 66
+        r7i.metal-24xl:
+          r: 3
+          s: 61
+        r7i.metal-48xl:
+          r: 4
+          s: 72
+        r7i.xlarge:
+          r: 1
+          s: 63
+        r7iz.2xlarge:
+          r: 2
+          s: 59
+        r7iz.4xlarge:
+          r: 2
+          s: 53
+        r7iz.8xlarge:
+          r: 3
+          s: 54
+        r7iz.12xlarge:
+          r: 3
+          s: 58
+        r7iz.16xlarge:
+          r: 2
+          s: 55
+        r7iz.32xlarge:
+          r: 2
+          s: 50
+        r7iz.large:
+          r: 1
+          s: 72
+        r7iz.metal-16xl:
+          r: 1
+          s: 61
+        r7iz.metal-32xl:
+          r: 3
+          s: 65
+        r7iz.xlarge:
+          r: 1
+          s: 61
+        r8g.2xlarge:
+          r: 4
+          s: 64
+        r8g.4xlarge:
+          r: 3
+          s: 64
+        r8g.8xlarge:
+          r: 3
+          s: 63
+        r8g.12xlarge:
+          r: 4
+          s: 62
+        r8g.16xlarge:
+          s: 66
+        r8g.24xlarge:
+          r: 4
+          s: 67
+        r8g.48xlarge:
+          r: 4
+          s: 67
+        r8g.large:
+          r: 1
+          s: 62
+        r8g.medium:
+          r: 1
+          s: 69
+        r8g.metal-24xl:
+          r: 4
+          s: 71
+        r8g.metal-48xl:
+          r: 4
+          s: 73
+        r8g.xlarge:
+          r: 3
+          s: 68
+        r8gd.2xlarge:
+          r: 1
+          s: 63
+        r8gd.48xlarge:
+          r: 2
+          s: 68
+        r8gd.4xlarge:
+          r: 2
+          s: 59
+        r8gd.8xlarge:
+          r: 3
+          s: 53
+        r8gd.12xlarge:
+          r: 4
+          s: 62
+        r8gd.16xlarge:
+          r: 1
+          s: 69
+        r8gd.24xlarge:
+          s: 66
+        r8gd.large:
+          r: 1
+          s: 67
+        r8gd.medium:
+          r: 1
+          s: 75
+        r8gd.metal-24xl:
+          r: 3
+          s: 71
+        r8gd.metal-48xl:
+          r: 2
+          s: 76
+        r8gd.xlarge:
+          s: 66
+        r8i-flex.2xlarge:
+          r: 3
+          s: 87
+        r8i-flex.4xlarge:
+          r: 4
+          s: 88
+        r8i-flex.8xlarge:
+          r: 2
+          s: 88
+        r8i-flex.12xlarge:
+          r: 1
+          s: 87
+        r8i-flex.16xlarge:
+          r: 1
+          s: 87
+        r8i-flex.large:
+          r: 1
+          s: 88
+        r8i-flex.xlarge:
+          r: 2
+          s: 87
+        r8i.24xlarge:
+          r: 4
+          s: 87
+        r8i.2xlarge:
+          r: 4
+          s: 87
+        r8i.4xlarge:
+          r: 4
+          s: 88
+        r8i.8xlarge:
+          r: 3
+          s: 88
+        r8i.12xlarge:
+          r: 4
+          s: 87
+        r8i.16xlarge:
+          r: 2
+          s: 88
+        r8i.32xlarge:
+          r: 1
+          s: 87
+        r8i.48xlarge:
+          r: 4
+          s: 87
+        r8i.96xlarge:
+          r: 1
+          s: 88
+        r8i.large:
+          r: 2
+          s: 87
+        r8i.metal-48xl:
+          r: 4
+          s: 88
+        r8i.metal-96xl:
+          r: 4
+          s: 88
+        r8i.xlarge:
+          r: 3
+          s: 87
+        t1.micro:
+          r: 4
+          s: 70
+        t2.2xlarge:
+          s: 60
+        t2.large:
+          s: 61
+        t2.medium:
+          s: 68
+        t2.micro:
+          s: 74
+        t2.small:
+          s: 73
+        t2.xlarge:
+          s: 53
+        t3.2xlarge:
+          r: 1
+          s: 64
+        t3.large:
+          s: 64
+        t3.medium:
+          s: 62
+        t3.micro:
+          r: 1
+          s: 68
+        t3.nano:
+          s: 75
+        t3.small:
+          s: 66
+        t3.xlarge:
+          r: 1
+          s: 61
+        t3a.2xlarge:
+          r: 2
+          s: 63
+        t3a.large:
+          r: 4
+          s: 66
+        t3a.medium:
+          r: 4
+          s: 60
+        t3a.micro:
+          r: 1
+          s: 61
+        t3a.nano:
+          s: 49
+        t3a.small:
+          r: 2
+          s: 59
+        t3a.xlarge:
+          r: 4
+          s: 61
+        t4g.2xlarge:
+          r: 1
+          s: 55
+        t4g.large:
+          r: 4
+          s: 61
+        t4g.medium:
+          r: 4
+          s: 58
+        t4g.micro:
+          r: 4
+          s: 64
+        t4g.nano:
+          s: 43
+        t4g.small:
+          r: 1
+          s: 57
+        t4g.xlarge:
+          r: 4
+          s: 54
+        trn1.2xlarge:
+          s: 72
+        trn1.32xlarge:
+          r: 1
+          s: 74
+        trn1n.32xlarge:
+          r: 3
+          s: 77
+        vt1.3xlarge:
+          r: 4
+          s: 63
+        vt1.6xlarge:
+          r: 4
+          s: 64
+        vt1.24xlarge:
+          s: 68
+        x1.16xlarge:
+          r: 4
+          s: 67
+        x1.32xlarge:
+          r: 4
+          s: 67
+        x1e.2xlarge:
+          r: 4
+          s: 70
+        x1e.4xlarge:
+          r: 4
+          s: 67
+        x1e.8xlarge:
+          r: 4
+          s: 74
+        x1e.16xlarge:
+          r: 4
+          s: 73
+        x1e.32xlarge:
+          r: 4
+          s: 68
+        x1e.xlarge:
+          r: 4
+          s: 70
+        x2gd.2xlarge:
+          s: 58
+        x2gd.4xlarge:
+          r: 1
+          s: 61
+        x2gd.8xlarge:
+          r: 1
+          s: 60
+        x2gd.12xlarge:
+          r: 1
+          s: 59
+        x2gd.16xlarge:
+          s: 64
+        x2gd.large:
+          s: 69
+        x2gd.medium:
+          s: 78
+        x2gd.metal:
+          r: 1
+          s: 78
+        x2gd.xlarge:
+          s: 62
+        x2idn.16xlarge:
+          r: 3
+          s: 59
+        x2idn.24xlarge:
+          r: 2
+          s: 55
+        x2idn.32xlarge:
+          r: 2
+          s: 49
+        x2idn.metal:
+          r: 1
+          s: 62
+        x2iedn.2xlarge:
+          r: 1
+          s: 68
+        x2iedn.4xlarge:
+          r: 1
+          s: 68
+        x2iedn.8xlarge:
+          r: 2
+          s: 66
+        x2iedn.16xlarge:
+          r: 4
+          s: 66
+        x2iedn.24xlarge:
+          r: 4
+          s: 60
+        x2iedn.32xlarge:
+          r: 4
+          s: 58
+        x2iedn.metal:
+          r: 2
+          s: 68
+        x2iedn.xlarge:
+          s: 68
+        x2iezn.2xlarge:
+          s: 60
+        x2iezn.4xlarge:
+          s: 65
+        x2iezn.6xlarge:
+          s: 64
+        x2iezn.8xlarge:
+          s: 67
+        x2iezn.12xlarge:
+          s: 69
+        x2iezn.metal:
+          r: 1
+          s: 77
+        x8g.4xlarge:
+          r: 1
+          s: 70
+        x8g.8xlarge:
+          r: 1
+          s: 63
+        x8g.12xlarge:
+          r: 2
+          s: 69
+        x8g.16xlarge:
+          r: 1
+          s: 73
+        x8g.24xlarge:
+          r: 2
+          s: 68
+        x8g.2xlarge:
+          r: 1
+          s: 68
+        x8g.48xlarge:
+          s: 71
+        x8g.large:
+          r: 2
+          s: 71
+        x8g.medium:
+          r: 1
+          s: 77
+        x8g.metal-24xl:
+          r: 2
+          s: 78
+        x8g.metal-48xl:
+          r: 1
+          s: 79
+        x8g.xlarge:
+          r: 4
+          s: 67
+        z1d.2xlarge:
+          r: 4
+          s: 62
+        z1d.3xlarge:
+          r: 4
+          s: 62
+        z1d.6xlarge:
+          r: 4
+          s: 61
+        z1d.12xlarge:
+          r: 4
+          s: 62
+        z1d.large:
+          r: 4
+          s: 69
+        z1d.metal:
+          r: 4
+          s: 69
+        z1d.xlarge:
+          r: 4
+          s: 64
+  conditions:
+    - lastTransitionTime: "2025-10-17T08:31:33Z"
+      observedGeneration: 1
+      reason: ReconcileSuccess
+      status: "True"
+      type: Synced

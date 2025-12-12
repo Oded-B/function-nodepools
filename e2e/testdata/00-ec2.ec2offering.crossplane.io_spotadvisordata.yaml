@@ -1,0 +1,75 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: spotadvisordata.ec2.ec2offering.crossplane.io
+spec:
+  group: ec2.ec2offering.crossplane.io
+  names:
+    kind: SpotAdvisorData
+    listKind: SpotAdvisorDataList
+    plural: spotadvisordata
+    singular: spotadvisordata
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              forProvider:
+                type: object
+                properties:
+                  awsRegion:
+                    type: string
+              providerConfigRef:
+                type: object
+                properties:
+                  name:
+                    type: string
+              deletionPolicy:
+                type: string
+                enum: ["Delete", "Orphan"]
+              managementPolicies:
+                type: array
+                items:
+                  type: string
+          status:
+            type: object
+            properties:
+              atProvider:
+                type: object
+                properties:
+                  spotAdvisorData:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        instanceType:
+                          type: string
+                        spotPrice:
+                          type: string
+                        availabilityZone:
+                          type: string
+              conditions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    status:
+                      type: string
+                    reason:
+                      type: string
+                    message:
+                      type: string
+                    lastTransitionTime:
+                      type: string
+                      format: date-time
+                    observedGeneration:
+                      type: integer
